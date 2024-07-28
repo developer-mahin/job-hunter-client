@@ -1,8 +1,14 @@
 "use client";
+
 import JForm from "@/app/components/Form/JForm";
 import JInputs from "@/app/components/Form/JInputs";
 import { Button } from "@/components/ui/button";
 import { imageUploadIntoImgbb } from "@/utils/uploadImageIntoImgbb";
+import {
+  registerDefaultValues,
+  registerValidation,
+} from "@/validation/register.validation";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import Link from "next/link";
 import { ChangeEvent, useState } from "react";
@@ -53,30 +59,20 @@ const RegisterForm = () => {
       photo: upload,
     };
 
-    try {
-      const res = await fetch("http://localhost:5000/api/v1/auth/signup", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(userInfo),
-      });
-      const data = await res.json();
-
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
+    console.log(data);
   };
 
   return (
-    <JForm onSubmit={handleSignUp}>
+    <JForm
+      onSubmit={handleSignUp}
+      defaultValues={registerDefaultValues}
+      resolver={zodResolver(registerValidation)}
+    >
       <div className="grid lg:grid-cols-2 gap-6 pb-2">
         <div>
           <JInputs
             type="text"
             name="firstName"
-            required
             placeholder="First Name"
             label="First Name"
             labelClass="text-gray-100"
@@ -87,7 +83,6 @@ const RegisterForm = () => {
             type="text"
             name="lastName"
             placeholder="Last name"
-            required
             label="Last Name"
             labelClass="text-gray-100"
           />
@@ -98,9 +93,42 @@ const RegisterForm = () => {
           type="email"
           name="email"
           placeholder="Email"
-          required
           label="Email"
           labelClass="text-gray-100"
+        />
+      </div>
+
+      <div className="pb-2 relative">
+        <JInputs
+          type={changePasswordType ? "password" : "text"}
+          name="password"
+          placeholder="Password"
+          label="Password"
+          labelClass="text-gray-100"
+        />
+        {changePasswordType ? (
+          <FiEyeOff
+            onClick={() => {
+              setChangePasswordType(changeIcon);
+            }}
+            className="absolute right-4 top-[38px] cursor-pointer text-gray-800 text-xl"
+          />
+        ) : (
+          <AiOutlineEye
+            onClick={() => {
+              setChangePasswordType(changeIcon);
+            }}
+            className="absolute right-4 top-[38px] cursor-pointer text-gray-800 text-xl"
+          />
+        )}
+      </div>
+      <div className="pb-2">
+        <JInputs
+          type="password"
+          name="confirmPassword"
+          label="Confirm Password"
+          labelClass="text-gray-100"
+          placeholder="Confirm Password"
         />
       </div>
 
@@ -131,47 +159,12 @@ const RegisterForm = () => {
         </div>
       </div>
 
-      <div className="pb-2 relative">
-        <JInputs
-          type={changePasswordType ? "password" : "text"}
-          name="password"
-          required
-          placeholder="Password"
-          label="Password"
-          labelClass="text-gray-100"
-        />
-        {changePasswordType ? (
-          <FiEyeOff
-            onClick={() => {
-              setChangePasswordType(changeIcon);
-            }}
-            className="absolute right-4 top-[38px] cursor-pointer text-gray-800 text-xl"
-          />
-        ) : (
-          <AiOutlineEye
-            onClick={() => {
-              setChangePasswordType(changeIcon);
-            }}
-            className="absolute right-4 top-[38px] cursor-pointer text-gray-800 text-xl"
-          />
-        )}
-      </div>
-      <div className="pb-2">
-        <JInputs
-          type="password"
-          name="confirmPassword"
-          required
-          label="Confirm Password"
-          labelClass="text-gray-100"
-          placeholder="Confirm Password"
-        />
-      </div>
       <div className="flex justify-between items-center">
         <Button
           type="submit"
           className="bg-opacity-20 text-[#38bdf8] hover:text-secondary w-full rounded-full mt-3 font-medium"
         >
-          {loading ? "Loading..." : "Create Account"}
+          Create Account
         </Button>
         <div className="block md:hidden mt-4">
           <Link href="/login" className="font-medium underline">

@@ -1,17 +1,17 @@
+import SocialButtons from "@/app/components/Shared/SocialButtons";
+import { assets } from "@/assets";
+import Image from "next/image";
 import Link from "next/link";
 import RegisterForm from "./components/RegisterForm";
-import SocialButtons from "@/app/components/Shared/SocialButtons";
-import Image from "next/image";
-import { assets } from "@/assets";
 
 const RegisterPage = () => {
   return (
-    <div className="bg-[#0F172A] h-screen flex items-center justify-center text-gray-100">
+    <div className="bg-[#0F172A] lg:h-screen h-full flex items-center justify-center text-gray-100">
       <div className="relative lg:w-[1200px] px-6 mx-auto py-2">
         <div className="bg-green-500 bg-opacity-10 rounded mt-3 hidden md:block">
           <p className="p-3 text-green-500 font-semibold">
             Let&apos;s learn, share & inspire each other with our passion for
-            computer engineering. Sign up now 🤘🏼
+            computer engineering. Sign up now
           </p>
         </div>
         <>

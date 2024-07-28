@@ -3,6 +3,11 @@
 import JForm from "@/app/components/Form/JForm";
 import JInputs from "@/app/components/Form/JInputs";
 import { Button } from "@/components/ui/button";
+import {
+  loginDefaultValues,
+  loginValidationSchema,
+} from "@/validation/login.validation";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 
@@ -12,7 +17,11 @@ const LoginForm = () => {
   };
 
   return (
-    <JForm onSubmit={handleLogin}>
+    <JForm
+      onSubmit={handleLogin}
+      defaultValues={loginDefaultValues}
+      resolver={zodResolver(loginValidationSchema)}
+    >
       <div className="mb-2">
         <JInputs
           label="Email"

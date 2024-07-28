@@ -1,4 +1,6 @@
-import { ReactNode } from "react";
+"use client";
+
+import { ReactNode, useRef } from "react";
 import {
   FieldValues,
   FormProvider,
@@ -8,6 +10,7 @@ import {
 
 type TFormConfig = {
   defaultValues?: Record<string, any>;
+  resolver?: any;
 };
 
 type TFormPros = {
@@ -15,11 +18,19 @@ type TFormPros = {
   children: ReactNode;
 } & TFormConfig;
 
-const JForm = ({ onSubmit, children, defaultValues }: TFormPros) => {
-  const formConfig: TFormConfig = {};
+const JForm = ({ onSubmit, children, defaultValues, resolver }: TFormPros) => {
+  const formRef = useRef<HTMLFormElement | null>(null);
+
+  const formConfig: TFormConfig = {
+    resolver: undefined,
+  };
 
   if (defaultValues) {
     formConfig["defaultValues"] = defaultValues;
+  }
+
+  if (resolver) {
+    formConfig["resolver"] = resolver;
   }
 
   const method = useForm(formConfig);
@@ -27,11 +38,16 @@ const JForm = ({ onSubmit, children, defaultValues }: TFormPros) => {
   const submit: SubmitHandler<FieldValues> = (data) => {
     onSubmit(data);
     method.reset();
+    if (formRef.current) {
+      formRef.current.reset();
+    }
   };
 
   return (
     <FormProvider {...method}>
-      <form onSubmit={method.handleSubmit(submit)}>{children}</form>
+      <form ref={formRef} onSubmit={method.handleSubmit(submit)}>
+        {children}
+      </form>
     </FormProvider>
   );
 };

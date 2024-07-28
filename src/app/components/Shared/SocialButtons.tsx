@@ -6,12 +6,12 @@ const SocialButtons = () => {
   return (
     <div className="mt-4">
       <div className="space-y-4">
-        <Button className="border rounded-md w-full" variant="ghost">
-          <FaFacebook />
+        <Button className="border w-full gap-x-1" variant="ghost">
+          <FaFacebook className="size-5" />
           <span>Sign up with Facebook</span>
         </Button>
-        <Button className="border rounded-md w-full" variant="ghost">
-          <FaGoogle />
+        <Button className="border w-full gap-x-1" variant="ghost">
+          <FaGoogle className="size-5" />
           <span>Sign up with Google</span>
         </Button>
       </div>

@@ -1,14 +1,10 @@
-import Image from "next/image";
-import { assets } from "@/assets";
 import SocialButtons from "@/app/components/Shared/SocialButtons";
+import { assets } from "@/assets";
+import Image from "next/image";
 import Link from "next/link";
-import dynamic from "next/dynamic";
+import LoginForm from "./components/LoginForm";
 
 const LoginPage = () => {
-  const LoginForm = dynamic(() => import("./components/LoginForm"), {
-    ssr: false,
-  });
-
   return (
     <div className="bg-[#0F172A] h-screen flex items-center justify-center text-gray-100">
       <div className="lg:w-[900px] mx-auto py-4 relative">
