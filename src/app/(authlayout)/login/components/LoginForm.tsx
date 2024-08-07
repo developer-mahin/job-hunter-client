@@ -10,10 +10,22 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { FieldValues, SubmitHandler } from "react-hook-form";
+import { loginUser } from "../../authAction/login";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
-  const handleLogin: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
+  const router = useRouter();
+
+  const handleLogin: SubmitHandler<FieldValues> = async (data) => {
+    try {
+      const res = await loginUser(data);
+      if (res.success) {
+        toast.success(res.message);
+      }
+    } catch (error: any) {
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -28,7 +40,6 @@ const LoginForm = () => {
           type="email"
           name="email"
           placeholder="Email"
-          required={true}
           labelClass="text-gray-100"
         />
       </div>
@@ -36,7 +47,6 @@ const LoginForm = () => {
         <JInputs
           label="Password"
           name="password"
-          required={true}
           type="password"
           placeholder="Password"
           labelClass="text-gray-100"
