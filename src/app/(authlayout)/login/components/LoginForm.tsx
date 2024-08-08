@@ -2,7 +2,7 @@
 
 import JForm from "@/app/components/Form/JForm";
 import JInputs from "@/app/components/Form/JInputs";
-import { Button } from "@/components/ui/button";
+import { Button } from "@nextui-org/button";
 import {
   loginDefaultValues,
   loginValidationSchema,
@@ -35,28 +35,18 @@ const LoginForm = () => {
       resolver={zodResolver(loginValidationSchema)}
     >
       <div className="mb-2">
-        <JInputs
-          label="Email"
-          type="email"
-          name="email"
-          placeholder="Email"
-          labelClass="text-gray-100"
-        />
+        <JInputs label="Email" type="email" name="email" required={true} />
       </div>
       <div className="pb-2 relative">
         <JInputs
           label="Password"
           name="password"
           type="password"
-          placeholder="Password"
-          labelClass="text-gray-100"
+          required={true}
         />
       </div>
       <div className="flex justify-between items-center">
-        <Button
-          type="submit"
-          className="bg-opacity-20 text-[#38bdf8] hover:text-secondary w-full rounded-full mt-3 font-medium"
-        >
+        <Button type="submit" className="lg:w-1/3 font-semibold">
           Sign In
         </Button>
         <div className="block md:hidden mt-4">
