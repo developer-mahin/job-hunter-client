@@ -34,9 +34,16 @@ import { FaGithub } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import useUserInfo from "@/hook/User";
 import { Avatar } from "@nextui-org/react";
+import { logoutUser } from "@/app/(authlayout)/authAction/logoutUser";
+import { useRouter } from "next/navigation";
 
 const DropdownItem = () => {
   const { userData, isLoading } = useUserInfo();
+  const router = useRouter();
+
+  const logout = () => {
+    logoutUser(router);
+  };
 
   return (
     <DropdownMenu>
@@ -50,26 +57,28 @@ const DropdownItem = () => {
           />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56 mt-4">
+
+      <DropdownMenuContent className="w-56 mt-7">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
+          <DropdownMenuItem className="hover:bg-gray-200 rounded-lg cursor-pointer">
             <User2 className="mr-2 h-4 w-4" />
             <span>Profile</span>
             <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem>
+
+          <DropdownMenuItem className="hover:bg-gray-200 rounded-lg cursor-pointer">
             <CreditCard className="mr-2 h-4 w-4" />
             <span>Billing</span>
             <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem>
+          <DropdownMenuItem className="hover:bg-gray-200 rounded-lg cursor-pointer">
             <Settings className="mr-2 h-4 w-4" />
             <span>Settings</span>
             <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem>
+          <DropdownMenuItem className="hover:bg-gray-200 rounded-lg cursor-pointer">
             <Keyboard className="mr-2 h-4 w-4" />
             <span>Keyboard shortcuts</span>
             <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
@@ -77,45 +86,45 @@ const DropdownItem = () => {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
+          <DropdownMenuItem className="hover:bg-gray-200 rounded-lg cursor-pointer">
             <Users className="mr-2 h-4 w-4" />
             <span>Team</span>
           </DropdownMenuItem>
           <DropdownMenuSub>
-            <DropdownMenuSubTrigger>
+            <DropdownMenuSubTrigger className="hover:bg-gray-200 rounded-lg cursor-pointer">
               <UserPlus className="mr-2 h-4 w-4" />
               <span>Invite users</span>
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
-                <DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-gray-200 rounded-lg cursor-pointer">
                   <Mail className="mr-2 h-4 w-4" />
                   <span>Email</span>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-gray-200 rounded-lg cursor-pointer">
                   <MessageSquare className="mr-2 h-4 w-4" />
                   <span>Message</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-gray-200 rounded-lg cursor-pointer">
                   <PlusCircle className="mr-2 h-4 w-4" />
                   <span>More...</span>
                 </DropdownMenuItem>
               </DropdownMenuSubContent>
             </DropdownMenuPortal>
           </DropdownMenuSub>
-          <DropdownMenuItem>
+          <DropdownMenuItem className="hover:bg-gray-200 rounded-lg cursor-pointer">
             <Plus className="mr-2 h-4 w-4" />
             <span>New Team</span>
             <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem className="hover:bg-gray-200 rounded-lg cursor-pointer">
           <FaGithub className="mr-2 h-4 w-4" />
           <span>GitHub</span>
         </DropdownMenuItem>
-        <DropdownMenuItem>
+        <DropdownMenuItem className="hover:bg-gray-200 rounded-lg cursor-pointer">
           <LifeBuoy className="mr-2 h-4 w-4" />
           <span>Support</span>
         </DropdownMenuItem>
@@ -124,7 +133,10 @@ const DropdownItem = () => {
           <span>API</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() => logout()}
+          className="hover:bg-gray-200 rounded-lg cursor-pointer"
+        >
           <LogOut className="mr-2 h-4 w-4" />
           <span>Log out</span>
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>

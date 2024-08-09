@@ -1,3 +1,4 @@
+import { assets } from "@/assets";
 import {
   Input,
   Link,
@@ -7,19 +8,26 @@ import {
   NavbarItem,
 } from "@nextui-org/react";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { CiSearch } from "react-icons/ci";
-// import DropdownItem from "./DropdownItem";
 
 export default function Header() {
   const DropdownItem = dynamic(() => import("./DropdownItem"), { ssr: false });
 
   return (
-    <Navbar isBordered>
+    <Navbar isBordered maxWidth="2xl" isBlurred className="h-[100px] py-3 mx-5">
       <NavbarContent justify="start">
-        <NavbarBrand className="mr-4">
-          {/* <AcmeLogo /> */}
-          <p className="hidden sm:block font-bold text-inherit">ACME</p>
-        </NavbarBrand>
+        <Link href="/feed" className="cursor-pointer">
+          <NavbarBrand className="mr-4">
+            <Image
+              src={assets.images.logo}
+              width={500}
+              height={80}
+              className="w-full h-[90px]"
+              alt=""
+            />
+          </NavbarBrand>
+        </Link>
         <NavbarContent className="hidden sm:flex gap-3">
           <NavbarItem>
             <Link color="foreground" href="#">
