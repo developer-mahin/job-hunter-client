@@ -24,9 +24,13 @@ export function middleware(request: NextRequest) {
     }
   }
 
-  // if (pathname === "/") {
-  //   return NextResponse.redirect(new URL("/home", request.url));
-  // }
+  if (!accessToken) {
+    if (pathname === "/feed") {
+      return NextResponse.redirect(new URL("/login", request.url));
+    } else {
+      return NextResponse.next();
+    }
+  }
 
   if (!accessToken) {
     if (authRoutes.includes(pathname)) {

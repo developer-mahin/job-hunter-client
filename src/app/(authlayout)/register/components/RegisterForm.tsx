@@ -9,6 +9,7 @@ import { ChangeEvent, useRef, useState } from "react";
 import { AiOutlineEye } from "react-icons/ai";
 import { FiEyeOff } from "react-icons/fi";
 import { toast } from "sonner";
+import { registerUser } from "../../authAction/register";
 
 const RegisterForm = () => {
   const formRef = useRef<HTMLFormElement | null>(null);
@@ -66,7 +67,12 @@ const RegisterForm = () => {
       formRef.current.reset();
     }
 
-    console.log(userInfo);
+    try {
+      const res = await registerUser(userInfo);
+      toast.success(res?.message);
+    } catch (error: any) {
+      toast.error(error.message);
+    }
   };
 
   return (

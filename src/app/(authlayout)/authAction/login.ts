@@ -13,7 +13,6 @@ export const loginUser = async (
   payload: FieldValues,
   redirect?: string | undefined
 ) => {
-  console.log(payload);
   const res = await fetch(`${baseurl}/auth/login_user`, {
     method: "POST",
     headers: {

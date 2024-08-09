@@ -13,6 +13,8 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 import { loginUser } from "../../authAction/login";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { setToLocalStorage } from "@/utils/localStorage";
+import { authKey } from "@/constant/authKey";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -21,7 +23,9 @@ const LoginForm = () => {
     try {
       const res = await loginUser(data);
       if (res.success) {
+        setToLocalStorage(authKey.ACCESS_TOKEN, res?.data?.token);
         toast.success(res.message);
+        router.push("/feed");
       }
     } catch (error: any) {
       toast.error(error.message);
