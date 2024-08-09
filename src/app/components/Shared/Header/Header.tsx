@@ -15,7 +15,7 @@ export default function Header() {
   const DropdownItem = dynamic(() => import("./DropdownItem"), { ssr: false });
 
   return (
-    <Navbar isBordered maxWidth="2xl" isBlurred className="h-[100px] py-3 mx-5">
+    <Navbar isBordered maxWidth="2xl" isBlurred className="h-[100px] py-3 ">
       <NavbarContent justify="start">
         <Link href="/feed" className="cursor-pointer">
           <NavbarBrand className="mr-4">
