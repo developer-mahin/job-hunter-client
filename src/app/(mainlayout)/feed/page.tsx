@@ -1,8 +1,10 @@
+import Container from "@/app/components/Shared/Container";
+
 const FeedPage = () => {
   return (
-    <div>
+    <Container>
       <h2>Welcome to the feed page</h2>
-    </div>
+    </Container>
   );
 };
 
