@@ -1,7 +1,6 @@
 import Container from "../components/Shared/Container";
 import Header from "../components/Shared/Header/Header";
 import LeftSidebar from "../components/Shared/LeftSidebar";
-import MenuBar from "../components/Shared/MenuBar";
 import RightSidebar from "../components/Shared/RightSidebar";
 
 export default function MainLayout({
@@ -11,12 +10,10 @@ export default function MainLayout({
 }>) {
   return (
     <div>
-      <div className="">
-        <div className="fixed top-0 w-full z-[1000]">
-          <Header />
-        </div>
-        <MenuBar />
+      <div className="fixed top-0 w-full z-[1000]">
+        <Header />
       </div>
+
       <Container className="mt-4">
         <div className="grid grid-cols-12">
           <div className="lg:col-span-3 col-span-12">

@@ -7,7 +7,6 @@ import { baseurl } from "@/constant/baseurl";
 export const baseApi = createApi({
   reducerPath: "api",
   baseQuery: axiosBaseQuery({
-    // baseUrl: `https://blooddonationserverv2.vercel.app/api/v1`,
     baseUrl: `${baseurl}`,
   }),
   endpoints: () => ({}),

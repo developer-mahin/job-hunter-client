@@ -17,7 +17,10 @@ const CreatePostUi = () => {
       <div className="flex items-center gap-x-4">
         <div>
           <Image
-            src={userData?.photo || "https://cdn-icons-png.freepik.com/256/1077/1077114.png?semt=ais_hybrid"}
+            src={
+              userData?.photo ||
+              "https://cdn-icons-png.freepik.com/256/1077/1077114.png?semt=ais_hybrid"
+            }
             width={500}
             height={200}
             className="size-16 rounded-full object-cover"
@@ -41,7 +44,7 @@ const CreatePostUi = () => {
           size="2xl"
           className="h-[600px] overflow-y-scroll custom-scrollbar"
         >
-          <CreateModalContent />
+          <CreateModalContent onOpen={onOpen}/>
         </JModal>
       </div>
 

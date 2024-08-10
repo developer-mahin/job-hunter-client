@@ -1,12 +1,8 @@
 import { getNewAccessToken } from "@/app/(authlayout)/authAction/auth.service";
 import { authKey } from "@/constant/authKey";
-import {
-  TGenericErrorResponse,
-  TResponseSuccessType,
-} from "@/types/global.types";
 import { getFromLocalStorage, setToLocalStorage } from "@/utils/localStorage";
-
 import axios from "axios";
+import { TGenericErrorResponse, TResponseSuccessType } from "../types";
 
 const instance = axios.create();
 
