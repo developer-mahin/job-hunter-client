@@ -1,16 +1,24 @@
+"use client";
+
+import useUserInfo from "@/hook/User";
 import Image from "next/image";
 import Link from "next/link";
 import { AiFillStar } from "react-icons/ai";
 import { BsFillBookmarkFill } from "react-icons/bs";
 
 const LeftSidebar = () => {
+  const { userData } = useUserInfo();
+
   return (
     <div className="sticky top-0 bg-gray-50">
       <div className="border rounded-lg rounded-t-xl">
         <div className="relative">
           <div>
             <Image
-              src="https://i.ibb.co/z2tJ2Ws/a-young-24-year-old-bangladeshi-man-with-a-long-su-e7ho-SJVUTTOhubk5y-Xn-Msw-k-Tv-M9qhc-Sd-KWi0-EZ6.png"
+              src={
+                userData?.photo ||
+                "https://cdn-icons-png.freepik.com/256/1077/1077114.png?semt=ais_hybrid"
+              }
               className="w-full h-[120px] rounded-t-xl object-cover"
               width={500}
               height={80}
@@ -34,8 +42,11 @@ const LeftSidebar = () => {
         <div className="mt-7 px-4 pt-3">
           <div className="text-center">
             <div>
-              <Link href="/profile" className="hover:underline font-semibold text-black">
-                Name
+              <Link
+                href="/profile"
+                className="hover:underline font-semibold text-black"
+              >
+                {userData?.name}
               </Link>
             </div>
             <span className="text-sm font-normal">Headline</span>

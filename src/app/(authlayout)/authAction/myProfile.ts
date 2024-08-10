@@ -14,7 +14,7 @@ export const getMyProfile = async () => {
   const res = await fetch(`${baseurl}/user/my_profile`, {
     method: "GET",
     headers,
-    cache: "no-store",
+    cache:"force-cache"
   });
 
   const data = await res.json();

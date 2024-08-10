@@ -1,21 +1,30 @@
+import useUserInfo from "@/hook/User";
 import { Button } from "@nextui-org/button";
+import { Select, SelectItem } from "@nextui-org/react";
 import Image from "next/image";
 import { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import { BsImage } from "react-icons/bs";
-import ImageUploading from "react-images-uploading";
+import ImageUploading, { ImageListType } from "react-images-uploading";
 import ReactQuill from "react-quill";
+
+const postOption = [
+  {
+    key: "article",
+    label: "Article",
+  },
+  { key: "education", label: "Education" },
+];
 
 const CreateModalContent = () => {
   const [selectPost, setSelectPost] = useState("");
   const [imageDataURl, setImageDataURL] = useState("");
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState<File[]>([]);
   const [quillValue, setQuillValue] = useState("");
+  const { userData } = useUserInfo();
   const maxNumber = 69;
 
-  console.log(images);
-
-  const onChange = (imageList, addUpdateIndex, e) => {
+  const onChange = (imageList: any, addUpdateIndex?: number[]) => {
     setImages(imageList);
     setImageDataURL(imageList[0]?.data_url);
   };
@@ -26,24 +35,24 @@ const CreateModalContent = () => {
         <div className="flex justify-items-center items-center gap-2 mt-2">
           <div>
             <Image
-              width={60}
+              width={600}
               height={60}
-              src="https://i.ibb.co/z2tJ2Ws/a-young-24-year-old-bangladeshi-man-with-a-long-su-e7ho-SJVUTTOhubk5y-Xn-Msw-k-Tv-M9qhc-Sd-KWi0-EZ6.png"
-              className="rounded-full object-cover"
+              src={
+                userData?.photo ||
+                "https://cdn-icons-png.freepik.com/256/1077/1077114.png?semt=ais_hybrid"
+              }
+              className="rounded-full object-cover size-16"
               alt=""
             />
           </div>
           <div>
-            <h5 className="text-black">Name</h5>
+            <h5 className="text-black font-medium">{userData?.name}</h5>
             <div>
-              <select
-                onChange={(e) => setSelectPost(e.target.value)}
-                className="form-control font-semibold bg-black text-black cursor-pointer"
-              >
-                <option value="select one">Select One...</option>
-                <option value="article">Article</option>
-                <option value="education">Education</option>
-              </select>
+              <Select label="Select one..." className="w-40 " size="sm">
+                {postOption.map((option) => (
+                  <SelectItem key={option.key}>{option.label}</SelectItem>
+                ))}
+              </Select>
             </div>
           </div>
         </div>
