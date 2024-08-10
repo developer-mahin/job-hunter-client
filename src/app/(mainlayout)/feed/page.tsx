@@ -1,10 +1,10 @@
-import Container from "@/app/components/Shared/Container";
+import CreatePostUi from "./components/CreatePostUi";
 
 const FeedPage = () => {
   return (
-    <Container>
-      <h2>Welcome to the feed page</h2>
-    </Container>
+    <div className="px-6">
+      <CreatePostUi />
+    </div>
   );
 };
 

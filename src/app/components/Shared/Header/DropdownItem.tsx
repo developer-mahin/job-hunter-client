@@ -58,7 +58,7 @@ const DropdownItem = () => {
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="w-56 mt-7">
+      <DropdownMenuContent className="w-56 mt-7 bg-gray-50">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
