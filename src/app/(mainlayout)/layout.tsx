@@ -10,7 +10,7 @@ export default function MainLayout({
 }>) {
   return (
     <div>
-      <div className="fixed top-0 w-full z-[1000]">
+      <div className="">
         <Header />
       </div>
 

@@ -26,6 +26,8 @@ const LoginForm = () => {
         setToLocalStorage(authKey.ACCESS_TOKEN, res?.data?.token);
         toast.success(res.message);
         router.push("/feed");
+      } else {
+        toast.error("Something went wrong please try again");
       }
     } catch (error: any) {
       toast.error(error.message);

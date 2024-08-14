@@ -35,26 +35,22 @@ export type TAuthUser = {
   exp: number;
 };
 
-type TUserProfile = {
-  id: string;
-  userId: string;
-  bio: string;
-  age: number;
-  contactNumber: string;
-  photo: string;
-  lastDonationDate: string | null;
-  createdAt: string;
-  updatedAt: string;
+type TUserInfo = {
+  city: string;
+  website: string;
+  country: string;
 };
 
 export type TUser = {
-  id: string;
+  _id: string;
   name: string;
   email: string;
-  bloodType: string;
-  location: string;
-  availability: boolean;
+  photo: string;
+  status: "active" | "inactive";
+  role: "user" | "admin" | "moderator";
+  isDeleted: boolean;
   createdAt: string;
   updatedAt: string;
-  userProfile: TUserProfile;
+  __v: number;
+  info: TUserInfo;
 };

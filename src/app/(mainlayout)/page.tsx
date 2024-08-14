@@ -2,6 +2,7 @@
 
 import { Spinner } from "@nextui-org/react";
 import { usePathname, useRouter } from "next/navigation";
+import Spinners from "../components/Shared/Spinners";
 
 const HomePage = () => {
   const router = useRouter();
@@ -12,11 +13,7 @@ const HomePage = () => {
     router.push("/feed");
   }
 
-  return (
-    <div className="flex items-center justify-center h-screen">
-      <Spinner label="Loading..." color="success" />
-    </div>
-  );
+  return <Spinners className="h-[100vh]" />;
 };
 
 export default HomePage;
