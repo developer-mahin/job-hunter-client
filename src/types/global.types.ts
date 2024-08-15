@@ -39,6 +39,7 @@ type TUserInfo = {
   city: string;
   website: string;
   country: string;
+  tag: string;
 };
 
 export type TUser = {
@@ -46,6 +47,9 @@ export type TUser = {
   name: string;
   email: string;
   photo: string;
+  coverPhoto: string;
+  education: string;
+  headline: string;
   status: "active" | "inactive";
   role: "user" | "admin" | "moderator";
   isDeleted: boolean;

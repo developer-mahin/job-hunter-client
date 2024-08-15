@@ -36,6 +36,7 @@ import useUserInfo from "@/hook/User";
 import { Avatar } from "@nextui-org/react";
 import { logoutUser } from "@/app/(authlayout)/authAction/logoutUser";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const DropdownItem = () => {
   const { userData, isLoading } = useUserInfo();
@@ -62,11 +63,13 @@ const DropdownItem = () => {
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem className="hover:bg-gray-200 rounded-lg cursor-pointer">
-            <User2 className="mr-2 h-4 w-4" />
-            <span>Profile</span>
-            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-          </DropdownMenuItem>
+          <Link href="/profile">
+            <DropdownMenuItem className="hover:bg-gray-200 rounded-lg cursor-pointer">
+              <User2 className="mr-2 h-4 w-4" />
+              <span>Profile</span>
+              <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </Link>
 
           <DropdownMenuItem className="hover:bg-gray-200 rounded-lg cursor-pointer">
             <CreditCard className="mr-2 h-4 w-4" />

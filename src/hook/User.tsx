@@ -1,27 +1,6 @@
 import { getMyProfile } from "@/app/(authlayout)/authAction/myProfile";
+import { TUser } from "@/types";
 import { useState, useEffect } from "react";
-
-type TUser = {
-  _id?: string;
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  photo: string;
-  coverPhoto?: string;
-  education?: string;
-  headline?: string;
-  info?: {
-    tag?: string;
-    website?: string;
-    country?: string;
-    city?: string;
-  };
-  passwordUpdatedAt?: Date;
-  status: "active" | "blocked";
-  role: "user" | "recruiter" | "admin";
-  isDeleted: boolean;
-};
 
 interface ProfileResponse {
   success: boolean;
