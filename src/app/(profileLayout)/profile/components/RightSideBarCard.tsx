@@ -1,8 +1,7 @@
 import { AiOutlinePlus } from "react-icons/ai";
 
-const RightSideBarCard = ({info}) => {
-
-    const { image, name, details } = info;
+const RightSideBarCard = ({ info }) => {
+  const { image, name, details } = info;
 
   return (
     <div className="py-2">

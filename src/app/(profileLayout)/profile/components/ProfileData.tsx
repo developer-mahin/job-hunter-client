@@ -5,7 +5,7 @@ import useUserInfo from "@/hook/User";
 import { Button } from "@nextui-org/button";
 import { BiRightArrowAlt } from "react-icons/bi";
 import { ImPencil } from "react-icons/im";
-import CoverPhoto from "./CoverPhoto";
+import CoverPhoto from "./CoverPhoto/CoverPhoto";
 import PersonalDetails from "./PersonalDetails";
 import ProfilePicture from "./ProfilePicture";
 import RightSideBarCard from "./RightSideBarCard";
@@ -46,13 +46,6 @@ const ProfileData = () => {
             <CoverPhoto userData={userData!!} />
             <div className="absolute top-[120px] left-10">
               <ProfilePicture userData={userData!!} />
-              {/* <ProfilePicModal
-                  refetch={refetch}
-                  changeProfilePicModal={changeProfilePicModal}
-                  customStyles={customStyles}
-                  closeProfilePicModal={closeProfilePicModal}
-                  profile={profile}
-                /> */}
             </div>
           </div>
 
@@ -66,14 +59,6 @@ const ProfileData = () => {
               >
                 <ImPencil />
               </div>
-
-              {/* <ProfileDataUpdateModal
-                profileDataUpdateModal={profileDataUpdateModal}
-                customStyles={customStyles}
-                closeModal={closeModal}
-                profile={profile}
-                refetch={refetch}
-              /> */}
 
               <div className="block">
                 <p className="font-semibold hover:underline cursor-pointer">

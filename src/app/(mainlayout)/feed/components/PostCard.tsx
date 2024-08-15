@@ -182,13 +182,13 @@ const PostCard = ({ post }: TProps) => {
           </div>
 
           <div className="grid grid-cols-3 gap-2">
-            <Button className="w-8" size="sm" variant="light">
+            <Button isIconOnly variant="light">
               <BsEmojiSmile className="text-xl cursor-pointer" />
             </Button>
-            <Button className="w-8" size="sm" variant="light">
+            <Button isIconOnly variant="light">
               <AiOutlineCamera className="text-xl cursor-pointer" />
             </Button>
-            <Button className="w-8" size="sm" variant="light">
+            <Button isIconOnly variant="light">
               <AiOutlineGif className="text-2xl cursor-pointer" />
             </Button>
           </div>
