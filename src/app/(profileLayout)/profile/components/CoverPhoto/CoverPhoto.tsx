@@ -1,18 +1,15 @@
 "use state";
 
 import ReactCustomModal from "@/app/components/Shared/ReactModal";
-import { TUser } from "@/types";
+import useUserInfo from "@/hook/User";
+import { Button } from "@nextui-org/button";
 import Image from "next/image";
 import { useState } from "react";
-import UpdateCoverPhotoModalContent from "./UpdateCoverPhotoModalContent";
 import { ImPencil } from "react-icons/im";
-import { Button } from "@nextui-org/button";
+import UpdateCoverPhotoModalContent from "./UpdateCoverPhotoModalContent";
 
-type TProps = {
-  userData: TUser;
-};
-
-const CoverPhoto = ({ userData }: TProps) => {
+const CoverPhoto = () => {
+  const { userData } = useUserInfo();
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
 
   return (
@@ -42,7 +39,7 @@ const CoverPhoto = ({ userData }: TProps) => {
         setIsOpen={setModalIsOpen}
         modalTitle="Update your cover photo"
       >
-        <UpdateCoverPhotoModalContent userData={userData!!} />
+        <UpdateCoverPhotoModalContent />
       </ReactCustomModal>
     </>
   );

@@ -1,13 +1,11 @@
 import useUserInfo from "@/hook/User";
 import { useCreatePostMutation } from "@/redux/api/Features/Post/postApi";
+import ImageUploadingUtils from "@/utils/ImageUploading";
 import { imageUploadIntoImgbb } from "@/utils/uploadImageIntoImgbb";
 import { Button } from "@nextui-org/button";
 import { Select, SelectItem } from "@nextui-org/react";
 import Image from "next/image";
 import { useState } from "react";
-import { AiFillDelete } from "react-icons/ai";
-import { BsImage } from "react-icons/bs";
-import ImageUploading from "react-images-uploading";
 import ReactQuill from "react-quill";
 import { toast } from "sonner";
 
@@ -19,7 +17,7 @@ const postOption = [
   { key: "education", label: "Education" },
 ];
 
-const CreateModalContent = ({ onOpen }: any) => {
+const CreateModalContent = () => {
   const [selectPost, setSelectPost] = useState("");
   const [imageDataURl, setImageDataURL] = useState("");
   const [images, setImages] = useState<any[]>([]);
@@ -118,33 +116,11 @@ const CreateModalContent = ({ onOpen }: any) => {
         </div>
 
         <div className={`App mt-${imageDataURl ? "10" : "0"}`}>
-          <ImageUploading
-            multiple
-            value={images}
+          <ImageUploadingUtils
+            images={images}
             onChange={onChange}
             maxNumber={maxNumber}
-            dataURLKey="data_url"
-          >
-            {({ onImageUpload, isDragging, dragProps, onImageRemoveAll }) => (
-              <div className="upload__image-wrapper flex justify-between">
-                <div
-                  className={`cursor-pointer ${
-                    isDragging ? "text-red-500" : ""
-                  }`}
-                  onClick={onImageUpload}
-                  {...dragProps}
-                >
-                  <BsImage className="text-black text-3xl" />
-                </div>
-                <div>
-                  <AiFillDelete
-                    onClick={onImageRemoveAll}
-                    className="text-black text-3xl cursor-pointer"
-                  />
-                </div>
-              </div>
-            )}
-          </ImageUploading>
+          />
         </div>
 
         <div className="mt-5 pb-4">

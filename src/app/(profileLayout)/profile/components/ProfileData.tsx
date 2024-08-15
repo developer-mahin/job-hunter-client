@@ -7,7 +7,7 @@ import { BiRightArrowAlt } from "react-icons/bi";
 import { ImPencil } from "react-icons/im";
 import CoverPhoto from "./CoverPhoto/CoverPhoto";
 import PersonalDetails from "./PersonalDetails";
-import ProfilePicture from "./ProfilePicture";
+import ProfilePicture from "./ProfilePicture/ProfilePicture";
 import RightSideBarCard from "./RightSideBarCard";
 
 const rightSideBarInfo = [
@@ -43,9 +43,9 @@ const ProfileData = () => {
       <div className="w-full md:w-3/4 p-0 lg:p-2">
         <div className="shadow border rounded">
           <div className="relative mb-5">
-            <CoverPhoto userData={userData!!} />
+            <CoverPhoto />
             <div className="absolute top-[120px] left-10">
-              <ProfilePicture userData={userData!!} />
+              <ProfilePicture />
             </div>
           </div>
 
@@ -53,11 +53,14 @@ const ProfileData = () => {
             <PersonalDetails userData={userData!!} />
 
             <div className="hidden lg:block">
-              <div
-                // onClick={openProfileDataModal}
-                className="flex justify-end text-2xl pb-2 cursor-pointer"
-              >
-                <ImPencil />
+              <div className="flex items-center justify-end">
+                <Button
+                  isIconOnly
+                  // onClick={openProfileDataModal}
+                  className="rounded-full"
+                >
+                  <ImPencil className="text-xl" />
+                </Button>
               </div>
 
               <div className="block">
