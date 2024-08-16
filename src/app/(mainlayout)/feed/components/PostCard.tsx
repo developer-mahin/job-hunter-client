@@ -1,18 +1,12 @@
 import { TPost } from "@/types";
 import { Button } from "@nextui-org/button";
-import { Input } from "@nextui-org/input";
+import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  AiFillLike,
-  AiOutlineCamera,
-  AiOutlineGif,
-  AiOutlinePlus,
-} from "react-icons/ai";
-import { BiCommentDots, BiEditAlt, BiSend } from "react-icons/bi";
-import { BsEmojiSmile, BsThreeDots } from "react-icons/bs";
-import { TbMessageReport } from "react-icons/tb";
+import { AiOutlinePlus } from "react-icons/ai";
 import { PhotoProvider, PhotoView } from "react-photo-view";
+import CommentSection from "./CommentSection";
+import PostActionButtons from "./PostActionButtons";
 import PostActionDropdown from "./PostActionDropdown";
 
 type TProps = {
@@ -20,16 +14,7 @@ type TProps = {
 };
 
 const PostCard = ({ post }: TProps) => {
-  const {
-    _id,
-    author,
-    postDetails,
-    image,
-    likes,
-    comments,
-    postCategory,
-    createdAt,
-  } = post;
+  const { _id, author, postDetails, image, createdAt } = post;
 
   return (
     <div className="mb-3 border rounded-xl bg-gray-100 bg-opacity-50 shadow">
@@ -52,7 +37,9 @@ const PostCard = ({ post }: TProps) => {
               >
                 {author?.name}
               </Link>
-              <span className="text-sm">{createdAt?.slice(0, 10)}</span>
+              <span className="text-sm">
+                {moment(createdAt).startOf("hour").fromNow()}
+              </span>
             </div>
           </div>
           <div className="flex items-center gap-1">
@@ -69,17 +56,12 @@ const PostCard = ({ post }: TProps) => {
             </div>
           </div>
         </div>
-        <div className="mt-2">
-          {/* {postRole === "education" && (
-            <GiGraduateCap className="mr-1 font-medium" />
-          )}
-          {postRole === "job" && <CgWorkAlt className="mr-1 font-medium" />}
-          {postRole === "article" && <BsPenFill className="mr-1 font-medium" />}
-          <span className="capitalize font-medium">{postRole}</span> */}
-        </div>
+
         <div>
-          <p>
-            {/* {postRole === "job" ? (
+          <div
+            dangerouslySetInnerHTML={{ __html: postDetails.slice(3, 120) }}
+          />
+          {/* {postRole === "job" ? (
               <>
                 {description?.length > 150 ? (
                   <>
@@ -124,21 +106,23 @@ const PostCard = ({ post }: TProps) => {
                 )}
               </>
             )} */}
-          </p>
+          {/* </div> */}
         </div>
       </div>
       <div>
-        <PhotoProvider>
-          <PhotoView src={author?.photo}>
-            <Image
-              className="w-full h-auto cursor-pointer"
-              src={author?.photo}
-              alt=""
-              width={600}
-              height={60}
-            />
-          </PhotoView>
-        </PhotoProvider>
+        {image && (
+          <PhotoProvider>
+            <PhotoView src={image}>
+              <Image
+                className="w-full h-auto cursor-pointer"
+                src={image}
+                alt=""
+                width={6000}
+                height={600}
+              />
+            </PhotoView>
+          </PhotoProvider>
+        )}
       </div>
 
       <div>
@@ -154,69 +138,12 @@ const PostCard = ({ post }: TProps) => {
             </span> */}
           </div>
         </div>
-        <div className="flex items-center justify-between px-3">
-          <Button className="" variant="light">
-            <AiFillLike className="text-xl" />
-            <span className="text-base">Like</span>
-          </Button>
-
-          <Button className="" variant="light">
-            <BiCommentDots className="text-xl" />
-            <span className="text-base">Comment</span>
-          </Button>
-          <Button className="" variant="light">
-            <BiSend className="text-xl" />
-            <span className="text-base">Send</span>
-          </Button>
-        </div>
+        {/* Post action button like comment  */}
+        <PostActionButtons post={post} />
       </div>
 
-      <div className="py-3 px-3 flex items-center gap-2">
-        <div className="flex items-center gap-3 w-full  mr-3">
-          <div className="w-3/4">
-            <Input
-              placeholder="Write a comment"
-              required
-              className="rounded-full"
-            />
-          </div>
-
-          <div className="grid grid-cols-3 gap-2">
-            <Button isIconOnly variant="light">
-              <BsEmojiSmile className="text-xl cursor-pointer" />
-            </Button>
-            <Button isIconOnly variant="light">
-              <AiOutlineCamera className="text-xl cursor-pointer" />
-            </Button>
-            <Button isIconOnly variant="light">
-              <AiOutlineGif className="text-2xl cursor-pointer" />
-            </Button>
-          </div>
-        </div>
-        <div>
-          <Button className="">Send</Button>
-        </div>
-      </div>
-
-      <div className="px-3">
-        {/* {comments?.map((data, index) => (
-          <div key={index} className="my-3 flex gap-3">
-            <div>
-              <img
-                className="object-cover rounded-full"
-                src={data?.userPhoto}
-                width={45}
-                height={45}
-                alt=""
-              />
-            </div>
-            <div className="p-3 bg-secondary bg-opacity-10 rounded w-full">
-              <h6 className="m-0">{data?.userName}</h6>
-              <p className="m-0 pt-1 text-sm">{data?.comment}</p>
-            </div>
-          </div>
-        ))} */}
-      </div>
+      {/* Comment section  */}
+      <CommentSection post={post} />
     </div>
   );
 };

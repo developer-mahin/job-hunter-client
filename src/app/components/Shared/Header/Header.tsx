@@ -1,7 +1,6 @@
 import { assets } from "@/assets";
 import {
   Input,
-  Link,
   Navbar,
   NavbarBrand,
   NavbarContent,
@@ -9,6 +8,7 @@ import {
 } from "@nextui-org/react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import Link from "next/link";
 import { CiSearch } from "react-icons/ci";
 
 export default function Header() {
