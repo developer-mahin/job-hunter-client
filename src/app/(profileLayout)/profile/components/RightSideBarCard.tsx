@@ -1,13 +1,19 @@
+import Image from "next/image";
 import { AiOutlinePlus } from "react-icons/ai";
+import { TRightSidebar } from "./ProfileData";
 
-const RightSideBarCard = ({ info }) => {
+type TProps = {
+  info: TRightSidebar;
+};
+
+const RightSideBarCard = ({ info }: TProps) => {
   const { image, name, details } = info;
 
   return (
     <div className="py-2">
       <div className="flex items-center gap-2">
         <div>
-          <img
+          <Image
             src={image}
             width={60}
             height={60}

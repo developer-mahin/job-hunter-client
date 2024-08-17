@@ -44,7 +44,7 @@ const CreatePostUi = () => {
           size="2xl"
           className="h-[600px] overflow-y-scroll custom-scrollbar"
         >
-          <CreateModalContent onOpen={onOpen}/>
+          <CreateModalContent />
         </JModal>
       </div>
 

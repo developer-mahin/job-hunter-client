@@ -11,7 +11,14 @@ import ProfilePicture from "./ProfilePicture/ProfilePicture";
 import RightSideBarCard from "./RightSideBarCard";
 import { useGetMyProfileQuery } from "@/redux/api/Features/user/userApi";
 
-const rightSideBarInfo = [
+export type TRightSidebar = {
+  id: number;
+  image: string;
+  name: string;
+  details: string;
+};
+
+const rightSideBarInfo: TRightSidebar[] = [
   {
     id: 1,
     image: "https://i.ibb.co/5FKH0ZF/1624162747433.jpg",
@@ -46,9 +53,9 @@ const ProfileData = () => {
       <div className="w-full md:w-3/4 p-0 lg:p-2">
         <div className="shadow border rounded">
           <div className="relative mb-5">
-            <CoverPhoto userData={userData}/>
+            <CoverPhoto userData={userData} />
             <div className="absolute top-[120px] left-10">
-              <ProfilePicture userData={userData}/>
+              <ProfilePicture userData={userData} />
             </div>
           </div>
 
