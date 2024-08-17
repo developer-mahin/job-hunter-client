@@ -10,22 +10,8 @@ export function middleware(request: NextRequest) {
 
   const accessToken = cookies().get(authKey.ACCESS_TOKEN);
 
-  // if (pathname === "/") {
-  //   if (accessToken) {
-  //     return NextResponse.redirect(new URL("/home", request.url));
-  //   }
-  // }
-
-  if (pathname === "/feed") {
-    if (accessToken) {
-      return NextResponse.next();
-    } else {
-      return NextResponse.redirect(new URL("/login", request.url));
-    }
-  }
-
   if (!accessToken) {
-    if (pathname === "/feed") {
+    if (pathname === "/") {
       return NextResponse.redirect(new URL("/login", request.url));
     } else {
       return NextResponse.next();
@@ -40,9 +26,13 @@ export function middleware(request: NextRequest) {
     }
   }
 
+  if (pathname === "/profile") {
+    return NextResponse.next();
+  }
+
   return NextResponse.redirect(new URL("/", request.url));
 }
 
 export const config = {
-  matcher: ["/login", "/register", "/feed"],
+  matcher: ["/login", "/register", "/profile"],
 };

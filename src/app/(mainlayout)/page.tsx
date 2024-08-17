@@ -1,19 +1,13 @@
-"use client";
-
-import { Spinner } from "@nextui-org/react";
-import { usePathname, useRouter } from "next/navigation";
-import Spinners from "../components/Shared/Spinners";
+import AllPost from "./feed/components/AllPost";
+import CreatePostUi from "./feed/components/CreatePostUi";
 
 const HomePage = () => {
-  const router = useRouter();
-
-  const pathname = usePathname();
-
-  if (pathname === "/") {
-    router.push("/feed");
-  }
-
-  return <Spinners className="h-[100vh]" />;
+  return (
+    <div className="px-6">
+      <CreatePostUi />
+      <AllPost />
+    </div>
+  );
 };
 
 export default HomePage;
