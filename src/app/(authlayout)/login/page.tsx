@@ -3,6 +3,7 @@ import { assets } from "@/assets";
 import Image from "next/image";
 import Link from "next/link";
 import LoginForm from "./components/LoginForm";
+import Credentials from "@/app/components/Shared/Credentials";
 
 const LoginPage = () => {
   return (

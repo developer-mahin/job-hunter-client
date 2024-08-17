@@ -15,6 +15,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { setToLocalStorage } from "@/utils/localStorage";
 import { authKey } from "@/constant/authKey";
+import Credentials from "@/app/components/Shared/Credentials";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -51,10 +52,16 @@ const LoginForm = () => {
           required={true}
         />
       </div>
-      <div className="flex justify-between items-center">
-        <Button type="submit" className="lg:w-1/3 font-semibold">
-          Sign In
-        </Button>
+      <div className="flex justify-between items-center " >
+        <div className="grid grid-cols-2 gap-x-14">
+          <Button type="submit" fullWidth className="font-semibold w-full">
+            Sign In
+          </Button>
+          <div>
+            <Credentials />
+          </div>
+        </div>
+
         <div className="block md:hidden mt-4">
           <Link
             href="/register"

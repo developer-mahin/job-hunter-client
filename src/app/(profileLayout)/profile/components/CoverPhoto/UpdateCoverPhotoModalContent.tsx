@@ -7,6 +7,7 @@ import { imageUploadIntoImgbb } from "@/utils/uploadImageIntoImgbb";
 import { Button } from "@nextui-org/button";
 import Image from "next/image";
 import React, { useState } from "react";
+import { PhotoProvider, PhotoView } from "react-photo-view";
 import { toast } from "sonner";
 
 type TProps = {
@@ -34,7 +35,7 @@ const UpdateCoverPhotoModalContent = ({ userData, setIsModalOpen }: TProps) => {
     const userInfo = {
       id,
       data: {
-        photo: uploadedImage,
+        coverPhoto: uploadedImage,
       },
     };
 
@@ -52,19 +53,31 @@ const UpdateCoverPhotoModalContent = ({ userData, setIsModalOpen }: TProps) => {
     <div className="">
       <div className="">
         <div className="py-2 flex justify-center items-center">
-          <Image
-            src={
-              imageDataURl
-                ? imageDataURl
-                : userData?.coverPhoto
-                ? userData?.coverPhoto
-                : "https://marketplace.canva.com/EAFIddqdjTk/2/0/1600w/canva-black-minimalist-motivation-quote-linkedin-banner-1PLNOKlL1HU.jpg"
-            }
-            width={1200}
-            height={300}
-            className="object-cover h-[300px]"
-            alt=""
-          />
+          <PhotoProvider>
+            <PhotoView
+              src={
+                imageDataURl
+                  ? imageDataURl
+                  : userData?.coverPhoto
+                  ? userData?.coverPhoto
+                  : "https://marketplace.canva.com/EAFIddqdjTk/2/0/1600w/canva-black-minimalist-motivation-quote-linkedin-banner-1PLNOKlL1HU.jpg"
+              }
+            >
+              <Image
+                src={
+                  imageDataURl
+                    ? imageDataURl
+                    : userData?.coverPhoto
+                    ? userData?.coverPhoto
+                    : "https://marketplace.canva.com/EAFIddqdjTk/2/0/1600w/canva-black-minimalist-motivation-quote-linkedin-banner-1PLNOKlL1HU.jpg"
+                }
+                width={1200}
+                height={300}
+                className="object-cover h-[300px]"
+                alt=""
+              />
+            </PhotoView>
+          </PhotoProvider>
         </div>
       </div>
 
