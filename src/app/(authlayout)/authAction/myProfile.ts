@@ -11,10 +11,11 @@ export const getMyProfile = async () => {
   if (token) {
     headers["Authorization"] = `${token}`;
   }
+
   const res = await fetch(`${baseurl}/user/my_profile`, {
     method: "GET",
     headers,
-    cache:"force-cache"
+    cache: "force-cache",
   });
 
   const data = await res.json();

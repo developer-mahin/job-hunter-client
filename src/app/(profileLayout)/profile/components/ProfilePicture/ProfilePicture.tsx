@@ -1,13 +1,16 @@
 "use client";
 
 import ReactCustomModal from "@/app/components/Shared/ReactModal";
-import useUserInfo from "@/hook/User";
+import { TUser } from "@/types";
 import Image from "next/image";
 import { useState } from "react";
 import UpdateProfilePictureModalContent from "./UpdateProfilePictureModalContent";
 
-const ProfilePicture = () => {
-  const { userData } = useUserInfo();
+type TProps = {
+  userData: TUser;
+};
+
+const ProfilePicture = ({ userData }: TProps) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   return (
@@ -26,7 +29,10 @@ const ProfilePicture = () => {
         setIsOpen={setIsModalOpen}
         modalTitle="Update your profile picture"
       >
-        <UpdateProfilePictureModalContent />
+        <UpdateProfilePictureModalContent
+          userData={userData}
+          setIsModalOpen={setIsModalOpen}
+        />
       </ReactCustomModal>
     </>
   );

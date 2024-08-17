@@ -9,6 +9,7 @@ import CoverPhoto from "./CoverPhoto/CoverPhoto";
 import PersonalDetails from "./PersonalDetails";
 import ProfilePicture from "./ProfilePicture/ProfilePicture";
 import RightSideBarCard from "./RightSideBarCard";
+import { useGetMyProfileQuery } from "@/redux/api/Features/user/userApi";
 
 const rightSideBarInfo = [
   {
@@ -32,7 +33,9 @@ const rightSideBarInfo = [
 ];
 
 const ProfileData = () => {
-  const { userData, isLoading } = useUserInfo();
+  // const { userData, isLoading } = useUserInfo();
+
+  const { data: userData, isLoading } = useGetMyProfileQuery({});
 
   if (isLoading) {
     return <Spinners className="h-[100vh]" />;
@@ -43,9 +46,9 @@ const ProfileData = () => {
       <div className="w-full md:w-3/4 p-0 lg:p-2">
         <div className="shadow border rounded">
           <div className="relative mb-5">
-            <CoverPhoto />
+            <CoverPhoto userData={userData}/>
             <div className="absolute top-[120px] left-10">
-              <ProfilePicture />
+              <ProfilePicture userData={userData}/>
             </div>
           </div>
 

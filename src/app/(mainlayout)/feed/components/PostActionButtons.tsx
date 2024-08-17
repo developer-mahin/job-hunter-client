@@ -36,10 +36,15 @@ const PostActionButtons = ({ post }: TProps) => {
         </Button>
       </div>
 
-      <Button className="" variant="light">
-        <BiCommentDots className="text-xl" />
-        <span className="text-base">Comment</span>
-      </Button>
+      <div>
+        <p className="hover:underline cursor-pointer pl-3">
+          {post?.comments && post?.comments?.length} Comments
+        </p>
+        <Button className="" variant="light">
+          <BiCommentDots className="text-xl" />
+          <span className="text-base">Comment</span>
+        </Button>
+      </div>
       <Button className="" variant="light">
         <BiSend className="text-xl" />
         <span className="text-base">Send</span>

@@ -1,20 +1,51 @@
 "use client";
 
-import useUserInfo from "@/hook/User";
+import { useUpdateUserProfileMutation } from "@/redux/api/Features/user/userApi";
+import { TUser } from "@/types";
 import ImageUploadingUtils from "@/utils/ImageUploading";
+import { imageUploadIntoImgbb } from "@/utils/uploadImageIntoImgbb";
 import { Button } from "@nextui-org/button";
 import Image from "next/image";
-import { useState } from "react";
+import React, { useState } from "react";
+import { toast } from "sonner";
 
-const UpdateCoverPhotoModalContent = () => {
-  const { userData } = useUserInfo();
+type TProps = {
+  userData: TUser;
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const UpdateCoverPhotoModalContent = ({ userData, setIsModalOpen }: TProps) => {
   const [images, setImages] = useState<any[]>([]);
+  const [updateUserProfile] = useUpdateUserProfileMutation();
   const [imageDataURl, setImageDataURL] = useState("");
   const maxNumber = 1;
 
   const onChange = (imageList: any, addUpdateIndex?: number[]) => {
     setImages(imageList);
     setImageDataURL(imageList[0]?.data_url);
+  };
+
+  const handleChangeProfilePicture = async (id: string) => {
+    const image = images[0]?.file;
+    const formData = new FormData();
+    formData.append("image", image);
+    const uploadedImage = await imageUploadIntoImgbb(formData);
+
+    const userInfo = {
+      id,
+      data: {
+        photo: uploadedImage,
+      },
+    };
+
+    try {
+      const res = await updateUserProfile(userInfo);
+      if (res.data) {
+        setIsModalOpen(false);
+      }
+    } catch (error: any) {
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -37,7 +68,7 @@ const UpdateCoverPhotoModalContent = () => {
         </div>
       </div>
 
-      <form className="mt-3">
+      <div className="mt-3">
         <div className="">
           <ImageUploadingUtils
             images={images}
@@ -50,12 +81,12 @@ const UpdateCoverPhotoModalContent = () => {
           <Button
             color={images.length === 0 ? "default" : "success"}
             disabled={images.length === 0}
-            type="submit"
+            onClick={() => handleChangeProfilePicture(userData?._id as string)}
           >
             Save
           </Button>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

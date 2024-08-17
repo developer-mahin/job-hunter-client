@@ -1,3 +1,5 @@
+"use client";
+
 import { TPost } from "@/types";
 import { Button } from "@nextui-org/button";
 import moment from "moment";
@@ -8,12 +10,17 @@ import { PhotoProvider, PhotoView } from "react-photo-view";
 import CommentSection from "./CommentSection";
 import PostActionButtons from "./PostActionButtons";
 import PostActionDropdown from "./PostActionDropdown";
+import { useState } from "react";
+import useUserInfo from "@/hook/User";
 
 type TProps = {
   post: TPost;
 };
 
 const PostCard = ({ post }: TProps) => {
+  const { userData } = useUserInfo();
+  const [seeAllDetails, setSeeAllDetails] = useState<boolean>(false);
+  const changeState = seeAllDetails === true ? false : true;
   const { _id, author, postDetails, image, createdAt } = post;
 
   return (
@@ -43,70 +50,54 @@ const PostCard = ({ post }: TProps) => {
             </div>
           </div>
           <div className="flex items-center gap-1">
-            <div>
-              <Button className="btn">
-                <AiOutlinePlus className="rounded cursor-pointer mr-1" />
-                <span className="underline cursor-pointer text-base">
-                  Follow
-                </span>
-              </Button>
-            </div>
+            {userData?._id !== author?._id && (
+              <div>
+                <Button className="">
+                  <AiOutlinePlus className="rounded cursor-pointer mr-1" />
+                  <span className="underline cursor-pointer text-base">
+                    Follow
+                  </span>
+                </Button>
+              </div>
+            )}
             <div className="flex items-center justify-between">
               <PostActionDropdown />
             </div>
           </div>
         </div>
 
-        <div>
-          <div
-            dangerouslySetInnerHTML={{ __html: postDetails.slice(3, 120) }}
-          />
-          {/* {postRole === "job" ? (
+        <div className="py-4">
+          <>
+            {changeState ? (
               <>
-                {description?.length > 150 ? (
-                  <>
-                    <p className="text-base">
-                      {description?.slice(0, 150) + "..."}
-                    </p>
-                  </>
+                {postDetails.length > 150 ? (
+                  <span className="text-base">
+                    {postDetails && postDetails?.slice(0, 150) + "..."}
+                  </span>
                 ) : (
-                  <>{description}</>
+                  <span className="text-base">{postDetails}</span>
+                )}
+                {postDetails.length > 150 && (
+                  <span
+                    onClick={() => setSeeAllDetails(!seeAllDetails)}
+                    className="ml-1 underline cursor-pointer text-base font-medium"
+                  >
+                    See More
+                  </span>
                 )}
               </>
             ) : (
               <>
-                {changeState ? (
-                  <>
-                    {description.length > 150 ? (
-                      <span className="text-base">
-                        {description && description?.slice(0, 150) + "..."}
-                      </span>
-                    ) : (
-                      <span className="text-base">{description}</span>
-                    )}
-                    {description.length > 150 && (
-                      <span
-                        onClick={() => setSeeAllDetails(!seeAllDetails)}
-                        className="ml-1 underline cursor-pointer text-base font-medium"
-                      >
-                        See More
-                      </span>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    <span className="text-base">{description}</span>
-                    <span
-                      onClick={() => setSeeAllDetails(!seeAllDetails)}
-                      className="ml-1 underline cursor-pointer font-medium text-base"
-                    >
-                      See Less
-                    </span>
-                  </>
-                )}
+                <span className="text-base">{postDetails}</span>
+                <span
+                  onClick={() => setSeeAllDetails(!seeAllDetails)}
+                  className="ml-1 underline cursor-pointer font-medium text-base"
+                >
+                  See Less
+                </span>
               </>
-            )} */}
-          {/* </div> */}
+            )}
+          </>
         </div>
       </div>
       <div>
@@ -126,18 +117,6 @@ const PostCard = ({ post }: TProps) => {
       </div>
 
       <div>
-        <div className="px-3 flex items-center justify-between py-2">
-          <div>
-            {/* <span className="text-base">
-              {!like?.length ? `0 Like` : sortingLike.length + " " + "Likes"}
-            </span> */}
-          </div>
-          <div>
-            {/* <span className="text-base">
-              {comment?.length ? comment?.length : "0"} comments
-            </span> */}
-          </div>
-        </div>
         {/* Post action button like comment  */}
         <PostActionButtons post={post} />
       </div>

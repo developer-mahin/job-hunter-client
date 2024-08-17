@@ -7,9 +7,14 @@ import Image from "next/image";
 import { useState } from "react";
 import { ImPencil } from "react-icons/im";
 import UpdateCoverPhotoModalContent from "./UpdateCoverPhotoModalContent";
+import { TUser } from "@/types";
 
-const CoverPhoto = () => {
-  const { userData } = useUserInfo();
+type TProps = {
+  userData: TUser;
+};
+
+const CoverPhoto = ({ userData }: TProps) => {
+  // const { userData } = useUserInfo();
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
 
   return (
@@ -39,7 +44,10 @@ const CoverPhoto = () => {
         setIsOpen={setModalIsOpen}
         modalTitle="Update your cover photo"
       >
-        <UpdateCoverPhotoModalContent />
+        <UpdateCoverPhotoModalContent
+          userData={userData}
+          setIsModalOpen={setModalIsOpen}
+        />
       </ReactCustomModal>
     </>
   );

@@ -68,7 +68,7 @@ const CommentSection = ({ post }: TProps) => {
       </div>
 
       <div className="px-3">
-        {post?.comments?.map((data: TComment, index: number) => (
+        {post?.comments?.slice(0, 3)?.map((data: TComment, index: number) => (
           <div key={index} className="my-3 flex gap-3">
             <div>
               <Image
@@ -85,6 +85,16 @@ const CommentSection = ({ post }: TProps) => {
             </div>
           </div>
         ))}
+
+        <div className="pb-3">
+          {post?.comments && post?.comments?.length > 2 ? (
+            <Button variant="light" size="sm" className="font-medium">
+              Load More Comments
+            </Button>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
     </>
   );

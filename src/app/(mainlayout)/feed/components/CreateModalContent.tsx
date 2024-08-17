@@ -3,10 +3,9 @@ import { useCreatePostMutation } from "@/redux/api/Features/Post/postApi";
 import ImageUploadingUtils from "@/utils/ImageUploading";
 import { imageUploadIntoImgbb } from "@/utils/uploadImageIntoImgbb";
 import { Button } from "@nextui-org/button";
-import { Select, SelectItem } from "@nextui-org/react";
+import { Textarea } from "@nextui-org/react";
 import Image from "next/image";
 import { useState } from "react";
-import ReactQuill from "react-quill";
 import { toast } from "sonner";
 
 const postOption = [
@@ -75,31 +74,21 @@ const CreateModalContent = () => {
             />
           </div>
           <div>
-            <h5 className="text-black font-medium">{userData?.name}</h5>
-            <div>
-              <Select
-                onChange={(e) => setSelectPost(e.target.value)}
-                label="Select one..."
-                className="w-40 "
-                size="sm"
-              >
-                {postOption.map((option) => (
-                  <SelectItem key={option.key}>{option.label}</SelectItem>
-                ))}
-              </Select>
-            </div>
+            <h5 className="text-black text-lg font-semibold">
+              {userData?.name}
+            </h5>
+            <h5 className="">Post to anyone</h5>
           </div>
         </div>
       </div>
 
       <form>
         <div className="py-2">
-          <ReactQuill
-            theme="snow"
-            value={quillValue}
-            onChange={setQuillValue}
-            className="rounded-xl border-0 bg-gray-100 shadow-lg h-[200px] overflow-scroll custom-scrollbar p-0"
-            placeholder="Write something..."
+          <Textarea
+            label="Description"
+            onChange={(e) => setQuillValue(e.target.value)}
+            placeholder="Write your post description"
+            fullWidth
           />
         </div>
 
