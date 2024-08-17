@@ -59,7 +59,7 @@ const UpdateProfilePictureModalContent = ({
             src={imageDataURl ? imageDataURl : userData?.photo!!}
             width={500}
             height={250}
-            className="object-cover w-full h-[400px]"
+            className="object-cover w-full lg:h-[400px] h-[250px]"
             alt=""
           />
         </div>

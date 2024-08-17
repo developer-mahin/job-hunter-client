@@ -73,7 +73,7 @@ const UpdateCoverPhotoModalContent = ({ userData, setIsModalOpen }: TProps) => {
                 }
                 width={1200}
                 height={300}
-                className="object-cover h-[300px]"
+                className="object-cover h-[300px] lg:w-[1100px]"
                 alt=""
               />
             </PhotoView>

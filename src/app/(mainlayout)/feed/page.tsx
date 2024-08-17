@@ -3,7 +3,7 @@ import CreatePostUi from "./components/CreatePostUi";
 
 const FeedPage = () => {
   return (
-    <div className="px-6">
+    <div className="lg:px-6 mt-4 md:mt-0">
       <CreatePostUi />
       <AllPost />
     </div>

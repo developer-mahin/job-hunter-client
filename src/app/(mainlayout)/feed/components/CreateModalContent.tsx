@@ -1,5 +1,5 @@
-import useUserInfo from "@/hook/User";
 import { useCreatePostMutation } from "@/redux/api/Features/Post/postApi";
+import { useGetMyProfileQuery } from "@/redux/api/Features/user/userApi";
 import ImageUploadingUtils from "@/utils/ImageUploading";
 import { imageUploadIntoImgbb } from "@/utils/uploadImageIntoImgbb";
 import { Button } from "@nextui-org/button";
@@ -21,7 +21,7 @@ const CreateModalContent = () => {
   const [imageDataURl, setImageDataURL] = useState("");
   const [images, setImages] = useState<any[]>([]);
   const [quillValue, setQuillValue] = useState("");
-  const { userData } = useUserInfo();
+  const { data: userData } = useGetMyProfileQuery({});
   const maxNumber = 69;
   const [createPost] = useCreatePostMutation();
 

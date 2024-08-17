@@ -26,14 +26,14 @@ const ImageUploadingUtils = ({ images, maxNumber, onChange }: TProps) => {
             onClick={onImageUpload}
             {...dragProps}
           >
-            <BsImage className=" text-3xl" />
+            <BsImage className=" text-2xl" />
           </div>
-          <Button isIconOnly className="rounded-full" color="danger">
+          <Button isIconOnly size="sm" className="rounded-full" color="danger">
             <AiFillDelete
               onClick={() => {
                 onImageRemoveAll();
               }}
-              className=" text-3xl cursor-pointer"
+              className=" text-2xl cursor-pointer"
             />
           </Button>
         </div>

@@ -46,9 +46,10 @@ const ReactCustomModal = ({
             isIconOnly
             className="rounded-full"
             color="danger"
+            size="sm"
             onClick={closeModal}
           >
-            <IoMdClose className="text-2xl" />
+            <IoMdClose className="text-xl" />
           </Button>
         </div>
         <div>

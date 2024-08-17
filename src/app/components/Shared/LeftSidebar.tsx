@@ -1,16 +1,17 @@
 "use client";
 
 import useUserInfo from "@/hook/User";
+import { useGetMyProfileQuery } from "@/redux/api/Features/user/userApi";
 import Image from "next/image";
 import Link from "next/link";
 import { AiFillStar } from "react-icons/ai";
 import { BsFillBookmarkFill } from "react-icons/bs";
 
 const LeftSidebar = () => {
-  const { userData } = useUserInfo();
+  const { data: userData } = useGetMyProfileQuery({});
 
   return (
-    <div className="sticky top-0 bg-gray-50">
+    <div className="lg:sticky top-0 bg-gray-50">
       <div className="border rounded-lg rounded-t-xl">
         <div className="relative">
           <div>
@@ -29,7 +30,7 @@ const LeftSidebar = () => {
             <div className="absolute bottom-[-40px] left-[37%]">
               <Link href="/profile">
                 <Image
-                  src="https://i.ibb.co/z2tJ2Ws/a-young-24-year-old-bangladeshi-man-with-a-long-su-e7ho-SJVUTTOhubk5y-Xn-Msw-k-Tv-M9qhc-Sd-KWi0-EZ6.png"
+                  src={userData?.photo}
                   alt=""
                   width={500}
                   height={70}

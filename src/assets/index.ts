@@ -8,4 +8,5 @@ export const assets = {
     article: require("./Svg/article.svg"),
     photo: require("./Svg/photo.svg"),
   },
+
 };

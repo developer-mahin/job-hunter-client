@@ -80,7 +80,7 @@ const CommentSection = ({ post }: TProps) => {
               />
             </div>
             <div className="p-3 bg-secondary bg-opacity-10 rounded w-full">
-              <h6 className="m-0">{data?.user?.name}</h6>
+              <h6 className="m-0 font-semibold text-sm">{data?.user?.name}</h6>
               <p className="m-0 pt-1 text-sm">{data.commentBody}</p>
             </div>
           </div>

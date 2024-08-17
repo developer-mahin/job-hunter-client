@@ -2,14 +2,14 @@
 
 import JModal from "@/app/components/Modal/JModal";
 import { assets } from "@/assets";
-import useUserInfo from "@/hook/User";
+import { useGetMyProfileQuery } from "@/redux/api/Features/user/userApi";
 import { Button } from "@nextui-org/button";
 import { useDisclosure } from "@nextui-org/react";
 import Image from "next/image";
 import CreateModalContent from "./CreateModalContent";
 
 const CreatePostUi = () => {
-  const { userData } = useUserInfo();
+  const { data: userData } = useGetMyProfileQuery({});
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
@@ -42,7 +42,7 @@ const CreatePostUi = () => {
           onOpenChange={onOpenChange}
           modalTitle="Create your post"
           size="2xl"
-          className="h-[600px] overflow-y-scroll custom-scrollbar"
+          className="overflow-y-scroll custom-scrollbar"
         >
           <CreateModalContent />
         </JModal>
