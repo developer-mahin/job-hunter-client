@@ -44,6 +44,17 @@ export const likeCommentApi = baseApi.injectEndpoints({
       },
       invalidatesTags: [tagTypes.post],
     }),
+
+    updateComment: builder.mutation({
+      query: (payload) => {
+        return {
+          url: `/comment/update_comment/${payload?.postId}`,
+          method: "PATCH",
+          data: payload?.commentInfo,
+        };
+      },
+      invalidatesTags: [tagTypes.post],
+    }),
   }),
 });
 
@@ -52,4 +63,5 @@ export const {
   useCreateLikeMutation,
   useCreateCommentMutation,
   useDeleteCommentMutation,
+  useUpdateCommentMutation,
 } = likeCommentApi;
