@@ -1,6 +1,5 @@
 "use client";
 
-import { Spinner } from "@nextui-org/react";
 import { usePathname, useRouter } from "next/navigation";
 import Spinners from "../components/Shared/Spinners";
 

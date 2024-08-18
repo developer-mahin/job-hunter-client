@@ -1,36 +1,33 @@
 "use client";
 
-import useUserInfo from "@/hook/User";
+import { useDeletePostMutation } from "@/redux/api/Features/Post/postApi";
 import {
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
   Button,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
 } from "@nextui-org/react";
 import { BsThreeDots } from "react-icons/bs";
+import { toast } from "sonner";
 
-const PostActionDropdown = () => {
-  const { userData } = useUserInfo();
+type TProps = {
+  postId: string;
+};
 
-  const items = [
-    {
-      key: "new",
-      label: "New file",
-    },
-    {
-      key: "copy",
-      label: "Copy link",
-    },
-    {
-      key: "edit",
-      label: "Edit file",
-    },
-    {
-      key: "delete",
-      label: "Delete file",
-    },
-  ];
+const PostActionDropdown = ({ postId }: TProps) => {
+  const [deletePost] = useDeletePostMutation();
+
+  const handleDeletePost = async (id: string) => {
+    try {
+      const res = await deletePost({ postId: id });
+      if (res.data) {
+        toast.success("Post deleted successfully");
+      }
+    } catch (error: any) {
+      toast.error(error.message);
+    }
+  };
 
   return (
     <Dropdown>
@@ -39,16 +36,17 @@ const PostActionDropdown = () => {
           <BsThreeDots className="text-2xl" />
         </Button>
       </DropdownTrigger>
-      <DropdownMenu aria-label="Dynamic Actions" items={items}>
-        {(item) => (
-          <DropdownItem
-            key={item.key}
-            color={item.key === "delete" ? "danger" : "default"}
-            className={item.key === "delete" ? "text-danger" : ""}
-          >
-            {item.label}
-          </DropdownItem>
-        )}
+      <DropdownMenu aria-label="Dynamic Actions">
+        <DropdownItem color="default" className="">
+          Edit
+        </DropdownItem>
+        <DropdownItem
+          onClick={() => handleDeletePost(postId)}
+          color="danger"
+          className="text-danger"
+        >
+          Delete
+        </DropdownItem>
       </DropdownMenu>
     </Dropdown>
   );

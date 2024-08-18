@@ -60,9 +60,11 @@ const PostCard = ({ post }: TProps) => {
                 </Button>
               </div>
             )}
-            <div className="flex items-center justify-between">
-              <PostActionDropdown />
-            </div>
+            {userData?._id === author._id && (
+              <div className="flex items-center justify-between">
+                <PostActionDropdown postId={_id} />
+              </div>
+            )}
           </div>
         </div>
 
@@ -116,8 +118,8 @@ const PostCard = ({ post }: TProps) => {
         )}
       </div>
 
+      {/* Post action button like comment  */}
       <div>
-        {/* Post action button like comment  */}
         <PostActionButtons post={post} />
       </div>
 
