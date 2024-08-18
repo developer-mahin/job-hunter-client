@@ -7,11 +7,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { AiOutlinePlus } from "react-icons/ai";
 import { PhotoProvider, PhotoView } from "react-photo-view";
-import CommentSection from "./comment/CommentSection";
 import PostActionButtons from "./PostActionButtons";
-import PostActionDropdown from "./PostActionDropdown";
 import { useState } from "react";
 import useUserInfo from "@/hook/User";
+import PostActionDropdown from "./PostActionDropdown";
+import CommentSection from "../comment/CommentSection";
 
 type TProps = {
   post: TPost;
@@ -62,7 +62,7 @@ const PostCard = ({ post }: TProps) => {
             )}
             {userData?._id === author._id && (
               <div className="flex items-center justify-between">
-                <PostActionDropdown postId={_id} />
+                <PostActionDropdown post={post} />
               </div>
             )}
           </div>

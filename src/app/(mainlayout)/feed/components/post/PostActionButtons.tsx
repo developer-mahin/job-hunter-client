@@ -6,7 +6,6 @@ import { AiFillLike } from "react-icons/ai";
 import { BiCommentDots, BiSend } from "react-icons/bi";
 import { toast } from "sonner";
 import useSound from "use-sound";
-import likeSound from "@/assets/Audio/notification.mp3";
 
 type TProps = {
   post: TPost;

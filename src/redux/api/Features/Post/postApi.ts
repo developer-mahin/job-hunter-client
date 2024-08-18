@@ -26,10 +26,20 @@ export const postApi = baseApi.injectEndpoints({
 
     deletePost: builder.mutation({
       query: (payload) => {
-
         return {
           url: `/post/delete_post/${payload.postId}`,
           method: "DELETE",
+        };
+      },
+      invalidatesTags: [tagTypes.post],
+    }),
+
+    updatePost: builder.mutation({
+      query: (payload) => {
+        return {
+          url: `/post/update_post/${payload.postId}`,
+          method: "PATCH",
+          data: payload.postInfo,
         };
       },
       invalidatesTags: [tagTypes.post],
@@ -41,4 +51,5 @@ export const {
   useGetAllPostQuery,
   useCreatePostMutation,
   useDeletePostMutation,
+  useUpdatePostMutation,
 } = postApi;

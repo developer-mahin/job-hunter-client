@@ -1,5 +1,5 @@
-import AllPost from "./components/AllPost";
-import CreatePostUi from "./components/CreatePostUi";
+import AllPost from "./components/post/AllPost";
+import CreatePostUi from "./components/post/CreatePostUi";
 
 const FeedPage = () => {
   return (
