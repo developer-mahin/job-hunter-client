@@ -12,7 +12,7 @@
 # next.js
 /.next/
 /out/
-./src/constant
+src/constant/
 
 # production
 /build

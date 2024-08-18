@@ -33,7 +33,7 @@ const UpdateCommentModelContent = ({
       const res = await updateComment(commentData);
       if (res.data.acknowledged) {
         toast.success("comment updated successfully");
-        setIsModalOpen(false)
+        setIsModalOpen(false);
       }
     } catch (error: any) {
       toast.error(error.message);
