@@ -40,7 +40,7 @@ const RightSidebar = () => {
   ];
 
   return (
-    <div>
+    <div className="sticky top-0">
       <div className="mb-3 border bg-gray-50 bg-opacity-15 p-3 rounded-t-xl">
         <form className="relative">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center">

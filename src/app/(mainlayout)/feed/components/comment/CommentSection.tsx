@@ -1,12 +1,12 @@
 import { Input } from "@/components/ui/input";
 import { useCreateCommentMutation } from "@/redux/api/Features/Like & Comment/likeAndCommentApi";
-import { TComment, TPost } from "@/types";
+import { TPost } from "@/types";
 import { Button } from "@nextui-org/button";
-import Image from "next/image";
 import { useState } from "react";
 import { AiOutlineCamera, AiOutlineGif } from "react-icons/ai";
 import { BsEmojiSmile } from "react-icons/bs";
 import { toast } from "sonner";
+import CommentData from "./CommentData";
 
 type TProps = {
   post: TPost;
@@ -67,35 +67,7 @@ const CommentSection = ({ post }: TProps) => {
         </div>
       </div>
 
-      <div className="px-3">
-        {post?.comments?.slice(0, 3)?.map((data: TComment, index: number) => (
-          <div key={index} className="my-3 flex gap-3">
-            <div>
-              <Image
-                className="object-cover rounded-full"
-                src={data?.user?.photo}
-                width={45}
-                height={45}
-                alt=""
-              />
-            </div>
-            <div className="p-3 bg-secondary bg-opacity-10 rounded w-full">
-              <h6 className="m-0 font-semibold text-sm">{data?.user?.name}</h6>
-              <p className="m-0 pt-1 text-sm">{data.commentBody}</p>
-            </div>
-          </div>
-        ))}
-
-        <div className="pb-3">
-          {post?.comments && post?.comments?.length > 2 ? (
-            <Button variant="light" size="sm" className="font-medium">
-              Load More Comments
-            </Button>
-          ) : (
-            ""
-          )}
-        </div>
-      </div>
+      <CommentData post={post} />
     </>
   );
 };

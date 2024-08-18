@@ -1,6 +1,7 @@
 import { TUser } from "./global.types";
 
 export type TComment = {
+  _id: string;
   commentBody: string;
   image?: string;
   user: TUser;

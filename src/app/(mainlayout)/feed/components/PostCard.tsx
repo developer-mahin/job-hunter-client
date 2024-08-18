@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AiOutlinePlus } from "react-icons/ai";
 import { PhotoProvider, PhotoView } from "react-photo-view";
-import CommentSection from "./CommentSection";
+import CommentSection from "./comment/CommentSection";
 import PostActionButtons from "./PostActionButtons";
 import PostActionDropdown from "./PostActionDropdown";
 import { useState } from "react";
@@ -52,7 +52,7 @@ const PostCard = ({ post }: TProps) => {
           <div className="flex items-center gap-1">
             {userData?._id !== author?._id && (
               <div>
-                <Button className="">
+                <Button className="" variant="light">
                   <AiOutlinePlus className="rounded cursor-pointer mr-1" />
                   <span className="underline cursor-pointer text-base">
                     Follow
@@ -105,7 +105,7 @@ const PostCard = ({ post }: TProps) => {
           <PhotoProvider>
             <PhotoView src={image}>
               <Image
-                className="w-full h-auto cursor-pointer"
+                className="w-full lg:h-[400px] cursor-pointer object-cover"
                 src={image}
                 alt=""
                 width={6000}

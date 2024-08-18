@@ -14,7 +14,7 @@ type TProps = {
 
 const PostActionButtons = ({ post }: TProps) => {
   const [createLike] = useCreateLikeMutation();
-  const [like] = useSound(likeSound);
+  const [like] = useSound(assets.audio.buttonSound);
 
   const handleLike = async (postId: string) => {
     try {

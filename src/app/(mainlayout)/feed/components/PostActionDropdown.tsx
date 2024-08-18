@@ -1,3 +1,6 @@
+"use client";
+
+import useUserInfo from "@/hook/User";
 import {
   Dropdown,
   DropdownTrigger,
@@ -8,6 +11,8 @@ import {
 import { BsThreeDots } from "react-icons/bs";
 
 const PostActionDropdown = () => {
+  const { userData } = useUserInfo();
+
   const items = [
     {
       key: "new",

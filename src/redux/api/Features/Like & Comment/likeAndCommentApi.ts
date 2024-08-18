@@ -25,11 +25,21 @@ export const likeCommentApi = baseApi.injectEndpoints({
 
     createComment: builder.mutation({
       query: (payload) => {
-        console.log(payload.commentBody, "redux");
         return {
           url: `/comment/create_comment/${payload.id}`,
           method: "POST",
           data: payload?.commentBody,
+        };
+      },
+      invalidatesTags: [tagTypes.post],
+    }),
+
+    deleteComment: builder.mutation({
+      query: (payload) => {
+        return {
+          url: `/comment/delete_comment/${payload?.postId}`,
+          method: "DELETE",
+          data: payload?.commentId,
         };
       },
       invalidatesTags: [tagTypes.post],
@@ -41,4 +51,5 @@ export const {
   useGetAllPostQuery,
   useCreateLikeMutation,
   useCreateCommentMutation,
+  useDeleteCommentMutation,
 } = likeCommentApi;
