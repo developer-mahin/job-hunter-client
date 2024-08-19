@@ -9,7 +9,7 @@ const HomePage = () => {
   const pathname = usePathname();
 
   if (pathname === "/") {
-    router.push("/feed");
+    return router.push("/feed");
   }
 
   return <Spinners className="h-[100vh]" />;

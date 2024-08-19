@@ -1,6 +1,5 @@
 "use client";
 
-import useUserInfo from "@/hook/User";
 import { useGetMyProfileQuery } from "@/redux/api/Features/user/userApi";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,7 +16,7 @@ const LeftSidebar = () => {
           <div>
             <Image
               src={
-                userData?.photo ||
+                userData?.coverPhoto ||
                 "https://cdn-icons-png.freepik.com/256/1077/1077114.png?semt=ais_hybrid"
               }
               className="w-full h-[120px] rounded-t-xl object-cover"

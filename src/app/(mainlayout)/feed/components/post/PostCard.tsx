@@ -72,14 +72,14 @@ const PostCard = ({ post }: TProps) => {
           <>
             {changeState ? (
               <>
-                {postDetails.length > 150 ? (
+                {postDetails?.length > 150 ? (
                   <span className="text-base">
                     {postDetails && postDetails?.slice(0, 150) + "..."}
                   </span>
                 ) : (
                   <span className="text-base">{postDetails}</span>
                 )}
-                {postDetails.length > 150 && (
+                {postDetails?.length > 150 && (
                   <span
                     onClick={() => setSeeAllDetails(!seeAllDetails)}
                     className="ml-1 underline cursor-pointer text-base font-medium"
