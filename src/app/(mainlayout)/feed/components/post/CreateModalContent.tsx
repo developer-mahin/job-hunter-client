@@ -1,3 +1,5 @@
+import JForm from "@/app/components/Form/JForm";
+import JTextarea from "@/app/components/Form/JTextarea";
 import { useCreatePostMutation } from "@/redux/api/Features/Post/postApi";
 import { useGetMyProfileQuery } from "@/redux/api/Features/user/userApi";
 import ImageUploadingUtils from "@/utils/ImageUploading";
@@ -6,21 +8,16 @@ import { Button } from "@nextui-org/button";
 import { Textarea } from "@nextui-org/react";
 import Image from "next/image";
 import { useState } from "react";
+import { FieldValues, SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 
-const postOption = [
-  {
-    key: "article",
-    label: "Article",
-  },
-  { key: "education", label: "Education" },
-];
+type TProps = {
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-const CreateModalContent = () => {
-  const [selectPost, setSelectPost] = useState("");
+const CreateModalContent = ({ setIsModalOpen }: TProps) => {
   const [imageDataURl, setImageDataURL] = useState("");
   const [images, setImages] = useState<any[]>([]);
-  const [quillValue, setQuillValue] = useState("");
   const { data: userData } = useGetMyProfileQuery({});
   const maxNumber = 69;
   const [createPost] = useCreatePostMutation();
@@ -30,16 +27,15 @@ const CreateModalContent = () => {
     setImageDataURL(imageList[0]?.data_url);
   };
 
-  const handleCreatePost = async () => {
+  const handleCreatePost: SubmitHandler<FieldValues> = async (data) => {
     const image = images[0]?.file;
     const formData = new FormData();
     formData.append("image", image);
     const uploadedImage = await imageUploadIntoImgbb(formData);
 
     const postData = {
-      postDetails: quillValue,
+      postDetails: data.postDetails,
       image: uploadedImage,
-      postCategory: selectPost,
       author: userData?._id,
     };
 
@@ -50,7 +46,7 @@ const CreateModalContent = () => {
         toast.success("Post created successfully!!!");
         setImageDataURL("");
         setImages([]);
-        setQuillValue("");
+        setIsModalOpen(false);
       }
     } catch (error: any) {
       toast.error(error.message);
@@ -58,7 +54,7 @@ const CreateModalContent = () => {
   };
 
   return (
-    <div>
+    <div className="lg:w-[600px]">
       <div className="mb-3">
         <div className="flex justify-items-center items-center gap-2 mt-2">
           <div>
@@ -82,13 +78,13 @@ const CreateModalContent = () => {
         </div>
       </div>
 
-      <form>
+      <JForm onSubmit={handleCreatePost}>
         <div className="py-2">
-          <Textarea
+          <JTextarea
             label="Description"
-            onChange={(e) => setQuillValue(e.target.value)}
+            name="postDetails"
             placeholder="Write your post description"
-            fullWidth
+            className=""
           />
         </div>
 
@@ -113,18 +109,11 @@ const CreateModalContent = () => {
         </div>
 
         <div className="mt-5 pb-4">
-          <Button
-            // disabled={!quillValue.length || !selectPost.length}
-            variant={
-              !quillValue.length || !selectPost.length ? "flat" : "faded"
-            }
-            onClick={() => handleCreatePost()}
-            className="font-medium rounded-full"
-          >
+          <Button type="submit" className="font-medium rounded-full">
             Post
           </Button>
         </div>
-      </form>
+      </JForm>
     </div>
   );
 };

@@ -1,18 +1,18 @@
 "use client";
 
+import ReactCustomModal from "@/app/components/Shared/ReactModal";
 import Spinners from "@/app/components/Shared/Spinners";
-import useUserInfo from "@/hook/User";
+import { useGetMyProfileQuery } from "@/redux/api/Features/user/userApi";
 import { Button } from "@nextui-org/button";
+import { useState } from "react";
 import { BiRightArrowAlt } from "react-icons/bi";
 import { ImPencil } from "react-icons/im";
+import Activities from "./Activities/Activities";
 import CoverPhoto from "./CoverPhoto/CoverPhoto";
 import PersonalDetails from "./PersonalDetails";
+import PersonalInfoUpdatedModalContent from "./ProfileModalData/PersonalInfoUpdatedModalContent";
 import ProfilePicture from "./ProfilePicture/ProfilePicture";
 import RightSideBarCard from "./RightSideBarCard";
-import { useGetMyProfileQuery } from "@/redux/api/Features/user/userApi";
-import { useState } from "react";
-import ReactCustomModal from "@/app/components/Shared/ReactModal";
-import PersonalInfoUpdatedModalContent from "./ProfileModalData/PersonalInfoUpdatedModalContent";
 
 export type TRightSidebar = {
   id: number;
@@ -97,7 +97,7 @@ const ProfileData = () => {
         </div>
 
         <div className="shadow border rounded mt-3 p-4">
-          {/* <Activities /> */}
+          <Activities />
         </div>
       </div>
 

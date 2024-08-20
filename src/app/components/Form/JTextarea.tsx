@@ -32,7 +32,7 @@ const JTextarea = ({
             label={label}
             fullWidth
             isRequired={required}
-            className={cn("h-11 rounded-md", className)}
+            className={cn("rounded-md", className)}
           />
           <p className="text-red-500 text-sm my-1">{error?.message}</p>
         </>

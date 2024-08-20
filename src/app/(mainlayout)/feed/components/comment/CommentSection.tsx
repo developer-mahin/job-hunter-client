@@ -61,7 +61,11 @@ const CommentSection = ({ post }: TProps) => {
           </div>
         </div>
         <div>
-          <Button onClick={() => handleComment(post._id)} className="">
+          <Button
+            onClick={() => handleComment(post._id)}
+            disabled={!commentBody}
+            className=""
+          >
             Comment
           </Button>
         </div>
