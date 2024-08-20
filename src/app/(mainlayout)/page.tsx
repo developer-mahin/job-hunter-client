@@ -1,18 +1,11 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
-import Spinners from "../components/Shared/Spinners";
+import { useRouter } from "next/navigation";
 
 const HomePage = () => {
   const router = useRouter();
 
-  const pathname = usePathname();
-
-  if (pathname === "/") {
-    return router.push("/feed");
-  }
-
-  return <Spinners className="h-[100vh]" />;
+  return router.push("/feed");
 };
 
 export default HomePage;

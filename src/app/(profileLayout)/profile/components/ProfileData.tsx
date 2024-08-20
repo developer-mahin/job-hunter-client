@@ -10,6 +10,9 @@ import PersonalDetails from "./PersonalDetails";
 import ProfilePicture from "./ProfilePicture/ProfilePicture";
 import RightSideBarCard from "./RightSideBarCard";
 import { useGetMyProfileQuery } from "@/redux/api/Features/user/userApi";
+import { useState } from "react";
+import ReactCustomModal from "@/app/components/Shared/ReactModal";
+import PersonalInfoUpdatedModalContent from "./ProfileModalData/PersonalInfoUpdatedModalContent";
 
 export type TRightSidebar = {
   id: number;
@@ -41,7 +44,7 @@ const rightSideBarInfo: TRightSidebar[] = [
 
 const ProfileData = () => {
   // const { userData, isLoading } = useUserInfo();
-
+  const [personalInfo, setPersonalInfoModal] = useState<boolean>(false);
   const { data: userData, isLoading } = useGetMyProfileQuery({});
 
   if (isLoading) {
@@ -65,12 +68,21 @@ const ProfileData = () => {
             <div className="hidden lg:block">
               <div className="flex items-center justify-end">
                 <Button
+                  onClick={() => setPersonalInfoModal(!personalInfo)}
                   isIconOnly
-                  // onClick={openProfileDataModal}
                   className="rounded-full"
                 >
                   <ImPencil className="text-xl" />
                 </Button>
+                <ReactCustomModal
+                  modalIsOpen={personalInfo}
+                  setIsOpen={setPersonalInfoModal}
+                  modalTitle="Update your personal information"
+                >
+                  <PersonalInfoUpdatedModalContent
+                    setPersonalInfoModal={setPersonalInfoModal}
+                  />
+                </ReactCustomModal>
               </div>
 
               <div className="block">

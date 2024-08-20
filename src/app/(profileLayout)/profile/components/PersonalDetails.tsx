@@ -1,28 +1,29 @@
+import ReactCustomModal from "@/app/components/Shared/ReactModal";
 import { TUser } from "@/types";
 import { Button } from "@nextui-org/button";
+import { useState } from "react";
 import { ImPencil } from "react-icons/im";
+import ContactInfoModalContent from "./ProfileModalData/ContactInfoModalContent";
 
 type TProps = {
   userData: TUser;
 };
 
 const PersonalDetails = ({ userData }: TProps) => {
+  const [contactInfoModalOpen, setContactInfoModalOpen] =
+    useState<boolean>(false);
+
   return (
     <div>
       <div>
         <h3 className="font-bold text-2xl pb-1">{userData?.name}</h3>
         <div>
           <p className="text-gray-500">
-            {userData?.headline
-              ? userData?.headline
-              : "Please update your profile"}
+            {userData?.headline || "Please update your profile"}
           </p>
         </div>
         <p className="text-gray-500">
-          Talks about
-          {userData?.info?.tag
-            ? userData?.info?.tag
-            : "Please update your profile"}
+          Talks about {userData?.info?.tag || "Please update your profile"}
         </p>
 
         <div className="flex gap-1">
@@ -32,9 +33,7 @@ const PersonalDetails = ({ userData }: TProps) => {
               : "Please update your profile"}
           </p>
           <p className="text-gray-500">
-            {userData?.info?.city
-              ? userData?.info?.city
-              : "Please update your profile"}
+            {userData?.info?.city || "Please update your profile"}
           </p>
         </div>
         <div>
@@ -43,45 +42,34 @@ const PersonalDetails = ({ userData }: TProps) => {
             target="blank"
             className="text-blue-500 font-medium"
           >
-            {userData?.info?.website
-              ? userData?.info?.website
-              : "Please update your profile"}
+            {userData?.info?.website || "Please update your profile"}
           </a>
         </div>
       </div>
 
       <div>
-        <span
-          //   onClick={openContactDataModal}
-          className="text-blue-500 cursor-pointer font-semibold hover:underline"
+        <Button
+          onClick={() => setContactInfoModalOpen(!contactInfoModalOpen)}
+          variant="light"
+          className="p-0 font-semibold hover:underline"
         >
-          Contact info
-        </span>
-
-        {/* <ContactInfoModal
-                  refetch={refetch}
-                  contactInfoDataModal={contactInfoDataModal}
-                  customStyles={customStyles}
-                  closeModalForInfo={closeModalForInfo}
-                  profile={profile}
-                /> */}
+          Contact info <ImPencil />
+        </Button>
+        <ReactCustomModal
+          modalIsOpen={contactInfoModalOpen}
+          setIsOpen={setContactInfoModalOpen}
+          modalTitle="Update your contact information"
+        >
+          <ContactInfoModalContent
+            setContactInfoModalOpen={setContactInfoModalOpen}
+          />
+        </ReactCustomModal>
       </div>
 
       <div className="lg:hidden block">
-        <div
-          //   onClick={openProfileDataModal}
-          className="flex justify-end text-2xl pb-2 cursor-pointer"
-        >
+        <div className="flex justify-end text-2xl pb-2 cursor-pointer">
           <ImPencil />
         </div>
-
-        {/* <ProfileDataUpdateModal
-                  profileDataUpdateModal={profileDataUpdateModal}
-                  customStyles={customStyles}
-                  closeModal={closeModal}
-                  profile={profile}
-                  refetch={refetch}
-                /> */}
 
         <div className="block">
           <p className="font-semibold hover:underline cursor-pointer">

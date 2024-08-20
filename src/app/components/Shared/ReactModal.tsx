@@ -12,6 +12,10 @@ const customStyles = {
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
+    borderRadius: "15px",
+    border: "1px solid #ddd",
+    background: "#fff",
+    boxShadow: "3px 1px 16px -6px #333",
     transform: "translate(-50%, -50%)",
   },
 };

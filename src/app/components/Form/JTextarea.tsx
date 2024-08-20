@@ -1,24 +1,22 @@
 import { cn } from "@/lib/utils";
-import { Input } from "@nextui-org/input";
+import { Textarea } from "@nextui-org/input";
 import { Controller, useFormContext } from "react-hook-form";
 
-type TInputProps = {
-  type: string;
+type TTextareaProps = {
   name: string;
   required?: boolean;
   placeholder?: string;
-  label: string;
+  label?: string;
   className?: string;
 };
 
-const JInputs = ({
-  type,
+const JTextarea = ({
+  label,
   name,
+  className,
   placeholder,
   required,
-  label,
-  className,
-}: TInputProps) => {
+}: TTextareaProps) => {
   const { control } = useFormContext();
 
   return (
@@ -27,10 +25,9 @@ const JInputs = ({
       control={control}
       render={({ field: { value, ...field }, fieldState: { error } }) => (
         <>
-          <Input
+          <Textarea
             {...field}
             value={value}
-            type={type}
             placeholder={placeholder}
             label={label}
             fullWidth
@@ -44,4 +41,4 @@ const JInputs = ({
   );
 };
 
-export default JInputs;
+export default JTextarea;
