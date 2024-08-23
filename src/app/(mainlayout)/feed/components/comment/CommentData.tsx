@@ -3,6 +3,7 @@ import { Button } from "@nextui-org/button";
 import Image from "next/image";
 import CommentActionDropdown from "./CommentActionDropdown";
 import useUserInfo from "@/hook/User";
+import Link from "next/link";
 
 type TProps = {
   post: TPost;
@@ -18,17 +19,33 @@ const CommentData = ({ post }: TProps) => {
           <div key={index} className="flex items-center">
             <div className="my-3 flex gap-3 flex-1">
               <div>
-                <Image
-                  className="object-cover rounded-full"
-                  src={data?.user?.photo}
-                  width={45}
-                  height={45}
-                  alt=""
-                />
+                <Link
+                  href={
+                    userData?._id === data?.user?._id
+                      ? "/profile"
+                      : `/user_profile/${data?.user?._id}`
+                  }
+                >
+                  <Image
+                    className="object-cover rounded-full"
+                    src={data?.user?.photo}
+                    width={45}
+                    height={45}
+                    alt=""
+                  />
+                </Link>
               </div>
               <div className="p-3 bg-secondary bg-opacity-10 rounded w-full">
-                <h6 className="m-0 font-semibold text-sm">
-                  {data?.user?.name}
+                <h6 className="m-0 font-semibold text-sm hover:underline">
+                  <Link
+                    href={
+                      userData?._id === data?.user?._id
+                        ? "/profile"
+                        : `/user_profile/${data?.user?._id}`
+                    }
+                  >
+                    {data?.user?.name}
+                  </Link>
                 </h6>
                 <p className="m-0 pt-1 text-sm">{data.commentBody}</p>
               </div>

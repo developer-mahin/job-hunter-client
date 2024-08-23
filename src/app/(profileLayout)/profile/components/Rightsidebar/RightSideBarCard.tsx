@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { AiOutlinePlus } from "react-icons/ai";
-import { TRightSidebar } from "./ProfileData";
+import { TRightSidebar } from "./RightSidebar";
 
 type TProps = {
   info: TRightSidebar;

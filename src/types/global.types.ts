@@ -50,6 +50,7 @@ export type TUser = {
   coverPhoto: string;
   education: string;
   headline: string;
+  about: string;
   status: "active" | "inactive";
   role: "user" | "admin" | "moderator";
   isDeleted: boolean;

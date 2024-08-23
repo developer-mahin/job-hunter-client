@@ -1,17 +1,17 @@
 "use client";
 
+import useUserInfo from "@/hook/User";
 import { TPost } from "@/types";
+import PhotoViewer from "@/utils/PhotoViewer";
 import { Button } from "@nextui-org/button";
 import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
-import { AiOutlinePlus } from "react-icons/ai";
-import { PhotoProvider, PhotoView } from "react-photo-view";
-import PostActionButtons from "./PostActionButtons";
 import { useState } from "react";
-import useUserInfo from "@/hook/User";
-import PostActionDropdown from "./PostActionDropdown";
+import { AiOutlinePlus } from "react-icons/ai";
 import CommentSection from "../comment/CommentSection";
+import PostActionButtons from "./PostActionButtons";
+import PostActionDropdown from "./PostActionDropdown";
 
 type TProps = {
   post: TPost;
@@ -28,7 +28,13 @@ const PostCard = ({ post }: TProps) => {
       <div className="p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Link href={`/user-details/${_id}`}>
+            <Link
+              href={
+                userData?._id === author?._id
+                  ? "/profile"
+                  : `/user_profile/${author?._id}`
+              }
+            >
               <Image
                 src={author?.photo}
                 width={50}
@@ -39,7 +45,11 @@ const PostCard = ({ post }: TProps) => {
             </Link>
             <div>
               <Link
-                href={`/user-details/${_id}`}
+                href={
+                  userData?._id === author?._id
+                    ? "/profile"
+                    : `/user_profile/${author?._id}`
+                }
                 className="block font-medium text-black no-underline hover:underline hover:text-blue-600"
               >
                 {author?.name}
@@ -60,7 +70,7 @@ const PostCard = ({ post }: TProps) => {
                 </Button>
               </div>
             )}
-            {userData?._id === author._id && (
+            {userData?._id === author?._id && (
               <div className="flex items-center justify-between">
                 <PostActionDropdown post={post} />
               </div>
@@ -102,21 +112,7 @@ const PostCard = ({ post }: TProps) => {
           </>
         </div>
       </div>
-      <div>
-        {image && (
-          <PhotoProvider>
-            <PhotoView src={image}>
-              <Image
-                className="w-full lg:h-[400px] cursor-pointer object-cover"
-                src={image}
-                alt=""
-                width={6000}
-                height={600}
-              />
-            </PhotoView>
-          </PhotoProvider>
-        )}
-      </div>
+      <div>{image && <PhotoViewer className="lg:h-[400px]" src={image} />}</div>
 
       {/* Post action button like comment  */}
       <div>

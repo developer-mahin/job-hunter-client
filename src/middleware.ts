@@ -44,5 +44,12 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/login", "/register", "/feed"],
+  matcher: [
+    "/login",
+    "/register",
+    "/feed",
+    // "/profile",
+    // "/user_profile/:id",
+    // "/all_my_posts",
+  ],
 };

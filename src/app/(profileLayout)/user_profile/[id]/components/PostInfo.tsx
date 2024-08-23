@@ -1,15 +1,17 @@
 "use client";
 
-import { TPost } from "@/types";
-import ActivitiesPostCard from "./ActivitiesPostCard";
+import ActivitiesPostCard from "@/app/(profileLayout)/profile/components/Activities/ActivitiesPostCard";
 import Spinners from "@/app/components/Shared/Spinners";
-import { useGetMyPostsQuery } from "@/redux/api/Features/Post/postApi";
+import { useGetUserPostQuery } from "@/redux/api/Features/Post/postApi";
+import { TPost } from "@/types";
 import { Button } from "@nextui-org/button";
-import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
+import { useParams } from "next/navigation";
+import { FaArrowRight } from "react-icons/fa";
 
-const Activities = () => {
-  const { data: myPosts, isLoading } = useGetMyPostsQuery({});
+const PostInfo = () => {
+  const { id } = useParams();
+  const { data: postData, isLoading } = useGetUserPostQuery({ id });
 
   if (isLoading) {
     return <Spinners />;
@@ -19,7 +21,7 @@ const Activities = () => {
     <div className="shadow border rounded-xl mt-3 p-4">
       <p className="py-2 font-semibold text-xl">Activities</p>
 
-      {myPosts?.slice(0, 3)?.map((post: TPost) => (
+      {postData?.slice(0, 3)?.map((post: TPost) => (
         <ActivitiesPostCard key={post._id} post={post} />
       ))}
 
@@ -34,4 +36,4 @@ const Activities = () => {
   );
 };
 
-export default Activities;
+export default PostInfo;

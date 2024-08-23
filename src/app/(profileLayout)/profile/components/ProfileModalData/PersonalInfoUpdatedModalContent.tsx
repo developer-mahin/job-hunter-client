@@ -22,7 +22,7 @@ const PersonalInfoUpdatedModalContent = ({ setPersonalInfoModal }: TProps) => {
     const userInfo = {
       id: userData?._id,
       data: {
-        name: fullName,
+        name: fullName || userData?.name,
         ...data,
       },
     };

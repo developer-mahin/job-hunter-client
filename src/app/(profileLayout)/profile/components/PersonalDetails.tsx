@@ -28,12 +28,13 @@ const PersonalDetails = ({ userData }: TProps) => {
 
         <div className="flex gap-1">
           <p className="text-gray-500">
-            {userData?.info?.country
-              ? userData?.info?.country + " ||"
-              : "Please update your profile"}
-          </p>
-          <p className="text-gray-500">
             {userData?.info?.city || "Please update your profile"}
+          </p>
+          {" ||"}
+          <p className="text-gray-500">
+            {userData?.info?.country
+              ? userData?.info?.country
+              : "Please update your profile"}
           </p>
         </div>
         <div>

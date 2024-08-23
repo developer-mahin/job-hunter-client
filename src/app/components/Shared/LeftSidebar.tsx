@@ -49,7 +49,7 @@ const LeftSidebar = () => {
                 {userData?.name}
               </Link>
             </div>
-            <span className="text-sm font-normal">Headline</span>
+            <span className="text-sm font-normal">{userData?.headline}</span>
           </div>
         </div>
         <hr />

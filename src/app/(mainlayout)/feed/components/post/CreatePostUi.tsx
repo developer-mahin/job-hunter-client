@@ -1,14 +1,13 @@
 "use client";
 
-import JModal from "@/app/components/Modal/JModal";
+import ReactCustomModal from "@/app/components/Shared/ReactModal";
 import { useGetMyProfileQuery } from "@/redux/api/Features/user/userApi";
 import { Button } from "@nextui-org/button";
 import { useDisclosure } from "@nextui-org/react";
 import Image from "next/image";
+import { useState } from "react";
 import CreateModalContent from "./CreateModalContent";
 import PostButtonVariant from "./PostButtonVarient";
-import { useState } from "react";
-import ReactCustomModal from "@/app/components/Shared/ReactModal";
 
 const CreatePostUi = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);

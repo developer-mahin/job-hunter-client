@@ -23,6 +23,16 @@ export const postApi = baseApi.injectEndpoints({
       providesTags: [tagTypes.post],
     }),
 
+    getUserPost: builder.query({
+      query: (payload) => {
+        return {
+          url: `/post/user_post/${payload.id}`,
+          method: "GET",
+        };
+      },
+      providesTags: [tagTypes.post],
+    }),
+
     createPost: builder.mutation({
       query: (payload) => {
         return {
@@ -59,7 +69,8 @@ export const postApi = baseApi.injectEndpoints({
 
 export const {
   useGetAllPostQuery,
-  useGetMyPostsQuery, 
+  useGetMyPostsQuery,
+  useGetUserPostQuery,
   useCreatePostMutation,
   useDeletePostMutation,
   useUpdatePostMutation,

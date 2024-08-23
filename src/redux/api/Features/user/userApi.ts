@@ -13,6 +13,18 @@ export const userApi = baseApi.injectEndpoints({
       providesTags: [tagTypes.user],
     }),
 
+    getSingleUserData: builder.query({
+      query: (payload) => {
+        console.log(payload.id, "redux");
+
+        return {
+          url: `/user/single_user/${payload.id}`,
+          method: "GET",
+        };
+      },
+      providesTags: [tagTypes.user],
+    }),
+
     updateUserProfile: builder.mutation({
       query: (payload) => {
         return {
@@ -26,4 +38,8 @@ export const userApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetMyProfileQuery, useUpdateUserProfileMutation } = userApi;
+export const {
+  useGetMyProfileQuery,
+  useGetSingleUserDataQuery,
+  useUpdateUserProfileMutation,
+} = userApi;

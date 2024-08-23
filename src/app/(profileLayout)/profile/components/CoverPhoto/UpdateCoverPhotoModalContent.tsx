@@ -3,11 +3,10 @@
 import { useUpdateUserProfileMutation } from "@/redux/api/Features/user/userApi";
 import { TUser } from "@/types";
 import ImageUploadingUtils from "@/utils/ImageUploading";
+import PhotoViewer from "@/utils/PhotoViewer";
 import { imageUploadIntoImgbb } from "@/utils/uploadImageIntoImgbb";
 import { Button } from "@nextui-org/button";
-import Image from "next/image";
 import React, { useState } from "react";
-import { PhotoProvider, PhotoView } from "react-photo-view";
 import { toast } from "sonner";
 
 type TProps = {
@@ -53,31 +52,16 @@ const UpdateCoverPhotoModalContent = ({ userData, setIsModalOpen }: TProps) => {
     <div className="">
       <div className="">
         <div className="py-2 flex justify-center items-center">
-          <PhotoProvider>
-            <PhotoView
-              src={
-                imageDataURl
-                  ? imageDataURl
-                  : userData?.coverPhoto
-                  ? userData?.coverPhoto
-                  : "https://marketplace.canva.com/EAFIddqdjTk/2/0/1600w/canva-black-minimalist-motivation-quote-linkedin-banner-1PLNOKlL1HU.jpg"
-              }
-            >
-              <Image
-                src={
-                  imageDataURl
-                    ? imageDataURl
-                    : userData?.coverPhoto
-                    ? userData?.coverPhoto
-                    : "https://marketplace.canva.com/EAFIddqdjTk/2/0/1600w/canva-black-minimalist-motivation-quote-linkedin-banner-1PLNOKlL1HU.jpg"
-                }
-                width={1200}
-                height={300}
-                className="object-cover h-[300px] lg:w-[1100px]"
-                alt=""
-              />
-            </PhotoView>
-          </PhotoProvider>
+          <PhotoViewer
+            src={
+              imageDataURl
+                ? imageDataURl
+                : userData?.coverPhoto
+                ? userData?.coverPhoto
+                : "https://marketplace.canva.com/EAFIddqdjTk/2/0/1600w/canva-black-minimalist-motivation-quote-linkedin-banner-1PLNOKlL1HU.jpg"
+            }
+            className="h-[300px] lg:w-[1100px]"
+          />
         </div>
       </div>
 
