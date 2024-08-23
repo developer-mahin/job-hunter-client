@@ -5,13 +5,16 @@ import { Button } from "@nextui-org/button";
 import { useState } from "react";
 import { ImPencil } from "react-icons/im";
 import AboutModalContent from "./AboutModalContent";
-import { useGetMyProfileQuery } from "@/redux/api/Features/user/userApi";
+import { TUser } from "@/types";
 
-const About = () => {
+type TProps = {
+  userData: TUser;
+};
+
+const About = ({ userData }: TProps) => {
   const [isModalOpen, setModalIsOpen] = useState<boolean>(false);
   const [seeAllDetails, setSeeAllDetails] = useState<boolean>(true);
   const changeState = seeAllDetails === true ? false : true;
-  const { data: userData } = useGetMyProfileQuery({});
 
   return (
     <div className="shadow border rounded-xl mt-3 p-4">
