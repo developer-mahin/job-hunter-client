@@ -13,7 +13,6 @@ import PersonalInfoUpdatedModalContent from "./ProfileModalData/PersonalInfoUpda
 import ProfilePicture from "./ProfilePicture/ProfilePicture";
 
 const ProfileData = () => {
-  // const { userData, isLoading } = useUserInfo();
   const [personalInfo, setPersonalInfoModal] = useState<boolean>(false);
   const { data: userData, isLoading } = useGetMyProfileQuery({});
 
