@@ -1,21 +1,26 @@
 "use client";
 
-import Spinners from "@/app/components/Shared/Spinners";
-import { useGetAllJobQuery } from "@/redux/api/Features/Job/jobApi";
+import { setJob } from "@/redux/api/Features/Job/jobSlice";
 import { TJob } from "@/types";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
-const JobLeftSidebar = () => {
+type TProps = {
+  allJobs: TJob[];
+};
+
+const JobLeftSidebar = ({ allJobs }: TProps) => {
   const [jobId, setJobId] = useState<string>("");
-  const [singleJob, setSingleJob] = useState<TJob>();
-  const { data: allJobs, isLoading } = useGetAllJobQuery({});
 
-  if (isLoading) {
-    return <Spinners />;
-  }
+  const dispatch = useDispatch();
 
-  console.log(singleJob)
+  useEffect(() => {
+    if (allJobs && allJobs.length > 0) {
+      dispatch(setJob(allJobs[0]));
+      setJobId(allJobs[0]._id);
+    }
+  }, [allJobs, dispatch]);
 
   return (
     <div className="border rounded-xl  bg-gray-100 bg-opacity-70 shadow-lg h-[88vh] overflow-y-scroll">
@@ -28,7 +33,7 @@ const JobLeftSidebar = () => {
               : "flex gap-3 cursor-pointer px-3 py-4"
           }
           onClick={() => {
-            setSingleJob(item);
+            dispatch(setJob(item));
             setJobId(item._id);
           }}
         >

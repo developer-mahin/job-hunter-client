@@ -22,6 +22,6 @@
     }
   },
 
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/(mainlayout)/jobs/components/CreateJobModalContent"],
   "exclude": ["node_modules"]
 }
