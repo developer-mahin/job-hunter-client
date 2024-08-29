@@ -30,7 +30,7 @@ const JSelect = ({ name, selectItems, className }: TInputProps) => {
               label="Select one.."
               isRequired
               fullWidth
-              className={cn("max-w-xs", className)}
+              className={cn("w-full", className)}
             >
               {selectItems.map((items: TSelectItems) => (
                 <SelectItem key={items.key} value={items.key}>

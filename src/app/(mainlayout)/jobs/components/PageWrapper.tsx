@@ -41,7 +41,7 @@ const PageWrapper = () => {
             setIsOpen={setIsModalOpen}
             modalTitle="Post a free job"
           >
-            <CreateJobModalContent />
+            <CreateJobModalContent setIsModalOpen={setIsModalOpen} />
           </ReactCustomModal>
         </div>
       )}

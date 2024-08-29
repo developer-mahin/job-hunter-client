@@ -22,7 +22,7 @@ const JQuill = ({ name, className, label }: TInputProps) => {
           fieldState: { error },
         }) => (
           <>
-            <Label>{label}</Label>
+            <Label className="text-gray-500 mb-3 text-sm font-medium">{label}</Label>
             <ReactQuill
               {...field}
               value={value}

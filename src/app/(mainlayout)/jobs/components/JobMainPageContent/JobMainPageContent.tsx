@@ -9,7 +9,7 @@ const JobMainPageContent = () => {
   const { job } = useSelector((state: RootState) => state.job);
 
   return (
-    <div className="border rounded-xl  bg-gray-100 bg-opacity-70 shadow-lg p-3">
+    <div className="border rounded-xl bg-gray-100 bg-opacity-70 shadow-lg p-3 h-[81vh] scrollBar">
       <JobTitleAndInfo job={job} />
       <AboutJobDescription job={job} />
     </div>

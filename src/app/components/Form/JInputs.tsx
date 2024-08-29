@@ -7,7 +7,7 @@ type TInputProps = {
   name: string;
   required?: boolean;
   placeholder?: string;
-  label: string;
+  label?: string;
   className?: string;
 };
 
@@ -26,7 +26,10 @@ const JInputs = ({
       <Controller
         name={name}
         control={control}
-        render={({ field: { value, ...field }, fieldState: { error } }) => (
+        render={({
+          field: { value, ...field },
+          fieldState: { error },
+        }) => (
           <>
             <Input
               {...field}

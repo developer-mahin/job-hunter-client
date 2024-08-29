@@ -9,3 +9,10 @@
 .custom-scrollbar::-webkit-scrollbar {
   overflow: hidden;
 }
+
+.scrollBar {
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    overflow: hidden;
+  }
+}

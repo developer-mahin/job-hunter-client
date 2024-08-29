@@ -9,7 +9,7 @@ export type TJob = {
   createdAt: string;
   location: string;
   website: string;
-  description: string;
+  description: string | TrustedHTML;
   experience: string;
   jobTitle: string;
   jobType: string;

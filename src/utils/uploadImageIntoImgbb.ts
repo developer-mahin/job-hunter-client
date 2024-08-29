@@ -1,6 +1,6 @@
 import { toast } from "sonner";
 export const imageUploadIntoImgbb = (formData: any) => {
-  const url = `https://api.imgbb.com/1/upload?key=6172cdc3d7968fb2194fbc4fc29a6a67`;
+  const url = `https://api.imgbb.com/1/upload?key=24d84a68bfdc2c22513e85c053934abf`;
 
   const image = fetch(url, {
     method: "POST",

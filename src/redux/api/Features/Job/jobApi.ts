@@ -35,6 +35,9 @@ export const jobApi = baseApi.injectEndpoints({
 
     createJob: builder.mutation({
       query: (payload) => {
+
+        console.log(payload)
+
         return {
           url: "/job/create_job",
           method: "POST",

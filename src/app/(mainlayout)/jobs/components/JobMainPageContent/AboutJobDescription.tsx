@@ -8,7 +8,7 @@ type TProps = {
 
 const AboutJobDescription = ({ job }: TProps) => {
   return (
-    <div>
+    <div className="">
       <div className="flex items-center gap-x-5 mt-4">
         <Button className="font-medium rounded-full">
           <VscGitStashApply className="text-2xl text-gray-700" />
@@ -20,10 +20,11 @@ const AboutJobDescription = ({ job }: TProps) => {
       </div>
       <div className="mt-6">
         <p className="text-2xl font-semibold">About the job</p>
-        <h4 className="my-4">
-          Job Description / Responsibility
-          <p>{job?.additionalRequirements}</p>
-        </h4>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: job?.description || "",
+          }}
+        />
       </div>
     </div>
   );
