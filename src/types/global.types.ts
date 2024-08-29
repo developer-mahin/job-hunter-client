@@ -59,3 +59,8 @@ export type TUser = {
   __v: number;
   info: TUserInfo;
 };
+
+export type TSelectItems = {
+  key: string;
+  label: string;
+};

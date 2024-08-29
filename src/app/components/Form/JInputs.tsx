@@ -22,25 +22,27 @@ const JInputs = ({
   const { control } = useFormContext();
 
   return (
-    <Controller
-      name={name}
-      control={control}
-      render={({ field: { value, ...field }, fieldState: { error } }) => (
-        <>
-          <Input
-            {...field}
-            value={value}
-            type={type}
-            placeholder={placeholder}
-            label={label}
-            fullWidth
-            isRequired={required}
-            className={cn("h-11 rounded-md", className)}
-          />
-          <p className="text-red-500 text-sm my-1">{error?.message}</p>
-        </>
-      )}
-    />
+    <div>
+      <Controller
+        name={name}
+        control={control}
+        render={({ field: { value, ...field }, fieldState: { error } }) => (
+          <>
+            <Input
+              {...field}
+              value={value}
+              type={type}
+              placeholder={placeholder}
+              label={label}
+              fullWidth
+              isRequired={required}
+              className={cn("h-11 rounded-md", className)}
+            />
+            <p className="text-red-500 text-sm my-1">{error?.message}</p>
+          </>
+        )}
+      />
+    </div>
   );
 };
 

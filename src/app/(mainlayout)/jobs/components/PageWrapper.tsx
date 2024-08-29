@@ -10,8 +10,12 @@ import { decodedToken } from "@/utils/decodeToken";
 import { TAuthUser } from "@/types";
 import { Button } from "@nextui-org/button";
 import { FaEdit } from "react-icons/fa";
+import { useState } from "react";
+import ReactCustomModal from "@/app/components/Shared/ReactModal";
+import CreateJobModalContent from "./CreateJobModalContent/CreateJobModalContent";
 
 const PageWrapper = () => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const { data: allJobs, isLoading } = useGetAllJobQuery({});
   const token = getFromLocalStorage(authKey.ACCESS_TOKEN);
 
@@ -28,9 +32,17 @@ const PageWrapper = () => {
     <div className="my-3">
       {user?.role !== "user" && (
         <div>
-          <Button className="font-medium">
+          <Button onClick={() => setIsModalOpen(true)} className="font-medium">
             <FaEdit className="text-2xl" /> Post a free job
           </Button>
+
+          <ReactCustomModal
+            modalIsOpen={isModalOpen}
+            setIsOpen={setIsModalOpen}
+            modalTitle="Post a free job"
+          >
+            <CreateJobModalContent />
+          </ReactCustomModal>
         </div>
       )}
       <div className="grid grid-cols-12 my-3 gap-x-5">
