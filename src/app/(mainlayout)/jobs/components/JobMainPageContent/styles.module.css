@@ -1,0 +1,67 @@
+.qleditor h1,
+.qleditor h2,
+.qleditor h3,
+.qleditor h4,
+.qleditor h5,
+.qleditor h6 {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.qleditor h1 {
+  font-size: 2rem;
+}
+
+.qleditor h2 {
+  font-size: 30px;
+}
+
+.qleditor h3 {
+  font-size: 26px;
+}
+
+.qleditor strong {
+  font-weight: 600;
+}
+
+.qleditor a {
+  color: #3b82f6;
+  text-decoration: underline;
+}
+
+.qleditor blockquote {
+  border-left: 4px solid #d1d5db;
+  padding-left: 1rem;
+  color: #6b7280;
+  font-style: italic;
+  margin: 1rem 0;
+}
+
+.qleditor ol {
+  padding-left: 12px;
+  list-style-type: decimal;
+  margin-bottom: 1rem;
+}
+
+.qleditor ul {
+  padding-left: 1.5rem;
+  list-style-type: disc;
+  margin-bottom: 1rem;
+}
+
+.qleditor code {
+  background-color: #f3f4f6;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  color: #ef4444;
+}
+
+.qleditor pre {
+  background-color: #f3f4f6;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}

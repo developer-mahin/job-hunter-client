@@ -1,7 +1,6 @@
 import { TUser } from "./global.types";
 
 export type TJob = {
-  additionalRequirements: string;
   author: TUser;
   candidate: Array<unknown>;
   companyLogo: string;
@@ -9,11 +8,9 @@ export type TJob = {
   createdAt: string;
   location: string;
   website: string;
-  description: string | TrustedHTML;
-  experience: string;
+  jobDescription: string | TrustedHTML;
   jobTitle: string;
   jobType: string;
-  skills: string;
   updatedAt: string;
   workPlaceType: string;
   __v: number;

@@ -1,10 +1,12 @@
 "use client";
 
+import JForm from "@/app/components/Form/JForm";
+import JQuill from "@/app/components/Form/JQuill";
 import useUserInfo from "@/hook/User";
 import { useUpdateUserProfileMutation } from "@/redux/api/Features/user/userApi";
 import { Button } from "@nextui-org/button";
 import React, { useState } from "react";
-import ReactQuill from "react-quill";
+import { FieldValues, SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 
 type TProps = {
@@ -12,15 +14,14 @@ type TProps = {
 };
 
 const AboutModalContent = ({ setModalIsOpen }: TProps) => {
-  const [value, setValue] = useState("");
   const { userData } = useUserInfo();
   const [updateUserProfile] = useUpdateUserProfileMutation();
 
-  const onsubmit = async () => {
+  const onsubmit: SubmitHandler<FieldValues> = async (data) => {
     const userInfo = {
       id: userData?._id,
       data: {
-        about: value,
+        about: data.about,
       },
     };
 
@@ -37,22 +38,15 @@ const AboutModalContent = ({ setModalIsOpen }: TProps) => {
 
   return (
     <div className="lg:w-[600px] py-4">
-      <div>
-        <div className="my-2">
-          <ReactQuill
-            theme="snow"
-            className="h-[150px]"
-            value={value}
-            onChange={setValue}
-          />
+      <JForm onSubmit={onsubmit}>
+        <div className="mb-2">
+          <JQuill name="about" className="h-[150px]" />
         </div>
 
         <div className="mt-14">
-          <Button onClick={() => onsubmit()} className="">
-            Save
-          </Button>
+          <Button className="">Save</Button>
         </div>
-      </div>
+      </JForm>
     </div>
   );
 };

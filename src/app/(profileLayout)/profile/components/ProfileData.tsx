@@ -11,14 +11,12 @@ import CoverPhoto from "./CoverPhoto/CoverPhoto";
 import PersonalDetails from "./PersonalDetails";
 import PersonalInfoUpdatedModalContent from "./ProfileModalData/PersonalInfoUpdatedModalContent";
 import ProfilePicture from "./ProfilePicture/ProfilePicture";
+import About from "./About/About";
 
 const ProfileData = () => {
   const [personalInfo, setPersonalInfoModal] = useState<boolean>(false);
   const { data: userData, isLoading } = useGetMyProfileQuery({});
 
-  const About = dynamic(import("./About/About"), {
-    ssr: false,
-  });
 
   if (isLoading) {
     return <Spinners className="h-[100vh]" />;

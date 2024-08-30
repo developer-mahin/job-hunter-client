@@ -2,8 +2,10 @@
 
 import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
-import AboutJobDescription from "./AboutJobDescription";
+// import AboutJobDescription from "./AboutJobDescription";
 import JobTitleAndInfo from "./JobTitleAndInfo";
+import dynamic from "next/dynamic";
+import AboutJobDescription from "./AboutJobDescription";
 
 const JobMainPageContent = () => {
   const { job } = useSelector((state: RootState) => state.job);

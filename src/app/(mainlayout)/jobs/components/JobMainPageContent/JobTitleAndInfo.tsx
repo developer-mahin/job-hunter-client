@@ -17,7 +17,7 @@ const JobTitleAndInfo = ({ job }: TProps) => {
       <div className="flex items-center gap-x-2">
         <Image
           className="size-14"
-          src={job?.companyLogo || "https://example.com/logo.png"}
+          src={job?.companyLogo || "https://www.logodesign.net/logo/line-art-buildings-in-swoosh-1273ld.png?nwm=1&nws=1&industry=company&sf=&txt_keyword=All"}
           alt=""
           width={100}
           height={100}

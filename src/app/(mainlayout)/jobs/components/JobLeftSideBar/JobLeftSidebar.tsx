@@ -39,7 +39,10 @@ const JobLeftSidebar = ({ allJobs }: TProps) => {
         >
           <div>
             <Image
-              src={item.companyLogo}
+              src={
+                item?.companyLogo ||
+                "https://www.logodesign.net/logo/line-art-buildings-in-swoosh-1273ld.png?nwm=1&nws=1&industry=company&sf=&txt_keyword=All"
+              }
               alt=""
               width={500}
               height={200}

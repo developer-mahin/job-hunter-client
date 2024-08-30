@@ -4,14 +4,13 @@ import JForm from "@/app/components/Form/JForm";
 import JInputs from "@/app/components/Form/JInputs";
 import JQuill from "@/app/components/Form/JQuill";
 import JSelect from "@/app/components/Form/JSelect";
+import { useCreateJobMutation } from "@/redux/api/Features/Job/jobApi";
 import { Button } from "@nextui-org/button";
-import { FieldValues, SubmitHandler } from "react-hook-form";
-import { jobTypes, workPlaceTypes } from "../../data/jobSelectInfoData";
 import React, { useState } from "react";
+import { FieldValues, SubmitHandler } from "react-hook-form";
 import { FaUpload } from "react-icons/fa";
 import { toast } from "sonner";
-import { useCreateJobMutation } from "@/redux/api/Features/Job/jobApi";
-import { imageUploadIntoImgbb } from "@/utils/uploadImageIntoImgbb";
+import { jobTypes, workPlaceTypes } from "../../data/jobSelectInfoData";
 
 type TProps = {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -85,9 +84,9 @@ const CreateJobModalContent = ({ setIsModalOpen }: TProps) => {
 
         <div className="mt-2">
           <JQuill
-            label="Additional Requirements & Description"
-            name="description"
-            className="h-[130px]"
+            label="Description"
+            name="jobDescription"
+            className="h-[150px]"
           />
         </div>
 
