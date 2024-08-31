@@ -11,6 +11,7 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 import { FaUpload } from "react-icons/fa";
 import { toast } from "sonner";
 import { jobTypes, workPlaceTypes } from "../../data/jobSelectInfoData";
+import { imageUploadIntoImgbb } from "@/utils/uploadImageIntoImgbb";
 
 type TProps = {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -18,7 +19,7 @@ type TProps = {
 
 const CreateJobModalContent = ({ setIsModalOpen }: TProps) => {
   const [addImage, setAddImage] = useState<File | null>(null);
-  const [createJob] = useCreateJobMutation();
+  const [createJob, { isLoading }] = useCreateJobMutation();
 
   console.log(addImage);
 
@@ -28,15 +29,15 @@ const CreateJobModalContent = ({ setIsModalOpen }: TProps) => {
       formData.append("image", addImage);
     }
 
-    // const image = await imageUploadIntoImgbb(formData);
+    const image = await imageUploadIntoImgbb(formData);
 
     const jobCreatedData = {
       ...data,
-      // companyLogo: image,
+      companyLogo: image,
     };
 
     try {
-      const res = await createJob(data);
+      const res = await createJob(jobCreatedData);
       if (res.data) {
         setIsModalOpen(false);
       }
@@ -91,7 +92,7 @@ const CreateJobModalContent = ({ setIsModalOpen }: TProps) => {
         </div>
 
         <Button className="mt-14" type="submit">
-          Post Job
+          {isLoading ? "Loading..." : "Post Job "}
         </Button>
       </JForm>
     </div>

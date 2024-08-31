@@ -1,4 +1,4 @@
-import { TJob } from "@/types";
+import { TAuthUser, TJob } from "@/types";
 import { Button } from "@nextui-org/button";
 import moment from "moment";
 import Image from "next/image";
@@ -6,29 +6,43 @@ import { FaRegLightbulb } from "react-icons/fa";
 import { FiCheckCircle } from "react-icons/fi";
 import { MdWork } from "react-icons/md";
 import { PiListChecksBold } from "react-icons/pi";
+import JobActionButton from "../JobActions/JobActionButton";
+import { getUserFromLocalStorage } from "@/utils/localStorage";
+import { authKey } from "@/constant/authKey";
 
 type TProps = {
   job: TJob | null;
 };
 
 const JobTitleAndInfo = ({ job }: TProps) => {
+  const user = getUserFromLocalStorage(authKey.ACCESS_TOKEN) as TAuthUser;
+
   return (
     <div>
-      <div className="flex items-center gap-x-2">
-        <Image
-          className="size-14"
-          src={job?.companyLogo || "https://www.logodesign.net/logo/line-art-buildings-in-swoosh-1273ld.png?nwm=1&nws=1&industry=company&sf=&txt_keyword=All"}
-          alt=""
-          width={100}
-          height={100}
-        />
-        <a
-          className="font-medium hover:underline"
-          href={job?.website}
-          target="_blank"
-        >
-          {job?.website}
-        </a>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-x-2">
+          <Image
+            className="size-14"
+            src={
+              job?.companyLogo ||
+              "https://www.logodesign.net/logo/line-art-buildings-in-swoosh-1273ld.png?nwm=1&nws=1&industry=company&sf=&txt_keyword=All"
+            }
+            alt=""
+            width={100}
+            height={100}
+          />
+          <a
+            className="font-medium hover:underline"
+            href={job?.website}
+            target="_blank"
+          >
+            {job?.website}
+          </a>
+        </div>
+
+        <div>
+          {user?.userId === job?.author?._id && <JobActionButton job={job} />}
+        </div>
       </div>
 
       <div className="mt-4"></div>

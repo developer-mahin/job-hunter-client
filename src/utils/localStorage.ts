@@ -1,3 +1,6 @@
+import { TAuthUser } from "@/types";
+import { decodedToken } from "./decodeToken";
+
 export const setToLocalStorage = (key: string, token: string) => {
   if (!key || typeof window === "undefined") {
     return "";
@@ -20,4 +23,19 @@ export const removeFromLocalStorage = (key: string) => {
   }
 
   return localStorage.removeItem(key);
+};
+
+export const getUserFromLocalStorage = (key: string) => {
+  if (!key || typeof window === "undefined") {
+    return "";
+  }
+
+  const token = localStorage.getItem(key);
+  let user: TAuthUser | null = null;
+
+  if (token) {
+    user = decodedToken(token) as TAuthUser;
+  }
+
+  return user;
 };

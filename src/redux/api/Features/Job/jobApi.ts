@@ -35,9 +35,6 @@ export const jobApi = baseApi.injectEndpoints({
 
     createJob: builder.mutation({
       query: (payload) => {
-
-        console.log(payload)
-
         return {
           url: "/job/create_job",
           method: "POST",
@@ -50,7 +47,7 @@ export const jobApi = baseApi.injectEndpoints({
     deleteJob: builder.mutation({
       query: (payload) => {
         return {
-          url: `/job/delete_job/${payload.jobId}`,
+          url: `/job/delete_job/${payload}`,
           method: "DELETE",
         };
       },

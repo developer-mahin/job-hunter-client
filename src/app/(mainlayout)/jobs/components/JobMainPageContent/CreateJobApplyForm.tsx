@@ -3,13 +3,16 @@
 import JForm from "@/app/components/Form/JForm";
 import JInputs from "@/app/components/Form/JInputs";
 import { authKey } from "@/constant/authKey";
+import { useCreateJobApplyMutation } from "@/redux/api/Features/JobApply/JobApply";
 import { RootState } from "@/redux/store";
+import { TAuthUser } from "@/types";
 import { decodedToken } from "@/utils/decodeToken";
 import { getFromLocalStorage } from "@/utils/localStorage";
 import { Button } from "@nextui-org/button";
 import React from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { useSelector } from "react-redux";
+import { toast } from "sonner";
 
 type TProps = {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -17,22 +20,31 @@ type TProps = {
 
 const CreateJobApplyForm = ({ setIsModalOpen }: TProps) => {
   const { jobId } = useSelector((state: RootState) => state.job);
+
+  const [createJobApply] = useCreateJobApplyMutation();
+
   const token = getFromLocalStorage(authKey.ACCESS_TOKEN);
 
-  let user;
+  let user: TAuthUser;
   if (token) {
-    user = decodedToken(token);
+    user = decodedToken(token) as TAuthUser;
   }
 
-  console.log(jobId);
-
   const onsubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data);
+    const applyData = {
+      ...data,
+      jobId,
+      candidateId: user?.userId,
+    };
 
     try {
-      
-    } catch (error) {
-      
+      const res = await createJobApply(applyData);
+      if (res.data) {
+        setIsModalOpen(false);
+        toast.success("Successfully applied the job");
+      }
+    } catch (error: any) {
+      toast.error(error.message);
     }
   };
 
