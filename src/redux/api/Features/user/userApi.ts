@@ -25,6 +25,16 @@ export const userApi = baseApi.injectEndpoints({
       providesTags: [tagTypes.user],
     }),
 
+    getAllUserData: builder.query({
+      query: (payload) => {
+        return {
+          url: `/user/all_users`,
+          method: "GET",
+        };
+      },
+      providesTags: [tagTypes.user],
+    }),
+
     updateUserProfile: builder.mutation({
       query: (payload) => {
         return {
@@ -41,5 +51,6 @@ export const userApi = baseApi.injectEndpoints({
 export const {
   useGetMyProfileQuery,
   useGetSingleUserDataQuery,
+  useGetAllUserDataQuery,
   useUpdateUserProfileMutation,
 } = userApi;

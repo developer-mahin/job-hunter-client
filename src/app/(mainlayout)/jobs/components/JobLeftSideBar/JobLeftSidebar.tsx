@@ -23,7 +23,7 @@ const JobLeftSidebar = ({ allJobs }: TProps) => {
   }, [allJobs, dispatch]);
 
   return (
-    <div className="border rounded-xl  bg-gray-100 bg-opacity-70 shadow-lg h-[81vh] overflow-y-scroll">
+    <div className="border rounded-xl bg-gray-100 bg-opacity-70 shadow-lg h-[90vh] overflow-y-scroll">
       {allJobs?.map((item: TJob, i: number) => (
         <div
           key={i}

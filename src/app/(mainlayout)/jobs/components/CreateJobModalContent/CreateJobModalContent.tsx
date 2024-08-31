@@ -19,9 +19,11 @@ type TProps = {
 
 const CreateJobModalContent = ({ setIsModalOpen }: TProps) => {
   const [addImage, setAddImage] = useState<File | null>(null);
-  const [updateJob, { isLoading }] = useCreateJobMutation();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [updateJob] = useCreateJobMutation();
 
   const handleSubmit: SubmitHandler<FieldValues> = async (data) => {
+    setIsLoading(true);
     const formData = new FormData();
     if (addImage) {
       formData.append("image", addImage);
@@ -38,9 +40,11 @@ const CreateJobModalContent = ({ setIsModalOpen }: TProps) => {
       const res = await updateJob(jobCreatedData);
       if (res.data) {
         setIsModalOpen(false);
+        setIsLoading(false);
       }
     } catch (error: any) {
       toast.error(error.message);
+      setIsLoading(false);
     }
   };
 

@@ -34,7 +34,7 @@ const navItems: TNavItems[] = [
   },
   {
     icon: <AiFillMessage className="text-2xl text-gray-700" />,
-    path: "/feed",
+    path: "/messege",
     name: "Massaging",
   },
   {
