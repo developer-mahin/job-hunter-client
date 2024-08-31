@@ -37,6 +37,7 @@ import { Avatar } from "@nextui-org/react";
 import { logoutUser } from "@/app/(authlayout)/authAction/logoutUser";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { MdOutlineDashboard } from "react-icons/md";
 
 const DropdownItem = () => {
   const { userData, isLoading } = useUserInfo();
@@ -71,23 +72,23 @@ const DropdownItem = () => {
             </DropdownMenuItem>
           </Link>
 
-          <DropdownMenuItem className="hover:bg-gray-200 rounded-lg cursor-pointer">
-            <CreditCard className="mr-2 h-4 w-4" />
-            <span>Billing</span>
-            <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-          </DropdownMenuItem>
+          <Link href="/recruiter/dashboard">
+            <DropdownMenuItem className="hover:bg-gray-200 rounded-lg cursor-pointer">
+              <MdOutlineDashboard className="mr-2 h-4 w-4" />
+              <span>Dashboard</span>
+              <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </Link>
+
           <DropdownMenuItem className="hover:bg-gray-200 rounded-lg cursor-pointer">
             <Settings className="mr-2 h-4 w-4" />
             <span>Settings</span>
             <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem className="hover:bg-gray-200 rounded-lg cursor-pointer">
-            <Keyboard className="mr-2 h-4 w-4" />
-            <span>Keyboard shortcuts</span>
-            <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
-          </DropdownMenuItem>
         </DropdownMenuGroup>
+
         <DropdownMenuSeparator />
+
         <DropdownMenuGroup>
           <DropdownMenuItem className="hover:bg-gray-200 rounded-lg cursor-pointer">
             <Users className="mr-2 h-4 w-4" />

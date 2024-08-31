@@ -20,6 +20,11 @@ const ChatComponent = () => {
     { text: "Hi! How can I help you?", isMine: true },
     { text: "Is real time message implemented?", isMine: false },
     { text: "Sorry sir! not yet. It'll be implemented soon!!!", isMine: true },
+    { text: "How many times need to implement it?", isMine: false },
+    {
+      text: "Actually we can't deploy free Socket.io server, that's why i the real-time messaging not implemented yet, i have knowledge about Socket.IO and i have created a real-time chat application but i can't deploy it free",
+      isMine: true,
+    },
   ]);
 
   const { data: users, isLoading } = useGetAllUserDataQuery({});
@@ -99,8 +104,8 @@ const ChatComponent = () => {
                     <Image
                       src={
                         message.isMine
-                          ? "https://i.ibb.co/bJHfcg3/347009991-144345801873540-3848896414872478600-n.jpg"
-                          : "https://i.ibb.co/6yYyFsw/IMG-1487.jpg"
+                          ? "https://i.ibb.co/WKJ4NJQ/367167d2-549d-42b7-a8ac-68f677e52f02.jpg"
+                          : "https://i.ibb.co/v3LXJQs/a-young-24-year-old-bangladeshi-man-with-a-long-su-e7ho-SJVUTTOhubk5y-Xn-Msw-k-Tv-M9qhc-Sd-KWi0-EZ6.png"
                       }
                       alt="User"
                       width={500}
