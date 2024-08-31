@@ -19,9 +19,7 @@ type TProps = {
 
 const CreateJobModalContent = ({ setIsModalOpen }: TProps) => {
   const [addImage, setAddImage] = useState<File | null>(null);
-  const [createJob, { isLoading }] = useCreateJobMutation();
-
-  console.log(addImage);
+  const [updateJob, { isLoading }] = useCreateJobMutation();
 
   const handleSubmit: SubmitHandler<FieldValues> = async (data) => {
     const formData = new FormData();
@@ -37,7 +35,7 @@ const CreateJobModalContent = ({ setIsModalOpen }: TProps) => {
     };
 
     try {
-      const res = await createJob(jobCreatedData);
+      const res = await updateJob(jobCreatedData);
       if (res.data) {
         setIsModalOpen(false);
       }
@@ -57,8 +55,12 @@ const CreateJobModalContent = ({ setIsModalOpen }: TProps) => {
         </div>
 
         <div className="grid lg:grid-cols-3 gap-4 mt-4">
-          <JSelect selectItems={jobTypes} name="jobType" />
-          <JSelect selectItems={workPlaceTypes} name="workPlaceType" />
+          <JSelect selectItems={jobTypes} required={true} name="jobType" />
+          <JSelect
+            selectItems={workPlaceTypes}
+            required={true}
+            name="workPlaceType"
+          />
           <div className="flex justify-center">
             <label
               className="flex justify-center lg:w-[250px] h-11 bg-gray-200 rounded-xl items-center gap-x-2 cursor-pointer"

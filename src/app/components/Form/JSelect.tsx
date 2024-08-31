@@ -6,10 +6,11 @@ import { Controller, useFormContext } from "react-hook-form";
 type TInputProps = {
   name: string;
   selectItems: TSelectItems[];
+  required?: boolean;
   className?: string;
 };
 
-const JSelect = ({ name, selectItems, className }: TInputProps) => {
+const JSelect = ({ name, selectItems, className, required }: TInputProps) => {
   const { control } = useFormContext();
 
   return (
@@ -28,7 +29,7 @@ const JSelect = ({ name, selectItems, className }: TInputProps) => {
               onChange={onChange}
               size="sm"
               label="Select one.."
-              isRequired
+              isRequired={required}
               fullWidth
               className={cn("w-full", className)}
             >

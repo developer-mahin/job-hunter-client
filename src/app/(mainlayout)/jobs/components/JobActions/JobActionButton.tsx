@@ -14,6 +14,8 @@ import { BsThreeDots } from "react-icons/bs";
 import { toast } from "sonner";
 import UpdateJobModalContent from "./UpdateJobModalContent";
 import { useDeleteJobMutation } from "@/redux/api/Features/Job/jobApi";
+import { useDispatch } from "react-redux";
+import { setJob, setJobId } from "@/redux/api/Features/Job/jobSlice";
 
 type TProps = {
   job: TJob | null;
@@ -22,6 +24,7 @@ type TProps = {
 const JobActionButton = ({ job }: TProps) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [deleteJob] = useDeleteJobMutation();
+  const dispatch = useDispatch();
 
   const handleDeleteJob = async (id: string) => {
     try {
@@ -44,7 +47,11 @@ const JobActionButton = ({ job }: TProps) => {
         </DropdownTrigger>
         <DropdownMenu aria-label="Dynamic Actions">
           <DropdownItem
-            onClick={() => setIsModalOpen(!isModalOpen)}
+            onClick={() => {
+              dispatch(setJobId(job?._id));
+              dispatch(setJob(job));
+              setIsModalOpen(!isModalOpen);
+            }}
             color="default"
             className=""
           >
@@ -65,7 +72,7 @@ const JobActionButton = ({ job }: TProps) => {
         setIsOpen={setIsModalOpen}
         modalTitle="Update Job Description"
       >
-        <UpdateJobModalContent job={job} setIsModalOpen={setIsModalOpen} />
+        <UpdateJobModalContent setIsModalOpen={setIsModalOpen} />
       </ReactCustomModal>
     </>
   );
