@@ -10,12 +10,6 @@ export function middleware(request: NextRequest) {
 
   const accessToken = cookies().get(authKey.ACCESS_TOKEN);
 
-  // if (pathname === "/") {
-  //   if (accessToken) {
-  //     return NextResponse.redirect(new URL("/home", request.url));
-  //   }
-  // }
-
   if (pathname === "/feed") {
     if (accessToken) {
       return NextResponse.next();

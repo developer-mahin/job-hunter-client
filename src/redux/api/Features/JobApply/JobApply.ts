@@ -13,7 +13,19 @@ export const JobApply = baseApi.injectEndpoints({
       },
       invalidatesTags: [tagTypes.job],
     }),
+
+    selectCandidate: builder.mutation({
+      query: (payload) => {
+        return {
+          url: `/job_apply/select_candidate/${payload.jobId}`,
+          method: "PATCH",
+          data: payload.userId,
+        };
+      },
+      invalidatesTags: [tagTypes.job],
+    }),
   }),
 });
 
-export const { useCreateJobApplyMutation } = JobApply;
+export const { useCreateJobApplyMutation, useSelectCandidateMutation } =
+  JobApply;

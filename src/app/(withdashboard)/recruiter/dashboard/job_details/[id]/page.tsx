@@ -1,5 +1,6 @@
 "use client";
 
+import { selectUser } from "@/app/(withdashboard)/actions/selectUser";
 import Spinners from "@/app/components/Shared/Spinners";
 import { useGetSingleJobQuery } from "@/redux/api/Features/Job/jobApi";
 import PhotoViewer from "@/utils/PhotoViewer";
@@ -12,21 +13,37 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/react";
-import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { toast } from "sonner";
 
 const JobDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
-
   const { data: job, isLoading } = useGetSingleJobQuery(id);
 
   if (isLoading) {
     return <Spinners />;
   }
 
+  const handleSelectJob = async (userId: string) => {
+    const selectInformation = {
+      jobId: id,
+      userId: userId,
+    };
+
+    try {
+      const res = await selectUser(selectInformation);
+
+      if (res.data) {
+        toast.success("this user is selected in this role");
+      }
+    } catch (error: any) {
+      toast.error(error.message);
+    }
+  };
+
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 ">
       <Table
         selectionMode="single"
         aria-label="Example static collection table"
@@ -44,7 +61,7 @@ const JobDetailsPage = () => {
                   <div>
                     <PhotoViewer
                       src={item?.candidateId?.photo}
-                      className="size-20 rounded-full"
+                      className="size-16 rounded-full"
                     />
                   </div>
                   <div className="">
@@ -65,26 +82,10 @@ const JobDetailsPage = () => {
                 </div>
               </TableCell>
               <TableCell>
-                <div className="flex items-center gap-x-4">
-                  <div className="flex items-center gap-x-4">
-                    <div>
-                      <PhotoViewer
-                        src={item?.jobId?.companyLogo}
-                        className="size-20 rounded-full"
-                      />
-                    </div>
-                    <div>
-                      <p className="font-medium">
-                        Job Title: {item?.jobId?.jobTitle}
-                      </p>
-                      <p>Company Name: {item?.jobId?.companyName}</p>
-                    </div>
-                  </div>
-                  <div className="">
-                    <p>Notice Period: {item?.noticePeriod}</p>
-                    <p>Experience: {item?.experience}</p>
-                    <p>Expected Salary: {item?.expectedSalary}</p>
-                  </div>
+                <div className="">
+                  <p>Notice Period: {item?.noticePeriod}</p>
+                  <p>Experience: {item?.experience}</p>
+                  <p>Expected Salary: {item?.expectedSalary}</p>
                 </div>
               </TableCell>
               <TableCell>
@@ -94,7 +95,14 @@ const JobDetailsPage = () => {
                       Resume
                     </a>
                   </Button>
-                  <Button color="success">Select</Button>
+                  <Button
+                    onClick={() => handleSelectJob(item?.candidateId?._id)}
+                    color="success"
+                  >
+                    {item?.jobId?.selectedCandidate === item?.candidateId?._id
+                      ? "This user is selected for this role"
+                      : "Select"}
+                  </Button>
                 </div>
               </TableCell>
             </TableRow>
