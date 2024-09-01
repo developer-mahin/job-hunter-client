@@ -24,6 +24,8 @@ const Credentials = () => {
         <div className="lg:w-[400px]">
           <p>Email: wipad52531@eixdeal.com</p>
           <p>Password: Pa$$w0rd!</p>
+          <p>Email: vicew79748@kwalah.com</p>
+          <p>Password: Pa$$w0rd!</p>
         </div>
       </ReactCustomModal>
     </div>

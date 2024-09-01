@@ -1,16 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { HiMenuAlt3 } from "react-icons/hi";
-import { Menus } from "./sidebarItems";
+import { Menus } from "./SidebarItems";
+
 
 const Sidebar = () => {
   const [open, setOpen] = useState<boolean>(true);
   const pathname = usePathname();
-
-  console.log(pathname);
 
   return (
     <div

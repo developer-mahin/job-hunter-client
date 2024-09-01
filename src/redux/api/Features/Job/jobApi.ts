@@ -16,17 +16,17 @@ export const jobApi = baseApi.injectEndpoints({
     getMyJobs: builder.query({
       query: () => {
         return {
-          url: `/job/my_jobs`,
+          url: `/job/get_all_my_jobs`,
           method: "GET",
         };
       },
       providesTags: [tagTypes.job],
     }),
 
-    getUserJob: builder.query({
+    getSingleJob: builder.query({
       query: (payload) => {
         return {
-          url: `/job/user_job/${payload.id}`,
+          url: `/job/get_single_job/${payload}`,
           method: "GET",
         };
       },
@@ -70,7 +70,7 @@ export const jobApi = baseApi.injectEndpoints({
 export const {
   useGetAllJobQuery,
   useGetMyJobsQuery,
-  useGetUserJobQuery,
+  useGetSingleJobQuery,
   useCreateJobMutation,
   useDeleteJobMutation,
   useUpdateJobMutation,
