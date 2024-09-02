@@ -13,7 +13,7 @@ const AllMyPostsPage = () => {
   }
 
   return (
-    <div className="w-[800px] ms-auto">
+    <div className="lg:w-[600px] mx-auto mt-2">
       <div className="">
         {postData?.map((data: TPost, i: number) => (
           <PostCard key={i} post={data} />

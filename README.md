@@ -2,33 +2,51 @@
 
 ## Overview
 
-The front-end of the Job-hunter application is built using modern web technologies and frameworks to provide a seamless user experience. The application interacts with a Node.js Express backend and MongoDB database via RESTful APIs to manage user authentication, posts, comments, and profile updates.
+"Job-hunter" is a Node.js Express application with MongoDB, utilizing the Mongoose ODM for efficient data management. The app offers RESTful APIs for creating, retrieving, and updating posts, along with features for liking, commenting, and managing user profiles.
 
-## Technology Stack:
+The platform supports two roles: users and recruiters. Users can interact with posts and manage their profiles, while recruiters can post jobs, manage applications, and select candidates. Upon selection, candidates receive an email notification.
 
-- TypeScript for programming language
-- Next.js for Front-end
-- Tailwind CSS
-- NextUI
-- Redux Toolkit
-- RTK Query
-- Axios
-- Zod
-
-## Features
-
-- Authentication and Authorization: Users must register and log in to access the full functionality of the application. JWT tokens are used for maintaining user sessions.
-- User Interface: The application’s UI is built using Tailwind CSS and NextUI, ensuring a responsive and visually appealing design.
-- State Management: Redux Toolkit is used to manage global state, including user authentication and post management.
-- Data Fetching: RTK Query, in combination with Axios, is used to fetch data from the backend APIs, including creating, retrieving, and updating posts, as well as managing likes and comments.
-- Form Validation: Zod is employed to validate user input in forms, such as login, registration, and profile updates, to prevent invalid data from being submitted.
+Key technologies include Zod for robust data validation, JWT for secure authentication, and bcryptjs for password hashing. User registration and login are required for access to the app's read, write, and update functionalities, ensuring a secure and efficient experience.
 
 #### SERVER_URL : https://jobhunterserver.vercel.app/
 
 #### FRONT_END_URL : https://jobhunterclient.vercel.app/
 
+### API DOCUMENTATION LINK
+
+- URL- https://documenter.getpostman.com/view/24264729/2sAXjM3r3B
+
+## Technologies
+
+```
+  * Backend :
+      - TypeScript, Node.js, Express.js, MongoDB, Mongoose, Zod, Bcrypt, JWT, nodemailer
+
+  * Frontend :
+      - TypeScript, Next.js, Redux, Tailwindcss, NextUI, Rtk query, sonner, react-hook-form
+```
+
+## Features
+
+- Role-Based Access: Supports two user roles—users and recruiters—with specific functionalities for each, such as job posting and candidate selection.
+- RESTful APIs: Provides APIs for creating, retrieving, and updating posts, as well as for managing likes, comments, and user profiles.
+- Data Validation: Utilizes Zod for robust data validation to ensure the integrity of user inputs.
+- Secure Authentication: Implements JWT for secure user authentication and bcryptjs for password hashing.
+- Email Notifications: Sends automated email notifications to users selected for job roles.
+
 ## How to run
 
 - First, clone the repo and install the dependencies using `npm install` command.
 - then, build the project using `npm run build` command.
-- at last, run the project using `npm run start` command.
+- at last, run the project using `npm run dev` command.
+
+## Demo Login Credentials
+
+```
+* Recruiter:
+  - Email: wipad52531@eixdeal.com
+  - Password: Pa$$w0rd!
+* User
+  - Email: vicew79748@kwalah.com
+  - Password: Pa$$w0rd!
+```

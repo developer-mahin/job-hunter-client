@@ -3,6 +3,7 @@ import { Navbar, NavbarBrand, NavbarContent } from "@nextui-org/react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
+import { IoMenu } from "react-icons/io5";
 
 export default function Header() {
   const DropdownItem = dynamic(() => import("./DropdownItem"), { ssr: false });
@@ -10,7 +11,8 @@ export default function Header() {
 
   return (
     <div className="">
-      <Navbar isBordered maxWidth="2xl" isBlurred className="h-[100px] py-3 ">
+      <Navbar isBordered maxWidth="2xl" isBlurred className="lg:h-[100px] py-3">
+        
         <NavbarContent justify="start">
           <Link href="/feed" className="cursor-pointer">
             <NavbarBrand className="mr-4">
@@ -18,7 +20,7 @@ export default function Header() {
                 src={assets.images.logo}
                 width={500}
                 height={80}
-                className="w-full h-[90px]"
+                className="w-full lg:h-[90px]"
                 alt=""
               />
             </NavbarBrand>
@@ -26,7 +28,7 @@ export default function Header() {
         </NavbarContent>
 
         <NavbarContent as="div" className="items-center" justify="end">
-          <div className="hidden sm:flex gap-3">
+          <div >
             <NavItems />
           </div>
           <div className="flex items-center gap-4">

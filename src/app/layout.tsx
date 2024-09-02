@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { Providers } from "@/lib/providers/providers";
+import BottomAppBar from "./components/Shared/Header/BottomAppBar/BottomAppBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <Providers>
           {children}
+          <div className="block md:hidden">
+            <BottomAppBar />
+          </div>
           <Toaster />
         </Providers>
       </body>

@@ -22,8 +22,10 @@ const Credentials = () => {
         modalTitle="Login Credential"
       >
         <div className="lg:w-[400px]">
+          <p className="font-medium">Recruiter</p>
           <p>Email: wipad52531@eixdeal.com</p>
           <p>Password: Pa$$w0rd!</p>
+          <p className="font-medium">User</p>
           <p>Email: vicew79748@kwalah.com</p>
           <p>Password: Pa$$w0rd!</p>
         </div>
