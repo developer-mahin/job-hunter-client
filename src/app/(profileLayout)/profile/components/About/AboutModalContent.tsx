@@ -44,7 +44,9 @@ const AboutModalContent = ({ setModalIsOpen }: TProps) => {
         </div>
 
         <div className="mt-14">
-          <Button className="">Save</Button>
+          <Button type="submit" className="">
+            Save
+          </Button>
         </div>
       </JForm>
     </div>
