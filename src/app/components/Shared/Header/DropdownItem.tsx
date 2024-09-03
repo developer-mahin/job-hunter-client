@@ -77,7 +77,7 @@ const DropdownItem = () => {
             </DropdownMenuItem>
           </Link>
 
-          {user.role === "recruiter" && (
+          {user?.role === "recruiter" && (
             <Link href="/recruiter/dashboard">
               <DropdownMenuItem className="hover:bg-gray-200 rounded-lg cursor-pointer">
                 <MdOutlineDashboard className="mr-2 h-4 w-4" />
