@@ -19,7 +19,10 @@ import { Avatar } from "@nextui-org/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { MdOutlineDashboard } from "react-icons/md";
-import { getUserFromLocalStorage, setToLocalStorage } from "@/utils/localStorage";
+import {
+  getUserFromLocalStorage,
+  setToLocalStorage,
+} from "@/utils/localStorage";
 import { authKey } from "@/constant/authKey";
 import { TAuthUser } from "@/types";
 import { useChangeUserRoleMutation } from "@/redux/api/Features/user/userApi";
@@ -39,10 +42,10 @@ const DropdownItem = () => {
   const handleChangeUserRole = async () => {
     try {
       const res = await changeUserRole("");
-      if(res.data){
+      if (res.data) {
         setToLocalStorage(authKey.ACCESS_TOKEN, res?.data?.token);
-        router.refresh()
-        toast.success("successfully change the user role")
+        router.refresh();
+        toast.success("successfully change the user role");
       }
     } catch (error: any) {
       toast.error(error.message);
@@ -74,13 +77,15 @@ const DropdownItem = () => {
             </DropdownMenuItem>
           </Link>
 
-          <Link href="/recruiter/dashboard">
-            <DropdownMenuItem className="hover:bg-gray-200 rounded-lg cursor-pointer">
-              <MdOutlineDashboard className="mr-2 h-4 w-4" />
-              <span>Dashboard</span>
-              <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-            </DropdownMenuItem>
-          </Link>
+          {user.role === "recruiter" && (
+            <Link href="/recruiter/dashboard">
+              <DropdownMenuItem className="hover:bg-gray-200 rounded-lg cursor-pointer">
+                <MdOutlineDashboard className="mr-2 h-4 w-4" />
+                <span>Dashboard</span>
+                <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+              </DropdownMenuItem>
+            </Link>
+          )}
 
           <DropdownMenuItem className="hover:bg-gray-200 rounded-lg cursor-pointer">
             <Settings className="mr-2 h-4 w-4" />
