@@ -6,7 +6,7 @@ import RegisterForm from "./components/RegisterForm";
 
 const RegisterPage = () => {
   return (
-    <div className="bg-[#0F172A] lg:h-screen h-full flex items-center justify-center text-gray-100">
+    <div className="bg-[#0F172A] px-4 lg:h-screen h-full flex items-center justify-center text-gray-100">
       <div className="relative lg:w-[1200px] px-6 mx-auto py-2">
         <div className="bg-green-500 bg-opacity-10 rounded mt-3 hidden md:block">
           <p className="p-3 text-green-500 font-semibold">

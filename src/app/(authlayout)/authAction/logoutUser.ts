@@ -6,6 +6,6 @@ import { authKey } from "@/constant/authKey";
 export const logoutUser = (router?: AppRouterInstance) => {
   removeUserInfo();
   removeCookies([authKey.ACCESS_TOKEN, authKey.REFRESH_TOKEN]);
-  router?.push("/");
+  router?.push("/login");
   router?.refresh();
 };

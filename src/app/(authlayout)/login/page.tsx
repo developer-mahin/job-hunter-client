@@ -3,11 +3,10 @@ import { assets } from "@/assets";
 import Image from "next/image";
 import Link from "next/link";
 import LoginForm from "./components/LoginForm";
-import Credentials from "@/app/components/Shared/Credentials";
 
 const LoginPage = () => {
   return (
-    <div className="bg-[#0F172A] h-screen flex items-center justify-center text-gray-100">
+    <div className="bg-[#0F172A] px-4 h-screen flex items-center justify-center text-gray-100">
       <div className="lg:w-[900px] mx-auto py-4 relative">
         <div>
           <div className="bg-green-500 bg-opacity-10 rounded mt-3 hidden md:block">

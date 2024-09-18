@@ -1,8 +1,13 @@
+"use client";
+
 import { Navbar, NavbarContent, NavbarItem } from "@nextui-org/react";
 import { navItems, TNavItems } from "../Items";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const BottomAppBar = () => {
+  const pathname = usePathname();
+
   return (
     <div className="fixed bottom-0 w-full bg-gray-900 text-white ">
       <Navbar>

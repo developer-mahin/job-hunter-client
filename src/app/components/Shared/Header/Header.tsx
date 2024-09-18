@@ -3,7 +3,6 @@ import { Navbar, NavbarBrand, NavbarContent } from "@nextui-org/react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import { IoMenu } from "react-icons/io5";
 
 export default function Header() {
   const DropdownItem = dynamic(() => import("./DropdownItem"), { ssr: false });

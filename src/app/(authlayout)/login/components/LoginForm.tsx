@@ -2,20 +2,20 @@
 
 import JForm from "@/app/components/Form/JForm";
 import JInputs from "@/app/components/Form/JInputs";
-import { Button } from "@nextui-org/button";
+import Credentials from "@/app/components/Shared/Credentials";
+import { authKey } from "@/constant/authKey";
+import { setToLocalStorage } from "@/utils/localStorage";
 import {
   loginDefaultValues,
   loginValidationSchema,
 } from "@/validation/login.validation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "@nextui-org/button";
 import Link from "next/link";
-import { FieldValues, SubmitHandler } from "react-hook-form";
-import { loginUser } from "../../authAction/login";
-import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { setToLocalStorage } from "@/utils/localStorage";
-import { authKey } from "@/constant/authKey";
-import Credentials from "@/app/components/Shared/Credentials";
+import { FieldValues, SubmitHandler } from "react-hook-form";
+import { toast } from "sonner";
+import { loginUser } from "../../authAction/login";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -51,8 +51,8 @@ const LoginForm = () => {
           type="password"
           required={true}
         />
-      </div>
-      <div className="flex justify-between items-center " >
+      </div> 
+      <div className="flex justify-between items-center lg:flex-row flex-col">
         <div className="grid grid-cols-2 gap-x-14">
           <Button type="submit" fullWidth className="font-semibold w-full">
             Sign In
