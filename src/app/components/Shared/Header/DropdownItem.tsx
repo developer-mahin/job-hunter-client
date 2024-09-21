@@ -28,6 +28,7 @@ import { TAuthUser } from "@/types";
 import { useChangeUserRoleMutation } from "@/redux/api/Features/user/userApi";
 import { toast } from "sonner";
 import { removeCookies } from "@/utils/removeCookies";
+import { signOut } from "next-auth/react";
 
 const DropdownItem = () => {
   const { userData, isLoading } = useUserInfo();
@@ -37,6 +38,7 @@ const DropdownItem = () => {
 
   const logout = () => {
     logoutUser(router);
+    signOut();
     removeCookies([authKey.ACCESS_TOKEN]);
   };
 

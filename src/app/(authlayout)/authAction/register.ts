@@ -1,8 +1,6 @@
 "use server";
 
 import { baseurl } from "@/constant/baseurl";
-import setAccessToken from "@/utils/setCookies";
-import { FieldValues } from "react-hook-form";
 
 export type TRegisterProps = {
   name: string;
@@ -16,8 +14,6 @@ export const registerUser = async (
   payload: TRegisterProps,
   redirect?: string | undefined
 ) => {
-  console.log(payload);
-
   const res = await fetch(`${baseurl}/auth/register_user`, {
     method: "POST",
     headers: {

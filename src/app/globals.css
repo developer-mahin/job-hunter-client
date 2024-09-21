@@ -12,3 +12,13 @@
     overflow: hidden;
   }
 }
+
+.aiImageBg {
+  background-image: linear-gradient(to bottom, #000000a1, #0000003d),
+    url(../assets/images/bg.jpg);
+  width: 100%;
+  height: 60vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}

@@ -31,7 +31,7 @@ const LoginPage = () => {
           <div className="md:flex">
             <div className="md:w-1/2">
               <LoginForm />
-              <SocialButtons />
+              {/* <SocialButtons /> */}
             </div>
 
             <div className="hidden md:block md:w-1/2">

@@ -9,7 +9,13 @@ const BottomAppBar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="fixed bottom-0 w-full bg-gray-900 text-white ">
+    <div
+      className={
+        pathname === "/login" || pathname === "/register"
+          ? "hidden"
+          : "fixed bottom-0 w-full bg-gray-900 text-white "
+      }
+    >
       <Navbar>
         <NavbarContent className="">
           {navItems.map((item: TNavItems, i: number) => (

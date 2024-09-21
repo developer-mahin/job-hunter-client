@@ -77,7 +77,7 @@ const RegisterForm = () => {
 
   return (
     <>
-      <form ref={formRef} onSubmit={handleSignUp} className="space-y-4">
+      <form ref={formRef} onSubmit={handleSignUp} className="space-y-4 ">
         <div className="flex justify-between items-center space-x-2">
           <Input
             type="text"
