@@ -22,3 +22,11 @@
   background-position: center;
   background-size: cover;
 }
+
+.download_button {
+  display: none;
+}
+
+.generated_image:hover .download_button {
+  display: block;
+}
