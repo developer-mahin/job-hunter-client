@@ -26,7 +26,7 @@ export const userApi = baseApi.injectEndpoints({
     }),
 
     getAllUserData: builder.query({
-      query: (payload) => {
+      query: () => {
         return {
           url: `/user/all_users`,
           method: "GET",

@@ -1,7 +1,7 @@
 import Container from "@/app/components/Shared/Container";
 import Activities from "./components/Activities/Activities";
 import ProfileData from "./components/ProfileData";
-import RightSidebar from "./components/Rightsidebar/RightSidebar";
+import RightSidebar from "@/app/components/Shared/RightSidebar";
 
 const ProfilePage = () => {
   return (

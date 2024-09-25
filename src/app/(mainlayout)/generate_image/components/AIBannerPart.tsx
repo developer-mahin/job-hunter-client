@@ -8,6 +8,7 @@ type TProps = {
   prompt: string;
   setPrompt: Dispatch<SetStateAction<string>>;
   imageCount: string;
+  imageLength: number;
   setImageCount: Dispatch<SetStateAction<string>>;
   setImageLength: Dispatch<SetStateAction<number>>;
 };
@@ -18,10 +19,30 @@ const AIBannerPart = ({
   imageCount,
   setImageCount,
   setImageLength,
+  imageLength,
 }: TProps) => {
-  const handleGenerateImage = () => {
+  const OPENAI_API_KEY = "";
+
+  const handleGenerateImage = async () => {
     const imageCountNumber = imageCount.split(" ")[0];
     setImageLength(Number(imageCountNumber));
+
+    const res = await fetch("https://api.openai.com/v1/images/generations", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${OPENAI_API_KEY}`,
+      },
+      body: JSON.stringify({
+        prompt: prompt,
+        n: parseInt(imageCount.split(" ")[0]),
+        size: "512x512",
+        response_format: "b64_json",
+      }),
+    });
+
+    const data = await res.json();
+    console.log(data);
   };
 
   return (

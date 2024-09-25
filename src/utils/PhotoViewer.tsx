@@ -13,10 +13,10 @@ const PhotoViewer = ({ src, className }: TProps) => {
       <PhotoView src={src}>
         <Image
           src={src}
-          className={cn(className, "w-full object-cover cursor-pointer")}
+          className={cn(className, "object-cover cursor-pointer")}
           alt=""
           width={1500}
-          height={100}
+          height={1500}
         />
       </PhotoView>
     </PhotoProvider>

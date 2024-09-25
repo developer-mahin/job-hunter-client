@@ -40,11 +40,11 @@ export const navItems: TNavItems[] = [
     path: "/messege",
     name: "Massaging",
   },
-  {
-    icon: (
-      <FaRegImages className="lg:text-2xl text-xl lg:text-gray-700 text-white" />
-    ),
-    path: "/generate_image",
-    name: "Image Generate",
-  },
+  // {
+  //   icon: (
+  //     <FaRegImages className="lg:text-2xl text-xl lg:text-gray-700 text-white" />
+  //   ),
+  //   path: "/generate_image",
+  //   name: "Image Generate",
+  // },
 ];

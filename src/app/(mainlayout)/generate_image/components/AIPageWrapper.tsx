@@ -17,6 +17,7 @@ const AIPageWrapper = () => {
         setImageCount={setImageCount}
         imageCount={imageCount}
         setImageLength={setImageLength}
+        imageLength={imageLength}
       />
       <AIMainContent
         prompt={prompt}

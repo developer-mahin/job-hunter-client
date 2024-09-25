@@ -1,12 +1,11 @@
 "use client";
 
 import Spinners from "@/app/components/Shared/Spinners";
-import { useParams } from "next/navigation";
-import ProfileInfo from "./ProfileInfo";
-import PostInfo from "./PostInfo";
-import AboutInfo from "./AboutInfo";
-import Container from "@/app/components/Shared/Container";
 import { useGetSingleUserDataQuery } from "@/redux/api/Features/user/userApi";
+import { useParams } from "next/navigation";
+import AboutInfo from "./AboutInfo";
+import PostInfo from "./PostInfo";
+import ProfileInfo from "./ProfileInfo";
 
 const SingleUserData = () => {
   const { id } = useParams();
@@ -17,11 +16,11 @@ const SingleUserData = () => {
   }
 
   return (
-    <Container>
+    <>
       <ProfileInfo singleUserData={singleUserData} />
       <AboutInfo singleUserData={singleUserData} />
       <PostInfo />
-    </Container>
+    </>
   );
 };
 
