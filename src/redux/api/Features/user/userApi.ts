@@ -55,6 +55,16 @@ export const userApi = baseApi.injectEndpoints({
       },
       invalidatesTags: [tagTypes.user],
     }),
+
+    followAndUnFollow: builder.mutation({
+      query: (payload) => {
+        return {
+          url: `/user/follow/${payload}`,
+          method: "PATCH",
+        };
+      },
+      invalidatesTags: [tagTypes.user],
+    }),
   }),
 });
 
@@ -63,5 +73,6 @@ export const {
   useGetSingleUserDataQuery,
   useGetAllUserDataQuery,
   useUpdateUserProfileMutation,
-  useChangeUserRoleMutation
+  useChangeUserRoleMutation,
+  useFollowAndUnFollowMutation,
 } = userApi;

@@ -42,6 +42,14 @@ type TUserInfo = {
   tag: string;
 };
 
+export type TFollowers = {
+  user: TUser;
+};
+
+export type TFollowing = {
+  user: string;
+};
+
 export type TUser = {
   _id: string;
   name: string;
@@ -51,6 +59,8 @@ export type TUser = {
   education: string;
   headline: string;
   about: string;
+  followers: TFollowers[];
+  following: TFollowing[];
   status: "active" | "inactive";
   role: "user" | "admin" | "moderator";
   isDeleted: boolean;

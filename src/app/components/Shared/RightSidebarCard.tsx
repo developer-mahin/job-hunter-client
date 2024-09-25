@@ -4,13 +4,31 @@ import { Button } from "@nextui-org/button";
 import { TUser } from "@/types";
 import useUserInfo from "@/hook/User";
 import Link from "next/link";
+import {
+  useFollowAndUnFollowMutation,
+  useGetMyProfileQuery,
+} from "@/redux/api/Features/user/userApi";
+import { toast } from "sonner";
+import useSound from "use-sound";
+import { assets } from "@/assets";
 
 const RightSidebarCard = ({ info }: { info: TUser }) => {
-  const { userData } = useUserInfo();
+  const { data: userData } = useGetMyProfileQuery({});
+  const [followAndUnFollow] = useFollowAndUnFollowMutation();
   const { photo, name, headline } = info;
+  const [like] = useSound(assets.audio.buttonSound);
 
-  const handleFollowUser = (id: string) => {
-    console.log(id);
+  const findFollowing = userData?.following?.find(
+    (user: { user: string }) => user?.user === info?._id
+  );
+
+  const handleFollowAndUnFollowUser = async (id: string) => {
+    try {
+      await followAndUnFollow(id);
+      like();
+    } catch (error: any) {
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -42,12 +60,12 @@ const RightSidebarCard = ({ info }: { info: TUser }) => {
           </div>
           <div className="mt-2">
             <Button
-              onClick={() => handleFollowUser(info?._id)}
+              onClick={() => handleFollowAndUnFollowUser(info?._id)}
               variant="bordered"
               className="rounded-full mb-1"
             >
               <AiOutlinePlus />
-              <span>Follow</span>
+              <span>{findFollowing ? "Unfollow" : "Follow"}</span>
             </Button>
           </div>
         </div>
