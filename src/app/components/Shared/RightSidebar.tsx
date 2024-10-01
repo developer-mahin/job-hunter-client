@@ -43,11 +43,11 @@ const RightSidebar = () => {
 
         <div className="flex items-center gap-1 my-5">
           <AiTwotoneLike className="text-lg text-gray-500" />
-          <p className="uppercase m-0">Recommended Groups</p>
+          <p className="uppercase m-0">Recommended</p>
         </div>
 
         <div className="bg-opacity-15 rounded-t-xl sticky top-0">
-          {rightSideBarInfo?.slice(0, 6)?.map((info: TUser) => (
+          {rightSideBarInfo?.slice(0, 4)?.map((info: TUser) => (
             <RightSidebarCard key={info._id} info={info}></RightSidebarCard>
           ))}
           <div className="flex items-center justify-center view-profile rounded">

@@ -12,10 +12,13 @@ const NavItems = () => {
   return (
     <div className="hidden sm:flex gap-3">
       {navItems.map((item: TNavItems, i: number) => (
-        <div key={i}>
-          <NavbarItem
-            className={item.path === pathname ? "text-gray-400 px-3" : "px-3"}
-          >
+        <div
+          key={i}
+          className={
+            item.path === pathname ? "px-3 border-b-3 border-black" : "px-3"
+          }
+        >
+          <NavbarItem>
             <Link
               color="foreground"
               href={item.path}

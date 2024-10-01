@@ -23,7 +23,7 @@ export const navItems: TNavItems[] = [
     icon: (
       <HiUserGroup className="lg:text-2xl text-xl lg:text-gray-700 text-white" />
     ),
-    path: "/feed",
+    path: "/my_networks",
     name: "My Network",
   },
   {

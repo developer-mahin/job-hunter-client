@@ -1,6 +1,10 @@
 "use client";
 
-import useUserInfo from "@/hook/User";
+import { assets } from "@/assets";
+import {
+  useFollowAndUnFollowMutation,
+  useGetMyProfileQuery,
+} from "@/redux/api/Features/user/userApi";
 import { TPost } from "@/types";
 import PhotoViewer from "@/utils/PhotoViewer";
 import { Button } from "@nextui-org/button";
@@ -9,6 +13,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
+import { toast } from "sonner";
+import useSound from "use-sound";
 import CommentSection from "../comment/CommentSection";
 import PostActionButtons from "./PostActionButtons";
 import PostActionDropdown from "./PostActionDropdown";
@@ -18,10 +24,28 @@ type TProps = {
 };
 
 const PostCard = ({ post }: TProps) => {
-  const { userData } = useUserInfo();
   const [seeAllDetails, setSeeAllDetails] = useState<boolean>(false);
   const changeState = seeAllDetails === true ? false : true;
   const { _id, author, postDetails, image, createdAt } = post;
+
+  const { data: userData } = useGetMyProfileQuery({});
+  const [followAndUnFollow] = useFollowAndUnFollowMutation();
+
+  const [like] = useSound(assets.audio.buttonSound);
+
+  // find following user for checking
+  const findFollowing = userData?.following?.find(
+    (user: { user: string }) => user?.user === author?._id
+  );
+
+  const handleFollowAndUnFollowUser = async (id: string) => {
+    try {
+      await followAndUnFollow(id);
+      like();
+    } catch (error: any) {
+      toast.error(error.message);
+    }
+  };
 
   return (
     <div className="mb-3 border rounded-xl bg-gray-100 bg-opacity-50 shadow">
@@ -62,10 +86,14 @@ const PostCard = ({ post }: TProps) => {
           <div className="flex items-center gap-1">
             {userData?._id !== author?._id && (
               <div>
-                <Button className="" variant="light">
+                <Button
+                  onClick={() => handleFollowAndUnFollowUser(author._id)}
+                  className=""
+                  variant="light"
+                >
                   <AiOutlinePlus className="rounded cursor-pointer mr-1" />
                   <span className="underline cursor-pointer text-base">
-                    Follow
+                    {findFollowing ? "Unfollow" : "Follow"}
                   </span>
                 </Button>
               </div>
