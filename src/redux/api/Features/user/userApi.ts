@@ -1,3 +1,4 @@
+import { TQueryParams } from "@/types";
 import { baseApi } from "../../baseApi";
 import { tagTypes } from "../../tagTypes";
 
@@ -26,10 +27,17 @@ export const userApi = baseApi.injectEndpoints({
     }),
 
     getAllUserData: builder.query({
-      query: () => {
+      query: (args) => {
+        const params = new URLSearchParams();
+
+        args?.forEach((item: TQueryParams) => {
+          params.append(item.name, item.value as string);
+        });
+
         return {
           url: `/user/all_users`,
           method: "GET",
+          params: params,
         };
       },
       providesTags: [tagTypes.user],

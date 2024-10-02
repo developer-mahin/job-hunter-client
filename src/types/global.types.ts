@@ -74,3 +74,8 @@ export type TSelectItems = {
   key: string;
   label: string;
 };
+
+export type TQueryParams = {
+  name: string;
+  value: boolean | React.Key;
+};
