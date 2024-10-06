@@ -46,7 +46,7 @@ const MyNetworksMainContent = () => {
 
   return (
     <div className="bg-gray-50 border rounded-xl px-7 py-4">
-      <div className="flex items-center justify-between gap-x-6">
+      <div className="flex lg:flex-row flex-col items-center justify-between gap-x-6">
         <h2 className="font-medium ">
           People you may know based on your recent activity
         </h2>
@@ -58,7 +58,7 @@ const MyNetworksMainContent = () => {
         />
       </div>
 
-      <div className="grid grid-cols-4 gap-4 mt-4">
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 mt-4">
         {filterData?.map((user: TUser, i: number) => (
           <ContentCard key={i} user={user} />
         ))}

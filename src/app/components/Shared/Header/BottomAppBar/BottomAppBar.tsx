@@ -27,7 +27,7 @@ const BottomAppBar = () => {
                   className="flex items-center flex-col-reverse"
                 >
                   <p className="text-xs text-white">{item.name}</p>
-                  <div className="flex items-center justify-center px-4">
+                  <div className="flex items-center justify-center px-8">
                     <p>{item.icon}</p>
                   </div>
                 </Link>

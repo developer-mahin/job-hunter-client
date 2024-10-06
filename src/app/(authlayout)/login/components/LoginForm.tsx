@@ -53,7 +53,7 @@ const LoginForm = () => {
         />
       </div> 
       <div className="flex justify-between items-center lg:flex-row flex-col">
-        <div className="grid grid-cols-2 gap-x-14">
+        <div className="grid grid-cols-2 lg:gap-x-14 gap-x-2">
           <Button type="submit" fullWidth className="font-semibold w-full">
             Sign In
           </Button>

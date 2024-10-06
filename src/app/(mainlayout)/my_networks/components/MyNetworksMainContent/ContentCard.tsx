@@ -48,7 +48,7 @@ const ContentCard: React.FC<TProps> = ({ user }) => {
           className="w-full h-[100px] object-cover rounded-t-xl"
         />
 
-        <div className="flex items-center justify-center absolute top-6 left-14">
+        <div className="flex items-center justify-center absolute top-6 lg:left-14 left-32">
           <Image
             alt=""
             src={user?.photo}

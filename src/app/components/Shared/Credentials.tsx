@@ -10,11 +10,11 @@ const Credentials = () => {
   return (
     <div>
       <Button
-        className="font-medium w-full"
+        className="font-medium w-full px-4"
         fullWidth
         onClick={() => setIsModalOpen(true)}
       >
-        Show Dummy Credential
+        Show Demo Credentials
       </Button>
       <ReactCustomModal
         modalIsOpen={isModalOpen}
