@@ -9,12 +9,20 @@ import { GrClose } from "react-icons/gr";
 import RightSidebarCard from "./RightSidebarCard";
 import { useGetAllUserDataQuery } from "@/redux/api/Features/user/userApi";
 import { TUser } from "@/types";
+import { useState } from "react";
+import Link from "next/link";
 
 const RightSidebar = () => {
-  const { data: rightSideBarInfo } = useGetAllUserDataQuery({});
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const { data: rightSideBarInfo } = useGetAllUserDataQuery([
+    {
+      name: "searchTerm",
+      value: searchTerm,
+    },
+  ]);
 
   return (
-    <div className="sticky top-0">
+    <div className="">
       <div className="mb-3 border bg-gray-50 bg-opacity-15 p-3 rounded-t-xl">
         <form className="relative">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
@@ -26,6 +34,7 @@ const RightSidebar = () => {
             isRequired
             label="Search User"
             id=""
+            onChange={(e) => setSearchTerm(e.target.value)}
             className="h-11 pl-10"
           />
           <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
@@ -51,12 +60,14 @@ const RightSidebar = () => {
             <RightSidebarCard key={info._id} info={info}></RightSidebarCard>
           ))}
           <div className="flex items-center justify-center view-profile rounded">
-            <Button fullWidth className="flex items-center gap-1">
-              <span className="font-medium text-gray-500 text-base">
-                See All
-              </span>
-              <BiRightArrowAlt className="text-lg text-gray-500" />
-            </Button>
+            <Link href="my_networks" className="w-full">
+              <Button fullWidth className="flex items-center gap-1">
+                <span className="font-medium text-gray-500 text-base">
+                  See All
+                </span>
+                <BiRightArrowAlt className="text-lg text-gray-500" />
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

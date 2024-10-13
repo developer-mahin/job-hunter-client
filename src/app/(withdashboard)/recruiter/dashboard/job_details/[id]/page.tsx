@@ -100,7 +100,7 @@ const JobDetailsPage = () => {
                     color="success"
                   >
                     {item?.jobId?.selectedCandidate === item?.candidateId?._id
-                      ? "This user is selected for this role"
+                      ? "You are selected"
                       : "Select"}
                   </Button>
                 </div>
