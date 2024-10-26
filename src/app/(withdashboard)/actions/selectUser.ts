@@ -22,6 +22,7 @@ export const selectUser = async (
       headers: headers,
       body: JSON.stringify({ userId: payload.userId }),
       credentials: "include",
+      cache: "no-store",
     }
   );
 

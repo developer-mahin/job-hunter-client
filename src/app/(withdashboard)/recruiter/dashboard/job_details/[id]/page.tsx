@@ -3,6 +3,7 @@
 import { selectUser } from "@/app/(withdashboard)/actions/selectUser";
 import Spinners from "@/app/components/Shared/Spinners";
 import { useGetSingleJobQuery } from "@/redux/api/Features/Job/jobApi";
+import { useSelectCandidateMutation } from "@/redux/api/Features/JobApply/JobApply";
 import PhotoViewer from "@/utils/PhotoViewer";
 import {
   Button,
@@ -14,11 +15,12 @@ import {
   TableRow,
 } from "@nextui-org/react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 const JobDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
+  const router = useRouter();
   const { data: job, isLoading } = useGetSingleJobQuery(id);
 
   if (isLoading) {
@@ -34,8 +36,11 @@ const JobDetailsPage = () => {
     try {
       const res = await selectUser(selectInformation);
 
+      console.log(res);
+
       if (res.data) {
         toast.success("this user is selected in this role");
+        router.refresh();
       }
     } catch (error: any) {
       toast.error(error.message);

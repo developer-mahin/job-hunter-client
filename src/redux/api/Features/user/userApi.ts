@@ -16,8 +16,6 @@ export const userApi = baseApi.injectEndpoints({
 
     getSingleUserData: builder.query({
       query: (payload) => {
-        console.log(payload.id, "redux");
-
         return {
           url: `/user/single_user/${payload.id}`,
           method: "GET",

@@ -2,6 +2,7 @@
 
 import JForm from "@/app/components/Form/JForm";
 import JInputs from "@/app/components/Form/JInputs";
+import Spinners from "@/app/components/Shared/Spinners";
 import { authKey } from "@/constant/authKey";
 import { useCreateJobApplyMutation } from "@/redux/api/Features/JobApply/JobApply";
 import { RootState } from "@/redux/store";
@@ -21,7 +22,7 @@ type TProps = {
 const CreateJobApplyForm = ({ setIsModalOpen }: TProps) => {
   const { jobId } = useSelector((state: RootState) => state.job);
 
-  const [createJobApply] = useCreateJobApplyMutation();
+  const [createJobApply, { isLoading }] = useCreateJobApplyMutation();
 
   const token = getFromLocalStorage(authKey.ACCESS_TOKEN);
 
@@ -39,7 +40,8 @@ const CreateJobApplyForm = ({ setIsModalOpen }: TProps) => {
 
     try {
       const res = await createJobApply(applyData);
-      if (res.data) {
+
+      if (res.data !== undefined) {
         setIsModalOpen(false);
         toast.success("Successfully applied the job");
       }
@@ -92,7 +94,7 @@ const CreateJobApplyForm = ({ setIsModalOpen }: TProps) => {
 
         <div className="mt-4">
           <Button className="" type="submit">
-            Apply
+            {isLoading ? <Spinners size="sm" /> : "Apply"}
           </Button>
         </div>
       </JForm>

@@ -1,10 +1,5 @@
 import { cn } from "@/lib/utils";
-import {
-    Modal,
-    ModalBody,
-    ModalContent,
-    ModalHeader
-} from "@nextui-org/react";
+import { Modal, ModalBody, ModalContent, ModalHeader } from "@nextui-org/react";
 import { ReactNode } from "react";
 
 type TJModalProps = {

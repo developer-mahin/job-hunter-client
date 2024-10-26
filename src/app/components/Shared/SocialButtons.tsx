@@ -21,8 +21,6 @@ const SocialButtons = () => {
       }
 
       if (session && session.accessToken) {
-        console.log(session);
-
         const userInfo = {
           name: session?.user?.name,
           email: session?.user?.email,
