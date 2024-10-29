@@ -17,16 +17,10 @@ export function middleware(request: NextRequest) {
 
   const accessToken = cookies().get(authKey.ACCESS_TOKEN);
 
-  if (authRoutes.includes(pathname)) {
-    return NextResponse.next();
-  }
-
-  if (protectedRoutes.includes(pathname) && !accessToken) {
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
-
-  if (accessToken) {
-    return NextResponse.next();
+  if (!accessToken) {
+    if (authRoutes.includes(pathname)) {
+      return NextResponse.next();
+    }
   }
 
   if (pathname === "/feed") {
@@ -35,6 +29,14 @@ export function middleware(request: NextRequest) {
     } else {
       return NextResponse.redirect(new URL("/login", request.url));
     }
+  }
+
+  if (protectedRoutes.includes(pathname) && !accessToken) {
+    return NextResponse.redirect(new URL("/login", request.url));
+  }
+
+  if (accessToken) {
+    return NextResponse.next();
   }
 
   if (!accessToken) {
@@ -57,15 +59,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    "/login",
-    "/register",
-    "/feed",
-    "/messege",
-    "/jobs",
-    "/my_networks",
-    "/profile",
-    // "/user_profile/:id",
-    // "/all_my_posts",
-  ],
+  matcher: ["/login", "/register", "/feed"],
 };
