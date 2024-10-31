@@ -13,7 +13,8 @@ import {
   SelectItem,
 } from "@nextui-org/react";
 import { useState } from "react";
-import FilterSidebar from "./FilterSidebar";
+import FilterSidebar from "@/app/components/Shared/FilterSidebar";
+
 
 const MyNetworksMainContent = () => {
   const { userData } = useUserInfo();
@@ -57,7 +58,7 @@ const MyNetworksMainContent = () => {
           className="border rounded-xl flex-1 lg:w-72"
           name=""
         />
-        <FilterSidebar />
+        {/* <FilterSidebar /> */}
       </div>
 
       <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 mt-4">

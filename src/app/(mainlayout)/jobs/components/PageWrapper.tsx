@@ -14,10 +14,12 @@ import { useState } from "react";
 import ReactCustomModal from "@/app/components/Shared/ReactModal";
 import CreateJobModalContent from "./CreateJobModalContent/CreateJobModalContent";
 import { HiMenuAlt2 } from "react-icons/hi";
+import AllFilters from "./JobMainPageContent/AllFilters";
 
 const PageWrapper = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [filterIsOpen, setFilterIsOpen] = useState<boolean>(false);
   const { data: allJobs, isLoading } = useGetAllJobQuery({});
   const token = getFromLocalStorage(authKey.ACCESS_TOKEN);
 
@@ -64,6 +66,18 @@ const PageWrapper = () => {
         >
           <HiMenuAlt2 className="size-8" />
         </Button>
+        <div>
+          <Button
+            className=""
+            size="md"
+            color="default"
+            onClick={() => setFilterIsOpen(!filterIsOpen)}
+          >
+            All Filters
+          </Button>
+
+          <AllFilters isOpen={filterIsOpen} setIsOpen={setFilterIsOpen} />
+        </div>
       </div>
 
       <div className="grid grid-cols-12 my-3 lg:gap-x-5">

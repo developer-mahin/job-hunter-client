@@ -8,6 +8,7 @@ type TFilterSidebarProps = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   children: React.ReactNode;
   directionRight?: boolean;
+  className?: string;
 };
 
 const FilterSidebar: React.FC<TFilterSidebarProps> = ({
@@ -15,11 +16,12 @@ const FilterSidebar: React.FC<TFilterSidebarProps> = ({
   setIsOpen,
   children,
   directionRight,
+  className,
 }) => {
   return (
     <div>
       <div
-        className={cn(
+        className={cn(className,
           `fixed inset-y-0 ${directionRight ? "right-0" : "left-0"} transform ${
             isOpen
               ? directionRight
@@ -28,7 +30,7 @@ const FilterSidebar: React.FC<TFilterSidebarProps> = ({
               : directionRight
               ? "translate-x-full"
               : "-translate-x-full"
-          } transition-transform duration-300 ease-in-out w-80 bg-white shadow-lg z-50 md:hidden`
+          } transition-transform duration-300 ease-in-out w-80 bg-white shadow-lg z-50 `
         )}
       >
         {/* Drawer content */}

@@ -13,6 +13,7 @@ export type TJob = {
   jobType: string;
   updatedAt: string;
   workPlaceType: string;
+  industry: string;
   __v: number;
   _id: string;
 };

@@ -10,7 +10,11 @@ import React, { useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { FaUpload } from "react-icons/fa";
 import { toast } from "sonner";
-import { jobTypes, workPlaceTypes } from "../../data/jobSelectInfoData";
+import {
+  industryTypes,
+  jobTypes,
+  workPlaceTypes,
+} from "../../data/jobSelectInfoData";
 import { imageUploadIntoImgbb } from "@/utils/uploadImageIntoImgbb";
 
 type TProps = {
@@ -54,8 +58,16 @@ const CreateJobModalContent = ({ setIsModalOpen }: TProps) => {
         <div className="grid lg:grid-cols-2 gap-4">
           <JInputs label="Job Title" name="jobTitle" type="text" />
           <JInputs label="Company Name" name="companyName" type="text" />
+        </div>
+
+        <div className="grid lg:grid-cols-3 gap-4">
           <JInputs label="Location" name="location" type="text" />
           <JInputs label="Website" name="website" type="text" />
+          <JSelect
+            selectItems={industryTypes}
+            required={true}
+            name="industry"
+          />
         </div>
 
         <div className="grid lg:grid-cols-3 gap-4 mt-4">
