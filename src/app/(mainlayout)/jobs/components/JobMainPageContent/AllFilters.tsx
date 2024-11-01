@@ -1,5 +1,5 @@
 import FilterSidebar from "@/app/components/Shared/FilterSidebar";
-import FilterBarContent from "./FilterBarContent";
+import FilterBarContent from "../filtering/FilterBarContent";
 
 type TAllFiltersProps = {
   isOpen: boolean;

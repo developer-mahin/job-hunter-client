@@ -2,6 +2,7 @@
 
 import Spinners from "@/app/components/Shared/Spinners";
 import { useGetAllJobQuery } from "@/redux/api/Features/Job/jobApi";
+import { useAppSelector } from "@/redux/hook";
 import { Button } from "@nextui-org/button";
 import { useState } from "react";
 import { HiMenuAlt2 } from "react-icons/hi";
@@ -12,7 +13,25 @@ import JobMainPageContent from "./JobMainPageContent/JobMainPageContent";
 const PageWrapper = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [filterIsOpen, setFilterIsOpen] = useState<boolean>(false);
-  const { data: allJobs, isLoading } = useGetAllJobQuery({});
+
+  const { currentPage, limit, searchTerm } = useAppSelector(
+    (state) => state.job
+  );
+
+  const { data: allJobs, isLoading } = useGetAllJobQuery([
+    {
+      name: "limit",
+      value: limit,
+    },
+    {
+      name: "page",
+      value: currentPage,
+    },
+    {
+      name: "searchTerm",
+      value: searchTerm,
+    },
+  ]);
 
   if (isLoading) {
     return <Spinners className="h-[90vh]" />;

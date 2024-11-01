@@ -1,12 +1,15 @@
-import { TJob, TUser } from "@/types";
 import { Button, Pagination, Select, SelectItem } from "@nextui-org/react";
 import React from "react";
 
 type TPaginationSoluationProps = {
   data: number;
   currentPage: number;
-  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-  setLimit: React.Dispatch<React.SetStateAction<number>>;
+  setCurrentPage: (
+    value: number
+  ) => void | React.Dispatch<React.SetStateAction<number>>;
+  setLimit: (
+    value: number
+  ) => void | React.Dispatch<React.SetStateAction<number>>;
 };
 
 const PaginationSoluation: React.FC<TPaginationSoluationProps> = ({
@@ -15,6 +18,18 @@ const PaginationSoluation: React.FC<TPaginationSoluationProps> = ({
   setCurrentPage,
   setLimit,
 }) => {
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < data) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
   return (
     <div className="mt-4 flex gap-x-6">
       <div className="flex flex-col gap-5 ">
@@ -25,9 +40,7 @@ const PaginationSoluation: React.FC<TPaginationSoluationProps> = ({
             variant="flat"
             color="secondary"
             disabled={currentPage <= 1}
-            onClick={() =>
-              setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev))
-            }
+            onClick={() => handlePreviousPage}
           >
             Previous
           </Button>
@@ -36,9 +49,7 @@ const PaginationSoluation: React.FC<TPaginationSoluationProps> = ({
             variant="flat"
             color="secondary"
             disabled={currentPage >= data}
-            onClick={() =>
-              setCurrentPage((prev) => (prev < 10 ? prev + 1 : prev))
-            }
+            onClick={() => handleNextPage}
           >
             Next
           </Button>
