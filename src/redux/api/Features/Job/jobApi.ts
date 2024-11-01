@@ -1,23 +1,39 @@
+import { TQueryParams } from "@/types";
 import { baseApi } from "../../baseApi";
 import { tagTypes } from "../../tagTypes";
 
 export const jobApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllJob: builder.query({
-      query: () => {
+      query: (args) => {
+
+        const params = new URLSearchParams();
+
+        args?.forEach((item: TQueryParams) => {
+          params.append(item.name, item.value as string);
+        });
+
         return {
           url: `/job/get_all_jobs`,
           method: "GET",
+          params: params
         };
       },
       providesTags: [tagTypes.job],
     }),
 
     getMyJobs: builder.query({
-      query: () => {
+      query: (args) => {
+        const params = new URLSearchParams();
+
+        args?.forEach((item: TQueryParams) => {
+          params.append(item.name, item.value as string);
+        });
+
         return {
           url: `/job/get_all_my_jobs`,
           method: "GET",
+          params: params,
         };
       },
       providesTags: [tagTypes.job],

@@ -1,32 +1,18 @@
 "use client";
 
-import { useGetAllJobQuery } from "@/redux/api/Features/Job/jobApi";
-import JobLeftSidebar from "./JobLeftSideBar/JobLeftSidebar";
-import JobMainPageContent from "./JobMainPageContent/JobMainPageContent";
 import Spinners from "@/app/components/Shared/Spinners";
-import { getFromLocalStorage } from "@/utils/localStorage";
-import { authKey } from "@/constant/authKey";
-import { decodedToken } from "@/utils/decodeToken";
-import { TAuthUser } from "@/types";
+import { useGetAllJobQuery } from "@/redux/api/Features/Job/jobApi";
 import { Button } from "@nextui-org/button";
-import { FaEdit } from "react-icons/fa";
 import { useState } from "react";
-import ReactCustomModal from "@/app/components/Shared/ReactModal";
-import CreateJobModalContent from "./CreateJobModalContent/CreateJobModalContent";
 import { HiMenuAlt2 } from "react-icons/hi";
+import JobLeftSidebar from "./JobLeftSideBar/JobLeftSidebar";
 import AllFilters from "./JobMainPageContent/AllFilters";
+import JobMainPageContent from "./JobMainPageContent/JobMainPageContent";
 
 const PageWrapper = () => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [filterIsOpen, setFilterIsOpen] = useState<boolean>(false);
   const { data: allJobs, isLoading } = useGetAllJobQuery({});
-  const token = getFromLocalStorage(authKey.ACCESS_TOKEN);
-
-  let user;
-  if (token) {
-    user = decodedToken(token) as TAuthUser;
-  }
 
   if (isLoading) {
     return <Spinners className="h-[90vh]" />;
@@ -35,28 +21,6 @@ const PageWrapper = () => {
   return (
     <div className="my-3">
       <div className="flex items-center justify-between">
-        <div>
-          {user?.role !== "user" && (
-            <div>
-              <Button
-                onClick={() => setIsModalOpen(true)}
-                className="font-medium"
-              >
-                <FaEdit className="text-2xl" /> Post a free job
-              </Button>
-
-              <ReactCustomModal
-                modalIsOpen={isModalOpen}
-                setIsOpen={setIsModalOpen}
-                modalTitle="Post a free job"
-                className=""
-              >
-                <CreateJobModalContent setIsModalOpen={setIsModalOpen} />
-              </ReactCustomModal>
-            </div>
-          )}
-        </div>
-
         <Button
           isIconOnly
           className="lg:hidden block"

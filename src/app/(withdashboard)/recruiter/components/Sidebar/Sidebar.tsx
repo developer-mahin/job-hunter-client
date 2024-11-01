@@ -12,7 +12,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`bg-white min-h-screen ${
+      className={`bg-white h-full ${
         open ? "w-72" : "w-[71px]"
       } duration-500 border-r shadow-2xl border-gray-100 px-4`}
     >
@@ -47,7 +47,7 @@ const Sidebar = () => {
               <h2
                 className={`${
                   open && "hidden"
-                } absolute left-48 bg-white font-semibold whitespace-pre text-gray-900 hover:text-white rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
+                } absolute z-[99999] left-48 bg-white font-semibold whitespace-pre text-gray-900 hover:text-white rounded-md drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1 group-hover:left-14 group-hover:duration-300 group-hover:w-fit  `}
               >
                 {menu?.title}
               </h2>

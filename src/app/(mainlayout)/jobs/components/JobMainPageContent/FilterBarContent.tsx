@@ -1,7 +1,16 @@
+import PaginationSoluation from "@/app/components/Shared/PaginationSoluation";
+
 const FilterBarContent = () => {
   return (
     <div className="mt-10">
-      <h2>Welcome to the FilterBarContent page</h2>
+      <div>
+        <PaginationSoluation
+          data={jobs?.length}
+          currentPage={currentPage}
+          setLimit={setLimit}
+          setCurrentPage={setCurrentPage}
+        />
+      </div>
     </div>
   );
 };

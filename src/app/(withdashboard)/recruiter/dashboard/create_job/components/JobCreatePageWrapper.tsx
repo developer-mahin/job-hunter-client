@@ -10,18 +10,14 @@ import React, { useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { FaUpload } from "react-icons/fa";
 import { toast } from "sonner";
+import { imageUploadIntoImgbb } from "@/utils/uploadImageIntoImgbb";
 import {
   industryTypes,
   jobTypes,
   workPlaceTypes,
-} from "../../data/jobSelectInfoData";
-import { imageUploadIntoImgbb } from "@/utils/uploadImageIntoImgbb";
+} from "@/app/(mainlayout)/jobs/data/jobSelectInfoData";
 
-type TProps = {
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-const CreateJobModalContent = ({ setIsModalOpen }: TProps) => {
+const JobCreatePageWrapper = () => {
   const [addImage, setAddImage] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [createJob] = useCreateJobMutation();
@@ -43,7 +39,6 @@ const CreateJobModalContent = ({ setIsModalOpen }: TProps) => {
     try {
       const res = await createJob(jobCreatedData);
       if (res.data) {
-        setIsModalOpen(false);
         setIsLoading(false);
       }
     } catch (error: any) {
@@ -53,33 +48,19 @@ const CreateJobModalContent = ({ setIsModalOpen }: TProps) => {
   };
 
   return (
-    <div className="lg:w-[700px]">
+    <div className="">
       <JForm onSubmit={handleSubmit}>
         <div className="grid lg:grid-cols-2 gap-4">
           <JInputs label="Job Title" name="jobTitle" type="text" />
           <JInputs label="Company Name" name="companyName" type="text" />
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-4">
+        <div className="grid lg:grid-cols-3 gap-4 mt-4">
           <JInputs label="Location" name="location" type="text" />
           <JInputs label="Website" name="website" type="text" />
-          <JSelect
-            selectItems={industryTypes}
-            required={true}
-            name="industry"
-          />
-        </div>
-
-        <div className="grid lg:grid-cols-3 gap-4 mt-4">
-          <JSelect selectItems={jobTypes} required={true} name="jobType" />
-          <JSelect
-            selectItems={workPlaceTypes}
-            required={true}
-            name="workPlaceType"
-          />
           <div className="flex justify-center">
             <label
-              className="flex justify-center lg:w-[250px] h-11 bg-gray-200 rounded-xl items-center gap-x-2 cursor-pointer"
+              className="flex w-full justify-center h-11 bg-gray-200 rounded-xl items-center gap-x-2 cursor-pointer"
               htmlFor="file"
             >
               <FaUpload className="size-[20px]" />
@@ -101,11 +82,32 @@ const CreateJobModalContent = ({ setIsModalOpen }: TProps) => {
           </div>
         </div>
 
+        <div className="grid lg:grid-cols-3 gap-4 mt-4">
+          <JSelect
+            selectItems={jobTypes}
+            label="Job Types"
+            required={true}
+            name="jobType"
+          />
+          <JSelect
+            selectItems={workPlaceTypes}
+            required={true}
+            name="workPlaceType"
+            label="Work Place Type"
+          />
+          <JSelect
+            selectItems={industryTypes}
+            required={true}
+            name="industry"
+            label="Select Industry..."
+          />
+        </div>
+
         <div className="mt-2">
           <JQuill
             label="Description"
             name="jobDescription"
-            className="h-[150px]"
+            className="h-[450px]"
           />
         </div>
 
@@ -117,4 +119,4 @@ const CreateJobModalContent = ({ setIsModalOpen }: TProps) => {
   );
 };
 
-export default CreateJobModalContent;
+export default JobCreatePageWrapper;

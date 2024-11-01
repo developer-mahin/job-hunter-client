@@ -8,9 +8,16 @@ type TInputProps = {
   selectItems: TSelectItems[];
   required?: boolean;
   className?: string;
+  label?: string;
 };
 
-const JSelect = ({ name, selectItems, className, required }: TInputProps) => {
+const JSelect = ({
+  name,
+  selectItems,
+  className,
+  required,
+  label,
+}: TInputProps) => {
   const { control } = useFormContext();
 
   return (
@@ -28,7 +35,7 @@ const JSelect = ({ name, selectItems, className, required }: TInputProps) => {
               value={value}
               onChange={onChange}
               size="sm"
-              label="Select one.."
+              label={label || "Select one.."}
               isRequired={required}
               fullWidth
               className={cn("w-full", className)}
