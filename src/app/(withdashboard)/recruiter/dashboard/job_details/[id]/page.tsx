@@ -36,8 +36,6 @@ const JobDetailsPage = () => {
     try {
       const res = await selectUser(selectInformation);
 
-      console.log(res);
-
       if (res.data) {
         toast.success("this user is selected in this role");
         router.refresh();

@@ -34,7 +34,7 @@ const ContentCard: React.FC<TProps> = ({ user }) => {
   };
 
   return (
-    <div className="border rounded-xl">
+    <div className="border rounded-xl relative h-[300px]">
       <div className="relative">
         <Image
           alt=""
@@ -62,17 +62,17 @@ const ContentCard: React.FC<TProps> = ({ user }) => {
       <div className="pt-12 pb-3 px-3">
         <h3 className="text-center font-semibold">{user.name}</h3>
         <h3 className="text-center text-sm">{user.headline}</h3>
+      </div>
 
-        <div className="flex items-center justify-center py-4">
-          <Button
-            onClick={() => handleFollowAndUnFollowUser(user?._id)}
-            variant="bordered"
-            className="rounded-full mb-1"
-          >
-            <AiOutlinePlus />
-            <span>{findFollowing ? "Unfollow" : "Follow"}</span>
-          </Button>
-        </div>
+      <div className="flex items-center justify-center py-4">
+        <Button
+          onClick={() => handleFollowAndUnFollowUser(user?._id)}
+          variant="bordered"
+          className="rounded-full mb-1 absolute bottom-2"
+        >
+          <AiOutlinePlus />
+          <span>{findFollowing ? "Unfollow" : "Follow"}</span>
+        </Button>
       </div>
     </div>
   );

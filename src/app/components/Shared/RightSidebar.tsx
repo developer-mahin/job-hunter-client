@@ -56,7 +56,7 @@ const RightSidebar = () => {
         </div>
 
         <div className="bg-opacity-15 rounded-t-xl sticky top-0">
-          {rightSideBarInfo?.slice(0, 4)?.map((info: TUser) => (
+          {rightSideBarInfo?.data?.slice(0, 4)?.map((info: TUser) => (
             <RightSidebarCard key={info._id} info={info}></RightSidebarCard>
           ))}
           <div className="flex items-center justify-center view-profile rounded">

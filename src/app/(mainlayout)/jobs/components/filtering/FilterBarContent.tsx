@@ -2,12 +2,12 @@ import PaginationSoluation from "@/app/components/Shared/PaginationSoluation";
 import { useGetAllJobQuery } from "@/redux/api/Features/Job/jobApi";
 import { setCurrentPage, setLimit } from "@/redux/api/Features/Job/jobSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
-import { useState } from "react";
 
 const FilterBarContent = () => {
-  const [searchTerm, setSearchTerm] = useState<string>("");
   const dispatch = useAppDispatch();
-  const { currentPage, limit } = useAppSelector((state) => state.job);
+  const { currentPage, limit, searchTerm } = useAppSelector(
+    (state) => state.job
+  );
 
   const handleSetLimit = (newLimit: number) => {
     dispatch(setLimit(newLimit));
@@ -36,10 +36,11 @@ const FilterBarContent = () => {
     <div className="mt-10">
       <div>
         <PaginationSoluation
-          data={jobs?.length}
+          totalPage={jobs?.meta?.totalPage}
           currentPage={currentPage}
           setLimit={handleSetLimit}
           setCurrentPage={handleSetCurrentPage}
+          limit={limit}
         />
       </div>
     </div>

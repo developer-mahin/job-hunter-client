@@ -12,7 +12,6 @@ import PostButtonVariant from "./PostButtonVarient";
 const CreatePostUi = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const { data: userData } = useGetMyProfileQuery({});
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
     <>
@@ -21,7 +20,7 @@ const CreatePostUi = () => {
           <div>
             <Image
               src={
-                userData?.photo ||
+                userData?.data?.photo ||
                 "https://cdn-icons-png.freepik.com/256/1077/1077114.png?semt=ais_hybrid"
               }
               width={500}

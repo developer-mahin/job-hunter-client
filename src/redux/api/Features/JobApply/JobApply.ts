@@ -16,9 +16,6 @@ export const JobApply = baseApi.injectEndpoints({
 
     selectCandidate: builder.mutation({
       query: (payload) => {
-
-        console.log(payload)
-
         return {
           url: `/job_apply/select_candidate/${payload.jobId}`,
           method: "PATCH",

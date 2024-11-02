@@ -6,7 +6,6 @@ export const jobApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllJob: builder.query({
       query: (args) => {
-
         const params = new URLSearchParams();
 
         args?.forEach((item: TQueryParams) => {
@@ -16,7 +15,7 @@ export const jobApi = baseApi.injectEndpoints({
         return {
           url: `/job/get_all_jobs`,
           method: "GET",
-          params: params
+          params: params,
         };
       },
       providesTags: [tagTypes.job],

@@ -4,20 +4,32 @@ import PaginationSoluation from "@/app/components/Shared/PaginationSoluation";
 import Spinners from "@/app/components/Shared/Spinners";
 import useUserInfo from "@/hook/User";
 import { useGetAllUserDataQuery } from "@/redux/api/Features/user/userApi";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { TUser } from "@/types";
-import {
-  Input
-} from "@nextui-org/react";
+import { Input } from "@nextui-org/react";
 import { useState } from "react";
 import ContentCard from "./ContentCard";
+import {
+  setCurrentPage,
+  setLimit,
+  setSearchTerm,
+} from "@/redux/api/Features/Job/jobSlice";
 
 const MyNetworksMainContent = () => {
   const { userData } = useUserInfo();
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [limit, setLimit] = useState<number>(8);
+  const { currentPage, limit, searchTerm } = useAppSelector(
+    (state) => state.job
+  );
+  const dispatch = useAppDispatch();
 
-  const { data: allUsers, isLoading } = useGetAllUserDataQuery([
+  const handleSetLimit = (newLimit: number) => {
+    dispatch(setLimit(newLimit));
+  };
+
+  const handleSetCurrentPage = (page: number) => {
+    dispatch(setCurrentPage(page));
+  };
+  const { data, isLoading } = useGetAllUserDataQuery([
     {
       name: "limit",
       value: limit,
@@ -36,6 +48,8 @@ const MyNetworksMainContent = () => {
     return <Spinners />;
   }
 
+  const allUsers = data.data;
+
   // filter data for remove my information from users array
   const filterData = allUsers?.filter(
     (item: TUser) => item._id !== userData?._id
@@ -48,7 +62,7 @@ const MyNetworksMainContent = () => {
           People you may know based on your recent activity
         </h2>
         <Input
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={(e) => dispatch(setSearchTerm(e.target.value))}
           placeholder="Search User..."
           className="border rounded-xl flex-1 lg:w-72"
           name=""
@@ -64,10 +78,11 @@ const MyNetworksMainContent = () => {
 
       <div>
         <PaginationSoluation
-          data={filterData?.length}
+          totalPage={data?.meta?.totalPage}
           currentPage={currentPage}
-          setLimit={setLimit}
-          setCurrentPage={setCurrentPage}
+          setLimit={handleSetLimit}
+          limit={limit}
+          setCurrentPage={handleSetCurrentPage}
         />
       </div>
     </div>

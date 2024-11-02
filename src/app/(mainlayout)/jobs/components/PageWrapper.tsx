@@ -66,9 +66,10 @@ const PageWrapper = () => {
       <div className="grid grid-cols-12 my-3 lg:gap-x-5">
         <div className="lg:col-span-5 col-span-12">
           <JobLeftSidebar
-            allJobs={allJobs}
+            allJobs={allJobs?.data}
             isOpen={isOpen}
             setIsOpen={setIsOpen}
+            meta={allJobs?.meta}
           />
         </div>
         <div className="lg:col-span-7 col-span-12">

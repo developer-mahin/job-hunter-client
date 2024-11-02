@@ -39,5 +39,6 @@ const jobSlice = createSlice({
   },
 });
 
-export const { setJob, setJobId, setLimit, setCurrentPage } = jobSlice.actions;
+export const { setJob, setJobId, setLimit, setCurrentPage, setSearchTerm } =
+  jobSlice.actions;
 export default jobSlice.reducer;

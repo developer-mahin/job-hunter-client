@@ -39,7 +39,7 @@ instance.interceptors.response.use(
       statusCode: response?.status,
     };
 
-    return responseObject;
+    return response;
   },
   async function (error) {
     const config = error.config;

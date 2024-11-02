@@ -18,9 +18,11 @@ type TProps = {
 const CreateModalContent = ({ setIsModalOpen }: TProps) => {
   const [imageDataURl, setImageDataURL] = useState("");
   const [images, setImages] = useState<any[]>([]);
-  const { data: userData } = useGetMyProfileQuery({});
+  const { data } = useGetMyProfileQuery({});
   const maxNumber = 69;
   const [createPost] = useCreatePostMutation();
+
+  const userData = data.data;
 
   const onChange = (imageList: any, addUpdateIndex?: number[]) => {
     setImages(imageList);
@@ -31,7 +33,10 @@ const CreateModalContent = ({ setIsModalOpen }: TProps) => {
     const image = images[0]?.file;
     const formData = new FormData();
     formData.append("image", image);
-    const uploadedImage = await imageUploadIntoImgbb(formData);
+    let uploadedImage;
+    if (image) {
+      uploadedImage = await imageUploadIntoImgbb(formData);
+    }
 
     const postData = {
       postDetails: data.postDetails,
@@ -42,7 +47,7 @@ const CreateModalContent = ({ setIsModalOpen }: TProps) => {
     try {
       const res = await createPost(postData);
 
-      if (res.data) {
+      if (res.data.success) {
         toast.success("Post created successfully!!!");
         setImageDataURL("");
         setImages([]);

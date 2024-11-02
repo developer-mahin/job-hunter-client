@@ -1,9 +1,9 @@
+import { useAppSelector } from "@/redux/hook";
 import { Button, Pagination, Select, SelectItem } from "@nextui-org/react";
 import React from "react";
 
 type TPaginationSoluationProps = {
-  data: number;
-  currentPage: number;
+  totalPage: number;
   setCurrentPage: (
     value: number
   ) => void | React.Dispatch<React.SetStateAction<number>>;
@@ -13,11 +13,12 @@ type TPaginationSoluationProps = {
 };
 
 const PaginationSoluation: React.FC<TPaginationSoluationProps> = ({
-  data,
-  currentPage,
+  totalPage,
   setCurrentPage,
   setLimit,
 }) => {
+  const { currentPage, limit } = useAppSelector((state) => state.job);
+
   const handlePreviousPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
@@ -25,7 +26,7 @@ const PaginationSoluation: React.FC<TPaginationSoluationProps> = ({
   };
 
   const handleNextPage = () => {
-    if (currentPage < data) {
+    if (currentPage < totalPage) {
       setCurrentPage(currentPage + 1);
     }
   };
@@ -33,7 +34,11 @@ const PaginationSoluation: React.FC<TPaginationSoluationProps> = ({
   return (
     <div className="mt-4 flex gap-x-6">
       <div className="flex flex-col gap-5 ">
-        <Pagination total={data} page={currentPage} onChange={setCurrentPage} />
+        <Pagination
+          total={totalPage}
+          page={currentPage}
+          onChange={setCurrentPage}
+        />
         <div className="flex gap-2">
           <Button
             size="sm"
@@ -48,7 +53,7 @@ const PaginationSoluation: React.FC<TPaginationSoluationProps> = ({
             size="sm"
             variant="flat"
             color="secondary"
-            disabled={currentPage >= data}
+            disabled={currentPage >= totalPage}
             onClick={() => handleNextPage}
           >
             Next
@@ -75,6 +80,46 @@ const PaginationSoluation: React.FC<TPaginationSoluationProps> = ({
         </Select>
       </div>
     </div>
+
+    // <div className="flex justify-center items-center space-x-2 mt-4">
+    //   <button
+    //     onClick={() => setCurrentPage(currentPage - 1)}
+    //     disabled={currentPage === 1}
+    //     className="px-3 py-1 rounded-md text-gray-600 hover:text-white bg-gray-100 hover:bg-blue-500 transition-colors disabled:opacity-50"
+    //   >
+    //     Previous
+    //   </button>
+
+    //   {getPaginationNumbers().map((page) => (
+    //     <button
+    //       key={page}
+    //       onClick={() => setCurrentPage(page)}
+    //       className={`px-3 py-1 rounded-md ${
+    //         page === currentPage
+    //           ? "bg-blue-500 text-white"
+    //           : "bg-gray-100 text-gray-600 hover:text-white hover:bg-blue-500"
+    //       } transition-colors`}
+    //     >
+    //       {page}
+    //     </button>
+    //   ))}
+
+    //   <button
+    //     onClick={() => setCurrentPage(currentPage + 1)}
+    //     disabled={currentPage === totalPages}
+    //     className="px-3 py-1 rounded-md text-gray-600 hover:text-white bg-gray-100 hover:bg-blue-500 transition-colors disabled:opacity-50"
+    //   >
+    //     Next
+    //   </button>
+
+    //   <button
+    //     onClick={() => setCurrentPage(totalPages)}
+    //     disabled={currentPage === totalPages}
+    //     className="px-3 py-1 rounded-md text-gray-600 hover:text-white bg-gray-100 hover:bg-blue-500 transition-colors disabled:opacity-50"
+    //   >
+    //     Last
+    //   </button>
+    // </div>
   );
 };
 

@@ -7,7 +7,9 @@ import { AiFillStar } from "react-icons/ai";
 import { BsFillBookmarkFill } from "react-icons/bs";
 
 const LeftSidebar = () => {
-  const { data: userData } = useGetMyProfileQuery({});
+  const { data } = useGetMyProfileQuery({});
+
+  const userData = data?.data;
 
   return (
     <div className="lg:sticky top-0 bg-gray-50">

@@ -28,11 +28,12 @@ const PostCard = ({ post }: TProps) => {
   const changeState = seeAllDetails === true ? false : true;
   const { _id, author, postDetails, image, createdAt } = post;
 
-  const { data: userData } = useGetMyProfileQuery({});
+  const { data } = useGetMyProfileQuery({});
   const [followAndUnFollow] = useFollowAndUnFollowMutation();
 
   const [like] = useSound(assets.audio.buttonSound);
 
+  const userData = data.data;
   // find following user for checking
   const findFollowing = userData?.following?.find(
     (user: { user: string }) => user?.user === author?._id

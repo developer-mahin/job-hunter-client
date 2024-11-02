@@ -1,8 +1,14 @@
 "use client";
 
 import FilterSidebar from "@/app/components/Shared/FilterSidebar";
-import { setJob } from "@/redux/api/Features/Job/jobSlice";
-import { TJob } from "@/types";
+import PaginationSoluation from "@/app/components/Shared/PaginationSoluation";
+import {
+  setCurrentPage,
+  setJob,
+  setLimit,
+} from "@/redux/api/Features/Job/jobSlice";
+import { useAppSelector } from "@/redux/hook";
+import { TJob, TMeta } from "@/types";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -10,12 +16,12 @@ import { useDispatch } from "react-redux";
 type TProps = {
   allJobs: TJob[];
   isOpen: boolean;
+  meta: TMeta;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const JobLeftSidebar = ({ allJobs, isOpen, setIsOpen }: TProps) => {
+const JobLeftSidebar = ({ allJobs, isOpen, setIsOpen, meta }: TProps) => {
   const [jobId, setJobId] = useState<string>("");
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,6 +30,14 @@ const JobLeftSidebar = ({ allJobs, isOpen, setIsOpen }: TProps) => {
       setJobId(allJobs[0]._id);
     }
   }, [allJobs, dispatch]);
+
+  const handleSetLimit = (newLimit: number) => {
+    dispatch(setLimit(newLimit));
+  };
+
+  const handleSetCurrentPage = (page: number) => {
+    dispatch(setCurrentPage(page));
+  };
 
   return (
     <div>
@@ -77,7 +91,7 @@ const JobLeftSidebar = ({ allJobs, isOpen, setIsOpen }: TProps) => {
       </FilterSidebar>
 
       {/* Desktop Version (Always visible) */}
-      <div className="hidden md:block border rounded-xl bg-gray-100 bg-opacity-70 shadow-lg h-[90vh] overflow-y-scroll">
+      <div className="hidden md:block border rounded-xl bg-gray-100 bg-opacity-70 shadow-lg h-screen overflow-y-scroll">
         {allJobs?.map((item: TJob, i: number) => (
           <div
             key={i}
@@ -120,6 +134,14 @@ const JobLeftSidebar = ({ allJobs, isOpen, setIsOpen }: TProps) => {
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="px-4  ">
+        <PaginationSoluation
+          totalPage={meta.totalPage}
+          setLimit={handleSetLimit}
+          setCurrentPage={handleSetCurrentPage}
+        />
       </div>
     </div>
   );

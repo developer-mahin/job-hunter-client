@@ -14,7 +14,7 @@ const AllPost = () => {
 
   return (
     <div className=" mt-3">
-      {allPost?.map((post: TPost) => (
+      {allPost?.data?.map((post: TPost) => (
         <PostCard key={post._id} post={post} />
       ))}
     </div>

@@ -13,11 +13,12 @@ import useSound from "use-sound";
 import { assets } from "@/assets";
 
 const RightSidebarCard = ({ info }: { info: TUser }) => {
-  const { data: userData } = useGetMyProfileQuery({});
+  const { data } = useGetMyProfileQuery({});
   const [followAndUnFollow] = useFollowAndUnFollowMutation();
   const { photo, name, headline } = info;
   const [like] = useSound(assets.audio.buttonSound);
 
+  const userData = data.data;
   // find following user for checking
   const findFollowing = userData?.following?.find(
     (user: { user: string }) => user?.user === info?._id
@@ -26,6 +27,7 @@ const RightSidebarCard = ({ info }: { info: TUser }) => {
   const handleFollowAndUnFollowUser = async (id: string) => {
     try {
       await followAndUnFollow(id);
+
       like();
     } catch (error: any) {
       toast.error(error.message);
