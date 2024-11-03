@@ -11,18 +11,30 @@ import {
   TableCell,
   TableColumn,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@nextui-org/react";
 import Image from "next/image";
 import { useState } from "react";
 import TableActionButtons from "./TableData/TableActionButtons";
 import { columns } from "./TableData/tableColumns";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { setCurrentPage, setLimit } from "@/redux/api/Features/Job/jobSlice";
 
 const PageWrapper = () => {
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [limit, setLimit] = useState<number>(6);
-  const { data: jobs, isLoading } = useGetMyJobsQuery([
+  const { currentPage, limit, searchTerm } = useAppSelector(
+    (state) => state.job
+  );
+  const dispatch = useAppDispatch();
+
+  const handleSetLimit = (newLimit: number) => {
+    dispatch(setLimit(newLimit));
+  };
+
+  const handleSetCurrentPage = (page: number) => {
+    dispatch(setCurrentPage(page));
+  };
+
+  const { data, isLoading } = useGetMyJobsQuery([
     {
       name: "limit",
       value: limit,
@@ -40,6 +52,8 @@ const PageWrapper = () => {
   if (isLoading) {
     return <Spinners />;
   }
+
+  const jobs = data?.data;
 
   return (
     <div>
@@ -98,10 +112,9 @@ const PageWrapper = () => {
 
       <div>
         <PaginationSoluation
-          data={jobs?.length}
-          currentPage={currentPage}
-          setLimit={setLimit}
-          setCurrentPage={setCurrentPage}
+          totalPage={jobs?.meta?.totalPage}
+          setLimit={handleSetLimit}
+          setCurrentPage={handleSetCurrentPage}
         />
       </div>
     </div>

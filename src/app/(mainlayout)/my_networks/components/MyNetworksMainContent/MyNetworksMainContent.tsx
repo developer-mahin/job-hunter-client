@@ -79,9 +79,7 @@ const MyNetworksMainContent = () => {
       <div>
         <PaginationSoluation
           totalPage={data?.meta?.totalPage}
-          currentPage={currentPage}
           setLimit={handleSetLimit}
-          limit={limit}
           setCurrentPage={handleSetCurrentPage}
         />
       </div>

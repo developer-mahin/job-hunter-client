@@ -9,11 +9,13 @@ import ProfileInfo from "./ProfileInfo";
 
 const SingleUserData = () => {
   const { id } = useParams();
-  const { data: singleUserData, isLoading } = useGetSingleUserDataQuery({ id });
+  const { data, isLoading } = useGetSingleUserDataQuery({ id });
 
   if (isLoading) {
     return <Spinners />;
   }
+
+  const singleUserData = data?.data;
 
   return (
     <>

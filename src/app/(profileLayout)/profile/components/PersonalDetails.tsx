@@ -4,6 +4,7 @@ import { Button } from "@nextui-org/button";
 import { useState } from "react";
 import { ImPencil } from "react-icons/im";
 import ContactInfoModalContent from "./ProfileModalData/ContactInfoModalContent";
+import FollowerAndFollowing from "./FollowerAndFollwing/FollowerAndFollowing";
 
 type TProps = {
   userData: TUser;
@@ -65,6 +66,10 @@ const PersonalDetails = ({ userData }: TProps) => {
             setContactInfoModalOpen={setContactInfoModalOpen}
           />
         </ReactCustomModal>
+      </div>
+
+      <div>
+        <FollowerAndFollowing userInfo={userData} />
       </div>
 
       <div className="lg:hidden block">

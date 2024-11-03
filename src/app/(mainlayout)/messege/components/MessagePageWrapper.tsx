@@ -1,6 +1,7 @@
 "use client";
 
 import { useGetAllUserDataQuery } from "@/redux/api/Features/user/userApi";
+import { useAppSelector } from "@/redux/hook";
 import { TUser } from "@/types";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
@@ -27,12 +28,30 @@ const ChatComponent = () => {
     },
   ]);
 
-  const { data: users, isLoading } = useGetAllUserDataQuery({});
+  const { currentPage, limit, searchTerm } = useAppSelector(
+    (state) => state.job
+  );
+  const { data, isLoading } = useGetAllUserDataQuery([
+    {
+      name: "limit",
+      value: limit,
+    },
+    {
+      name: "page",
+      value: currentPage,
+    },
+    {
+      name: "searchTerm",
+      value: searchTerm,
+    },
+  ]);
 
   const handleMessageSubmit = (text: string) => {
     const newMessage = { text, isMine: true };
     setMessages([...messages, newMessage]);
   };
+
+  const users = data?.data;
 
   return (
     <div className="mt-3">

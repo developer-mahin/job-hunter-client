@@ -6,11 +6,13 @@ import { useGetMyPostsQuery } from "@/redux/api/Features/Post/postApi";
 import { TPost } from "@/types";
 
 const AllMyPostsPage = () => {
-  const { data: postData, isLoading } = useGetMyPostsQuery({});
+  const { data, isLoading } = useGetMyPostsQuery({});
 
   if (isLoading) {
     return <Spinners />;
   }
+
+  const postData = data?.data;
 
   return (
     <div className="lg:w-[600px] mx-auto mt-2">

@@ -11,11 +11,13 @@ import { FaArrowRight } from "react-icons/fa";
 
 const PostInfo = () => {
   const { id } = useParams();
-  const { data: postData, isLoading } = useGetUserPostQuery({ id });
+  const { data, isLoading } = useGetUserPostQuery({ id });
 
   if (isLoading) {
     return <Spinners />;
   }
+
+  const postData = data?.data;
 
   return (
     <div className="shadow border rounded-xl mt-3 p-4">

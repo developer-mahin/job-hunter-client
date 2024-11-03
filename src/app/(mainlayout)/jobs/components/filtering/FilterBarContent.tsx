@@ -37,10 +37,8 @@ const FilterBarContent = () => {
       <div>
         <PaginationSoluation
           totalPage={jobs?.meta?.totalPage}
-          currentPage={currentPage}
           setLimit={handleSetLimit}
           setCurrentPage={handleSetCurrentPage}
-          limit={limit}
         />
       </div>
     </div>

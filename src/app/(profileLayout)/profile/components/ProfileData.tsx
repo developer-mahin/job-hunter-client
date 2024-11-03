@@ -4,23 +4,23 @@ import ReactCustomModal from "@/app/components/Shared/ReactModal";
 import Spinners from "@/app/components/Shared/Spinners";
 import { useGetMyProfileQuery } from "@/redux/api/Features/user/userApi";
 import { Button } from "@nextui-org/button";
-import dynamic from "next/dynamic";
 import { useState } from "react";
 import { ImPencil } from "react-icons/im";
+import About from "./About/About";
 import CoverPhoto from "./CoverPhoto/CoverPhoto";
 import PersonalDetails from "./PersonalDetails";
 import PersonalInfoUpdatedModalContent from "./ProfileModalData/PersonalInfoUpdatedModalContent";
 import ProfilePicture from "./ProfilePicture/ProfilePicture";
-import About from "./About/About";
 
 const ProfileData = () => {
   const [personalInfo, setPersonalInfoModal] = useState<boolean>(false);
-  const { data: userData, isLoading } = useGetMyProfileQuery({});
-
+  const { data, isLoading } = useGetMyProfileQuery({});
 
   if (isLoading) {
     return <Spinners className="h-[100vh]" />;
   }
+
+  const userData = data?.data;
 
   return (
     <>

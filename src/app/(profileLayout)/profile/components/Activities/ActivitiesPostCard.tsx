@@ -13,7 +13,7 @@ const ActivitiesPostCard = ({ post }: TProps) => {
 
   return (
     <div className="py-2">
-      <Link href={`/user-post-details/${_id}`}>
+      <Link href={`/user_post_details/${_id}`}>
         <div>
           <div>
             <p className="text-xs font-bold">{author.name}</p>

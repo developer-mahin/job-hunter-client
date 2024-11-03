@@ -9,11 +9,13 @@ import { FaArrowRight } from "react-icons/fa";
 import Link from "next/link";
 
 const Activities = () => {
-  const { data: myPosts, isLoading } = useGetMyPostsQuery({});
+  const { data, isLoading } = useGetMyPostsQuery({});
 
   if (isLoading) {
     return <Spinners />;
   }
+
+  const myPosts = data?.data;
 
   return (
     <div className="shadow border rounded-xl mt-3 p-4">

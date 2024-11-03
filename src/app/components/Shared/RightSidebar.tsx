@@ -1,25 +1,41 @@
 "use client";
 
+import { setSearchTerm } from "@/redux/api/Features/Job/jobSlice";
+import { useGetAllUserDataQuery } from "@/redux/api/Features/user/userApi";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { TUser } from "@/types";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
+import Link from "next/link";
 import { AiTwotoneLike } from "react-icons/ai";
 import { BiErrorCircle, BiRightArrowAlt } from "react-icons/bi";
 import { GoLocation } from "react-icons/go";
 import { GrClose } from "react-icons/gr";
 import RightSidebarCard from "./RightSidebarCard";
-import { useGetAllUserDataQuery } from "@/redux/api/Features/user/userApi";
-import { TUser } from "@/types";
-import { useState } from "react";
-import Link from "next/link";
 
 const RightSidebar = () => {
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const { data: rightSideBarInfo } = useGetAllUserDataQuery([
+  const { currentPage, limit, searchTerm } = useAppSelector(
+    (state) => state.job
+  );
+
+  const dispatch = useAppDispatch();
+
+  const { data } = useGetAllUserDataQuery([
+    {
+      name: "limit",
+      value: limit,
+    },
+    {
+      name: "page",
+      value: currentPage,
+    },
     {
       name: "searchTerm",
       value: searchTerm,
     },
   ]);
+
+  const rightSideBarInfo = data?.data;
 
   return (
     <div className="">
@@ -34,7 +50,7 @@ const RightSidebar = () => {
             isRequired
             label="Search User"
             id=""
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => dispatch(setSearchTerm(e.target.value))}
             className="h-11 pl-10"
           />
           <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
@@ -56,7 +72,7 @@ const RightSidebar = () => {
         </div>
 
         <div className="bg-opacity-15 rounded-t-xl sticky top-0">
-          {rightSideBarInfo?.data?.slice(0, 4)?.map((info: TUser) => (
+          {rightSideBarInfo?.slice(0, 4)?.map((info: TUser) => (
             <RightSidebarCard key={info._id} info={info}></RightSidebarCard>
           ))}
           <div className="flex items-center justify-center view-profile rounded">
