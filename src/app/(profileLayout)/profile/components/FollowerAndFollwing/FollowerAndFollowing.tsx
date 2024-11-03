@@ -1,4 +1,5 @@
 import { TUser } from "@/types";
+import Link from "next/link";
 
 type TFollowerAndFollowing = {
   userInfo: TUser;
@@ -11,13 +12,19 @@ const FollowerAndFollowing: React.FC<TFollowerAndFollowing> = ({
 
   return (
     <div>
-      <div className="flex items-center justify-between lg:flex-row flex-col">
-        <p className="font-semibold text-blue-600 hover:underline">
+      <div className="flex items-center gap-x-5 lg:flex-row flex-col">
+        <Link
+          href={`/profile/followers/${userInfo?.name}`}
+          className="font-semibold text-blue-600 hover:underline cursor-pointer"
+        >
           {followers.length} Followers
-        </p>
-        <p className="font-semibold text-blue-600 hover:underline">
+        </Link>
+        <Link
+          href={`/profile/following/${userInfo?.name}`}
+          className="font-semibold text-blue-600 hover:underline cursor-pointer"
+        >
           {following.length} Following
-        </p>
+        </Link>
       </div>
     </div>
   );

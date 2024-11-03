@@ -18,7 +18,7 @@ const RightSidebarCard = ({ info }: { info: TUser }) => {
   const { photo, name, headline } = info;
   const [like] = useSound(assets.audio.buttonSound);
 
-  const userData = data.data;
+  const userData = data?.data;
   // find following user for checking
   const findFollowing = userData?.following?.find(
     (user: { user: string }) => user?.user === info?._id
