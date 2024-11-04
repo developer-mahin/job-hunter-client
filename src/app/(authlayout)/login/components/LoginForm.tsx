@@ -23,6 +23,9 @@ const LoginForm = () => {
   const handleLogin: SubmitHandler<FieldValues> = async (data) => {
     try {
       const res = await loginUser(data);
+
+      console.log(res)
+
       if (res.success) {
         setToLocalStorage(authKey.ACCESS_TOKEN, res?.data?.token);
         toast.success(res.message);

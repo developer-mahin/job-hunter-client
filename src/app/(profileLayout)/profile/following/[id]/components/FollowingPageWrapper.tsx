@@ -3,6 +3,7 @@
 import { useGetMyProfileQuery } from "@/redux/api/Features/user/userApi";
 import ShowFollowingAndFollowers from "./ShowFollowingAndFollowers";
 import Spinners from "@/app/components/Shared/Spinners";
+import { TUser } from "@/types";
 
 const FollowingPageWrapper = () => {
   const { data, isLoading } = useGetMyProfileQuery({});
@@ -14,9 +15,9 @@ const FollowingPageWrapper = () => {
   const followingData = data?.data?.following;
 
   return (
-    <div>
+    <div className="border rounded-xl p-4 shadow" >
       {followingData?.map((item: any, i: number) => (
-        <ShowFollowingAndFollowers key={i} user={item} />
+        <ShowFollowingAndFollowers key={i} user={item?.user} />
       ))}
     </div>
   );

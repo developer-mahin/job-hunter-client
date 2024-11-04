@@ -21,7 +21,7 @@ const RightSidebarCard = ({ info }: { info: TUser }) => {
   const userData = data?.data;
   // find following user for checking
   const findFollowing = userData?.following?.find(
-    (user: { user: string }) => user?.user === info?._id
+    (user: any) => user?.user?._id === info?._id
   );
 
   const handleFollowAndUnFollowUser = async (id: string) => {
