@@ -17,7 +17,7 @@ const PaginationSoluation: React.FC<TPaginationSoluationProps> = ({
   setCurrentPage,
   setLimit,
 }) => {
-  const { currentPage, limit } = useAppSelector((state) => state.job);
+  const { currentPage } = useAppSelector((state) => state.job);
 
   const handlePreviousPage = () => {
     if (currentPage > 1) {
@@ -80,46 +80,6 @@ const PaginationSoluation: React.FC<TPaginationSoluationProps> = ({
         </Select>
       </div>
     </div>
-
-    // <div className="flex justify-center items-center space-x-2 mt-4">
-    //   <button
-    //     onClick={() => setCurrentPage(currentPage - 1)}
-    //     disabled={currentPage === 1}
-    //     className="px-3 py-1 rounded-md text-gray-600 hover:text-white bg-gray-100 hover:bg-blue-500 transition-colors disabled:opacity-50"
-    //   >
-    //     Previous
-    //   </button>
-
-    //   {getPaginationNumbers().map((page) => (
-    //     <button
-    //       key={page}
-    //       onClick={() => setCurrentPage(page)}
-    //       className={`px-3 py-1 rounded-md ${
-    //         page === currentPage
-    //           ? "bg-blue-500 text-white"
-    //           : "bg-gray-100 text-gray-600 hover:text-white hover:bg-blue-500"
-    //       } transition-colors`}
-    //     >
-    //       {page}
-    //     </button>
-    //   ))}
-
-    //   <button
-    //     onClick={() => setCurrentPage(currentPage + 1)}
-    //     disabled={currentPage === totalPages}
-    //     className="px-3 py-1 rounded-md text-gray-600 hover:text-white bg-gray-100 hover:bg-blue-500 transition-colors disabled:opacity-50"
-    //   >
-    //     Next
-    //   </button>
-
-    //   <button
-    //     onClick={() => setCurrentPage(totalPages)}
-    //     disabled={currentPage === totalPages}
-    //     className="px-3 py-1 rounded-md text-gray-600 hover:text-white bg-gray-100 hover:bg-blue-500 transition-colors disabled:opacity-50"
-    //   >
-    //     Last
-    //   </button>
-    // </div>
   );
 };
 

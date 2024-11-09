@@ -24,8 +24,6 @@ const LoginForm = () => {
     try {
       const res = await loginUser(data);
 
-      console.log(res)
-
       if (res.success) {
         setToLocalStorage(authKey.ACCESS_TOKEN, res?.data?.token);
         toast.success(res.message);
@@ -54,7 +52,7 @@ const LoginForm = () => {
           type="password"
           required={true}
         />
-      </div> 
+      </div>
       <div className="flex justify-between items-center lg:flex-row flex-col">
         <div className="grid grid-cols-2 lg:gap-x-14 gap-x-2">
           <Button type="submit" fullWidth className="font-semibold w-full">

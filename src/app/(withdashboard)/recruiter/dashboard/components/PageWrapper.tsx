@@ -3,6 +3,7 @@
 import PaginationSoluation from "@/app/components/Shared/PaginationSoluation";
 import Spinners from "@/app/components/Shared/Spinners";
 import { useGetMyJobsQuery } from "@/redux/api/Features/Job/jobApi";
+import { useAppSelector } from "@/redux/hook";
 import { TJob } from "@/types";
 import {
   Button,
@@ -17,22 +18,23 @@ import Image from "next/image";
 import { useState } from "react";
 import TableActionButtons from "./TableData/TableActionButtons";
 import { columns } from "./TableData/tableColumns";
-import { useAppDispatch, useAppSelector } from "@/redux/hook";
-import { setCurrentPage, setLimit } from "@/redux/api/Features/Job/jobSlice";
+import { DatabaseZap } from "lucide-react";
 
 const PageWrapper = () => {
-  const { currentPage, limit, searchTerm } = useAppSelector(
-    (state) => state.job
-  );
-  const dispatch = useAppDispatch();
+  const { searchTerm } = useAppSelector((state) => state.job);
+
+  const [currentPage, setCurrentPage] = useState<number>(0);
+  const [limit, setLimit] = useState<number>(0);
 
   const handleSetLimit = (newLimit: number) => {
-    dispatch(setLimit(newLimit));
+    setLimit(newLimit);
   };
 
   const handleSetCurrentPage = (page: number) => {
-    dispatch(setCurrentPage(page));
+    setCurrentPage(page);
   };
+
+  console.log(currentPage);
 
   const { data, isLoading } = useGetMyJobsQuery([
     {
@@ -112,7 +114,7 @@ const PageWrapper = () => {
 
       <div>
         <PaginationSoluation
-          totalPage={jobs?.meta?.totalPage}
+          totalPage={data?.meta?.totalPage}
           setLimit={handleSetLimit}
           setCurrentPage={handleSetCurrentPage}
         />

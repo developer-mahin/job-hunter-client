@@ -8,7 +8,8 @@ const protectedRoutes = [
   "/messege",
   "/jobs",
   "/my_networks",
-  "/profile",
+  "/profile/:page*",
+  "/recruiter/:page*",
 ];
 
 // This function can be marked `async` if using `await` inside
@@ -31,7 +32,11 @@ export function middleware(request: NextRequest) {
     }
   }
 
-  if (protectedRoutes.includes(pathname) && !accessToken) {
+  // Redirect to login for protected routes if access token is missing
+  if (
+    protectedRoutes.some((route) => pathname.startsWith(route)) &&
+    !accessToken
+  ) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
@@ -47,6 +52,11 @@ export function middleware(request: NextRequest) {
     }
   }
 
+  // Redirect authenticated users away from auth routes
+  // if (accessToken && authRoutes.includes(pathname)) {
+  //   return NextResponse.redirect(new URL("/feed", request.url));
+  // }
+
   // if (!accessToken) {
   //   if (authRoutes.includes(pathname)) {
   //     return NextResponse.next();
@@ -59,5 +69,14 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/login", "/register", "/feed"],
+  matcher: [
+    "/login",
+    "/register",
+    "/feed",
+    "/messege",
+    "/jobs",
+    "/my_networks",
+    "/profile/:page*",
+    "/recruiter/:page*",
+  ],
 };

@@ -20,9 +20,9 @@ const ContentCard: React.FC<TProps> = ({ user }) => {
   const [like] = useSound(assets.audio.buttonSound);
 
   // find following user for checking
-  const findFollowing = userData?.following?.find(
-    (item: { user: string }) => item?.user === user?._id
-  );
+  const findFollowing = userData?.data?.following?.find((item: any) => {
+    return item?.user?._id === user?._id;
+  });
 
   const handleFollowAndUnFollowUser = async (id: string) => {
     try {
