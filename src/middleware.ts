@@ -52,18 +52,6 @@ export function middleware(request: NextRequest) {
     }
   }
 
-  // Redirect authenticated users away from auth routes
-  // if (accessToken && authRoutes.includes(pathname)) {
-  //   return NextResponse.redirect(new URL("/feed", request.url));
-  // }
-
-  // if (!accessToken) {
-  //   if (authRoutes.includes(pathname)) {
-  //     return NextResponse.next();
-  //   } else {
-  //     return NextResponse.redirect(new URL("/login", request.url));
-  //   }
-  // }
 
   return NextResponse.redirect(new URL("/", request.url));
 }

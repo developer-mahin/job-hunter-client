@@ -13,7 +13,7 @@ const AllFilters: React.FC<TAllFiltersProps> = ({ isOpen, setIsOpen }) => {
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         directionRight={true}
-        className="lg:w-[450px] bg-gray-400"
+        className="lg:w-[550px] bg-gray-400"
       >
         <FilterBarContent />
       </FilterSidebar>

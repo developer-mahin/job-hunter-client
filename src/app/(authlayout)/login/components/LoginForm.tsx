@@ -4,7 +4,7 @@ import JForm from "@/app/components/Form/JForm";
 import JInputs from "@/app/components/Form/JInputs";
 import Credentials from "@/app/components/Shared/Credentials";
 import { authKey } from "@/constant/authKey";
-import { setToLocalStorage } from "@/utils/localStorage";
+import { getFromLocalStorage, setToLocalStorage } from "@/utils/localStorage";
 import {
   loginDefaultValues,
   loginValidationSchema,
@@ -16,6 +16,7 @@ import { useRouter } from "next/navigation";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 import { loginUser } from "../../authAction/login";
+import { useEffect } from "react";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -35,6 +36,14 @@ const LoginForm = () => {
       toast.error(error.message);
     }
   };
+
+  const accessToken = getFromLocalStorage(authKey.ACCESS_TOKEN);
+
+  useEffect(() => {
+    if (accessToken) {
+      router.push("/feed");
+    }
+  }, [accessToken, router]);
 
   return (
     <JForm

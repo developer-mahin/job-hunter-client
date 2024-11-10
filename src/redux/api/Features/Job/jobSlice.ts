@@ -7,6 +7,7 @@ export type TJobState = {
   searchTerm: string;
   currentPage: number;
   limit: number;
+  experienceLevel: string;
 };
 
 const initialState: TJobState = {
@@ -15,6 +16,7 @@ const initialState: TJobState = {
   currentPage: 1,
   limit: 8,
   searchTerm: "",
+  experienceLevel: "",
 };
 
 const jobSlice = createSlice({
@@ -36,9 +38,19 @@ const jobSlice = createSlice({
     setSearchTerm: (state, action) => {
       state.searchTerm = action.payload;
     },
+
+    setExperienceLevel: (state, action) => {
+      state.experienceLevel = action.payload;
+    },
   },
 });
 
-export const { setJob, setJobId, setLimit, setCurrentPage, setSearchTerm } =
-  jobSlice.actions;
+export const {
+  setJob,
+  setJobId,
+  setLimit,
+  setCurrentPage,
+  setSearchTerm,
+  setExperienceLevel,
+} = jobSlice.actions;
 export default jobSlice.reducer;
