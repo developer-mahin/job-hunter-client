@@ -42,12 +42,12 @@ const DropdownItem = () => {
     removeCookies([authKey.ACCESS_TOKEN]);
   };
 
-  //
   const handleChangeUserRole = async () => {
     try {
       const res = await changeUserRole("");
+
       if (res.data) {
-        setToLocalStorage(authKey.ACCESS_TOKEN, res?.data?.token);
+        setToLocalStorage(authKey.ACCESS_TOKEN, res?.data?.data?.token);
         router.refresh();
         toast.success("successfully change the user role");
       }
