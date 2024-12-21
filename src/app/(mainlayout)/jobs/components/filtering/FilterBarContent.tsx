@@ -1,16 +1,15 @@
 import PaginationSoluation from "@/app/components/Shared/PaginationSoluation";
-import { useGetAllJobQuery } from "@/redux/api/Features/Job/jobApi";
 import { setCurrentPage, setLimit } from "@/redux/api/Features/Job/jobSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { useAppDispatch } from "@/redux/hook";
+import { TMeta } from "@/types";
 import ExperienceLevel from "./ExperienceLevel";
 
-const FilterBarContent = () => {
-  const dispatch = useAppDispatch();
-  const { currentPage, limit, searchTerm, experienceLevel } = useAppSelector(
-    (state) => state.job
-  );
+type TFilterBarContent = {
+  meta: TMeta;
+};
 
-  console.log(experienceLevel);
+const FilterBarContent: React.FC<TFilterBarContent> = ({ meta }) => {
+  const dispatch = useAppDispatch();
 
   const handleSetLimit = (newLimit: number) => {
     dispatch(setLimit(newLimit));
@@ -20,27 +19,12 @@ const FilterBarContent = () => {
     dispatch(setCurrentPage(page));
   };
 
-  const { data: jobs } = useGetAllJobQuery([
-    {
-      name: "limit",
-      value: limit,
-    },
-    {
-      name: "page",
-      value: currentPage,
-    },
-    {
-      name: "searchTerm",
-      value: searchTerm,
-    },
-  ]);
-
   return (
     <div className="mt-10">
       <ExperienceLevel />
       <div>
         <PaginationSoluation
-          totalPage={jobs?.meta?.totalPage}
+          totalPage={meta?.totalPage}
           setLimit={handleSetLimit}
           setCurrentPage={handleSetCurrentPage}
         />

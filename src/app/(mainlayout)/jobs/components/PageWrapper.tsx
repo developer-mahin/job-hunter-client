@@ -14,9 +14,15 @@ const PageWrapper = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [filterIsOpen, setFilterIsOpen] = useState<boolean>(false);
 
-  const { currentPage, limit, searchTerm } = useAppSelector(
-    (state) => state.job
-  );
+  const {
+    currentPage,
+    limit,
+    searchTerm,
+    experienceLevel,
+    location,
+    industry,
+    workPlaceType,
+  } = useAppSelector((state) => state.job);
 
   const { data: allJobs, isLoading } = useGetAllJobQuery([
     {
@@ -30,6 +36,22 @@ const PageWrapper = () => {
     {
       name: "searchTerm",
       value: searchTerm,
+    },
+    experienceLevel.split("").length >= 1 && {
+      name: "jobType",
+      value: experienceLevel || "",
+    },
+    location.split("").length >= 1 && {
+      name: "location",
+      value: location,
+    },
+    industry.split("").length >= 1 && {
+      name: "industry",
+      value: industry,
+    },
+    workPlaceType.split("").length >= 1 && {
+      name: "workPlaceType",
+      value: workPlaceType,
     },
   ]);
 
@@ -59,7 +81,11 @@ const PageWrapper = () => {
             All Filters
           </Button>
 
-          <AllFilters isOpen={filterIsOpen} setIsOpen={setFilterIsOpen} />
+          <AllFilters
+            meta={allJobs?.meta}
+            isOpen={filterIsOpen}
+            setIsOpen={setFilterIsOpen}
+          />
         </div>
       </div>
 
@@ -69,7 +95,6 @@ const PageWrapper = () => {
             allJobs={allJobs?.data}
             isOpen={isOpen}
             setIsOpen={setIsOpen}
-            meta={allJobs?.meta}
           />
         </div>
         <div className="lg:col-span-7 col-span-12">

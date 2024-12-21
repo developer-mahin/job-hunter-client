@@ -1,13 +1,18 @@
+import {
+  setExperienceLevel,
+  setIndustry,
+  setLocation,
+  setWorkPlaceType,
+} from "@/redux/api/Features/Job/jobSlice";
 import { useAppDispatch } from "@/redux/hook";
-import CheckBox from "./CheckBox";
+import { Divider } from "@nextui-org/react";
 import {
   countryTypes,
   industryTypes,
   jobTypes,
   workPlaceTypes,
 } from "../../data/jobSelectInfoData";
-import { setExperienceLevel } from "@/redux/api/Features/Job/jobSlice";
-import { Divider } from "@nextui-org/react";
+import CheckBox from "./CheckBox";
 
 const ExperienceLevel = () => {
   const dispatch = useAppDispatch();
@@ -34,7 +39,7 @@ const ExperienceLevel = () => {
         <CheckBox
           data={workPlaceTypes}
           className="grid-cols-2"
-          onChangeFunction={(value) => dispatch(setExperienceLevel(value))}
+          onChangeFunction={(value) => dispatch(setWorkPlaceType(value))}
         />
       </div>
 
@@ -46,7 +51,7 @@ const ExperienceLevel = () => {
         <CheckBox
           data={industryTypes}
           className="lg:grid-cols-2 grid-cols-1"
-          onChangeFunction={(value) => dispatch(setExperienceLevel(value))}
+          onChangeFunction={(value) => dispatch(setIndustry(value))}
         />
       </div>
 
@@ -58,7 +63,7 @@ const ExperienceLevel = () => {
         <CheckBox
           data={countryTypes}
           className="lg:grid-cols-2 grid-cols-1"
-          onChangeFunction={(value) => dispatch(setExperienceLevel(value))}
+          onChangeFunction={(value) => dispatch(setLocation(value))}
         />
       </div>
     </div>

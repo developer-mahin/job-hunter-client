@@ -1,13 +1,7 @@
 "use client";
 
 import FilterSidebar from "@/app/components/Shared/FilterSidebar";
-import PaginationSoluation from "@/app/components/Shared/PaginationSoluation";
-import {
-  setCurrentPage,
-  setJob,
-  setLimit,
-} from "@/redux/api/Features/Job/jobSlice";
-import { useAppSelector } from "@/redux/hook";
+import { setJob } from "@/redux/api/Features/Job/jobSlice";
 import { TJob, TMeta } from "@/types";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -16,11 +10,10 @@ import { useDispatch } from "react-redux";
 type TProps = {
   allJobs: TJob[];
   isOpen: boolean;
-  meta: TMeta;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const JobLeftSidebar = ({ allJobs, isOpen, setIsOpen, meta }: TProps) => {
+const JobLeftSidebar = ({ allJobs, isOpen, setIsOpen }: TProps) => {
   const [jobId, setJobId] = useState<string>("");
   const dispatch = useDispatch();
 
@@ -30,14 +23,6 @@ const JobLeftSidebar = ({ allJobs, isOpen, setIsOpen, meta }: TProps) => {
       setJobId(allJobs[0]._id);
     }
   }, [allJobs, dispatch]);
-
-  const handleSetLimit = (newLimit: number) => {
-    dispatch(setLimit(newLimit));
-  };
-
-  const handleSetCurrentPage = (page: number) => {
-    dispatch(setCurrentPage(page));
-  };
 
   return (
     <div>
@@ -134,14 +119,6 @@ const JobLeftSidebar = ({ allJobs, isOpen, setIsOpen, meta }: TProps) => {
             </div>
           </div>
         ))}
-      </div>
-
-      <div className="px-4  ">
-        <PaginationSoluation
-          totalPage={meta.totalPage}
-          setLimit={handleSetLimit}
-          setCurrentPage={handleSetCurrentPage}
-        />
       </div>
     </div>
   );

@@ -11,7 +11,6 @@ export const jobApi = baseApi.injectEndpoints({
         args?.forEach((item: TQueryParams) => {
           params.append(item.name, item.value as string);
         });
-
         return {
           url: `/job/get_all_jobs`,
           method: "GET",

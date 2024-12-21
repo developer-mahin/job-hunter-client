@@ -1,12 +1,14 @@
 import FilterSidebar from "@/app/components/Shared/FilterSidebar";
 import FilterBarContent from "../filtering/FilterBarContent";
+import { TMeta } from "@/types";
 
 type TAllFiltersProps = {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  meta: TMeta;
 };
 
-const AllFilters: React.FC<TAllFiltersProps> = ({ isOpen, setIsOpen }) => {
+const AllFilters: React.FC<TAllFiltersProps> = ({ isOpen, setIsOpen, meta }) => {
   return (
     <div>
       <FilterSidebar
@@ -15,7 +17,7 @@ const AllFilters: React.FC<TAllFiltersProps> = ({ isOpen, setIsOpen }) => {
         directionRight={true}
         className="lg:w-[550px] bg-gray-400"
       >
-        <FilterBarContent />
+        <FilterBarContent meta={meta}/>
       </FilterSidebar>
     </div>
   );

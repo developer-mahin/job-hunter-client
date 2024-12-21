@@ -10,6 +10,7 @@ const protectedRoutes = [
   "/my_networks",
   "/profile/:page*",
   "/recruiter/:page*",
+  "/user_profile/:page*",
 ];
 
 // This function can be marked `async` if using `await` inside
@@ -52,7 +53,6 @@ export function middleware(request: NextRequest) {
     }
   }
 
-
   return NextResponse.redirect(new URL("/", request.url));
 }
 
@@ -64,6 +64,7 @@ export const config = {
     "/messege",
     "/jobs",
     "/my_networks",
+    "/user_profile/:page*",
     "/profile/:page*",
     "/recruiter/:page*",
   ],
