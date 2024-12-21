@@ -98,7 +98,7 @@ const PageWrapper = () => {
               setIsOpen={setIsOpen}
             />
           ) : (
-            <p className="text-center text-xl font-semibold">
+            <p className="text-center h-screen text-xl font-semibold">
               No job found. Please try again with a different search term.
             </p>
           )}

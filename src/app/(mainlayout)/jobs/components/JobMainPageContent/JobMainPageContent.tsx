@@ -10,15 +10,11 @@ const JobMainPageContent = () => {
 
   return (
     <div className="border rounded-xl bg-gray-100 bg-opacity-70 shadow-lg p-3 h-screen scrollBar">
-      {job ? (
+      {job && (
         <>
           <JobTitleAndInfo job={job} />
           <AboutJobDescription job={job} />
         </>
-      ) : (
-        <p className="text-center text-xl font-semibold">
-          No job selected. Please select a job to view its details.
-        </p>
       )}
     </div>
   );
