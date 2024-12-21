@@ -26,8 +26,8 @@ export const jobTypes: TSelectItems[] = [
     label: "Volunteer",
   },
   {
-    key: "Other",
-    label: "Other",
+    key: "",
+    label: "All",
   },
 ];
 
@@ -43,6 +43,10 @@ export const workPlaceTypes: TSelectItems[] = [
   {
     key: "Hybrid",
     label: "Hybrid",
+  },
+  {
+    key: "",
+    label: "All",
   },
 ];
 
@@ -86,6 +90,10 @@ export const industryTypes: TSelectItems[] = [
   {
     key: "Travel Arrangements",
     label: "Travel Arrangements",
+  },
+  {
+    key: "",
+    label: "All",
   },
 ];
 
@@ -141,4 +149,8 @@ export const countryTypes: TSelectItems[] = [
   { key: "Singapore", label: "Singapore" },
   { key: "Hong Kong", label: "Hong Kong" },
   { key: "Qatar", label: "Qatar" },
+  {
+    key: "",
+    label: "All",
+  },
 ];

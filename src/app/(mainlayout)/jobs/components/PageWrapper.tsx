@@ -91,11 +91,17 @@ const PageWrapper = () => {
 
       <div className="grid grid-cols-12 my-3 lg:gap-x-5">
         <div className="lg:col-span-5 col-span-12">
-          <JobLeftSidebar
-            allJobs={allJobs?.data}
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-          />
+          {allJobs?.data.length > 0 ? (
+            <JobLeftSidebar
+              allJobs={allJobs?.data}
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+            />
+          ) : (
+            <p className="text-center text-xl font-semibold">
+              No job found. Please try again with a different search term.
+            </p>
+          )}
         </div>
         <div className="lg:col-span-7 col-span-12">
           <JobMainPageContent />

@@ -38,7 +38,7 @@ const RightSidebar = () => {
   const rightSideBarInfo = data?.data;
 
   return (
-    <div className="">
+    <div className="lg:sticky top-0 bg-gray-50">
       <div className="mb-3 border bg-gray-50 bg-opacity-15 p-3 rounded-t-xl">
         <form className="relative">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center">

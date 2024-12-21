@@ -22,13 +22,15 @@ const FilterBarContent: React.FC<TFilterBarContent> = ({ meta }) => {
   return (
     <div className="mt-10">
       <ExperienceLevel />
-      <div>
-        <PaginationSoluation
-          totalPage={meta?.totalPage}
-          setLimit={handleSetLimit}
-          setCurrentPage={handleSetCurrentPage}
-        />
-      </div>
+      {meta?.totalPage > 1 && (
+        <div>
+          <PaginationSoluation
+            totalPage={meta?.totalPage}
+            setLimit={handleSetLimit}
+            setCurrentPage={handleSetCurrentPage}
+          />
+        </div>
+      )}
     </div>
   );
 };

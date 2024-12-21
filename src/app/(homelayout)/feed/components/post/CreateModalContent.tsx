@@ -1,4 +1,5 @@
 import JForm from "@/app/components/Form/JForm";
+import JQuill from "@/app/components/Form/JQuill";
 import JTextarea from "@/app/components/Form/JTextarea";
 import { useCreatePostMutation } from "@/redux/api/Features/Post/postApi";
 import { useGetMyProfileQuery } from "@/redux/api/Features/user/userApi";
@@ -85,15 +86,14 @@ const CreateModalContent = ({ setIsModalOpen }: TProps) => {
 
       <JForm onSubmit={handleCreatePost}>
         <div className="py-2">
-          <JTextarea
+          <JQuill
             label="Description"
             name="postDetails"
-            placeholder="Write your post description"
-            className=""
+            className="mb-3 h-[150px]"
           />
         </div>
 
-        <div>
+        <div className="mt-8">
           {imageDataURl && (
             <Image
               src={imageDataURl}

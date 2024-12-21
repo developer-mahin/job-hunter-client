@@ -21,6 +21,9 @@ const JobLeftSidebar = ({ allJobs, isOpen, setIsOpen }: TProps) => {
     if (allJobs && allJobs.length > 0) {
       dispatch(setJob(allJobs[0]));
       setJobId(allJobs[0]._id);
+    } else {
+      dispatch(setJob(null));
+      setJobId("");
     }
   }, [allJobs, dispatch]);
 
